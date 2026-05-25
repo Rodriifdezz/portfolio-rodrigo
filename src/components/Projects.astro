@@ -1,0 +1,373 @@
+---
+import { Image } from 'astro:assets';
+import avatarProyectos from '../assets/Proyectos.png';
+
+const projects = [
+  {
+    id: "fomo",
+    title: "FOMO",
+    subtitle: "Producto social mobile · Experiencias reales",
+    stack: ["React Native", "Firebase", "Zustand"],
+    description: "FOMO digitaliza el pre, durante y post de las dinámicas sociales. Diseñado alrededor del comportamiento real de los grupos, facilitando la organización de eventos y eliminando la fricción de la noche.",
+    technical: "React Native · Arquitectura modular, lógica serverless en Cloud Functions y sincronización Firestore en tiempo real.",
+    quote: "Instagram muestra la fiesta. FOMO es la fiesta.",
+    github: "https://github.com/Rodriifdezz",
+    caseStudy: "#",
+    accentColor: "#7C5CFF",
+    category: "Producto Social"
+  },
+  {
+    id: "inno",
+    title: "Innovatech",
+    subtitle: "Concurso de Innovación · Finalistas €10k",
+    stack: ["UI/UX Design", "Figma", "Prototipado"],
+    description: "Propuesta de producto funcional seleccionada como finalista para el prestigioso premio nacional Innovatech. Diseñada alrededor de la resolución de problemas reales, combinando un diseño de interfaz impecable y una memoria rigurosa.",
+    technical: "UI/UX Design · Interfaces de alta fidelidad con micro-interacciones interactivas en Figma y análisis de requisitos.",
+    quote: "Diseño que soluciona problemas reales, listo para producción.",
+    github: "https://github.com/Rodriifdezz",
+    caseStudy: "#",
+    accentColor: "#F59E0B",
+    category: "Finalista €10k"
+  },
+  {
+    id: "erp",
+    title: "ERP de Gestión",
+    subtitle: "Software a medida · Tapicería artesanal",
+    stack: ["Spring Boot", "PostgreSQL", "Angular"],
+    description: "Digitalización operativa para un negocio familiar de tapicería a medida. Modela lógicas complejas de presupuestación que varían según tipo de encargo, materiales consumidos y dificultad.",
+    technical: "Spring Boot · Arquitectura backend por capas con persistencia Spring Data JPA y modelado estructurado de base de datos PostgreSQL.",
+    quote: "Modelando procesos reales, no solo guardando datos.",
+    github: "https://github.com/Rodriifdezz",
+    caseStudy: "#",
+    accentColor: "#4F8CFF",
+    category: "Core Backend"
+  }
+];
+---
+
+<section id="projects" class="section-container relative overflow-visible">
+  <!-- 1. Section Header: Placed at the very top of the section (Spans 100% width) for maximum readability and zero overlap -->
+  <div class="flex flex-col gap-4 mb-16 max-w-4xl animate-[fadeIn_1s_ease-out]">
+    <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tight">Proyectos destacados</h2>
+    <p class="text-text-secondary text-base md:text-lg leading-relaxed max-w-3xl">
+      Proyectos reales donde combino desarrollo <strong class="text-accent-primary font-semibold">backend estructurado</strong>, diseño de <strong class="text-accent-secondary font-semibold">producto</strong> y experiencias de usuario fluidas y de alto rendimiento.
+    </p>
+  </div>
+
+  <!-- 2. Master Bento Grid: 2 Columns with Stereoscopic 3D Overlap on Desktop -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full relative overflow-visible" id="projects-bento-grid">
+    
+    <!-- LEFT COLUMN: Colossal Integrated Avatar Only (Col-span 4 - Standing tall from the very top of the grid) -->
+    <div class="lg:col-span-4 flex flex-col gap-6 w-full lg:sticky lg:top-24 z-30 overflow-visible">
+      
+      <!-- Giant Colossal Avatar (Occupies the full height, completely solo on the left for maximum impact) -->
+      <div class="relative w-full flex items-center justify-center select-none overflow-visible lg:-mr-12 xl:-mr-16 z-30 pointer-events-none">
+        
+        <!-- Large Avatar Image (overlapping the right column bento grid beautifully) -->
+        <div class="relative w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[480px] lg:h-[480px] xl:w-[540px] xl:h-[540px] flex items-end justify-center z-10 overflow-visible">
+          <Image 
+            src={avatarProyectos} 
+            alt="Avatar de proyectos de Rodrigo" 
+            id="projects-avatar-img"
+            class="relative w-full h-[115%] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.65)] avatar-mask scale-125 origin-bottom transition-transform duration-700 ease-out"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: True Bento Grid of 3 Projects (Col-span 8) -->
+    <!-- Positioned with lower relative z-index so that the giant avatar overlaps above it -->
+    <div class="lg:col-span-8 w-full flex flex-col gap-6 z-10 relative overflow-visible">
+
+      <!-- ROW 1: FOMO & INNOVATECH (Asymmetric Bento: Wide & Narrow) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full relative overflow-visible">
+        
+        <!-- FOMO (Row 1 - Left - Ancha - md:col-span-8) -->
+        <div 
+          data-project-card
+          data-project-id={projects[0].id}
+          data-accent-color={projects[0].accentColor}
+          class="bento-card md:col-span-8 group relative overflow-hidden rounded-[32px] p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 cursor-pointer select-none"
+          style={`--hover-border-color: ${projects[0].accentColor}55; --hover-shadow-color: ${projects[0].accentColor}18; --hover-accent: ${projects[0].accentColor};`}
+        >
+          <!-- Neon Radial Glow Overlay on Hover -->
+          <div 
+            class="absolute top-0 right-0 w-80 h-80 opacity-0 group-hover:opacity-[0.06] rounded-full blur-[80px] pointer-events-none transition-opacity duration-500" 
+            style={`background-color: ${projects[0].accentColor};`}
+          ></div>
+
+          <!-- Left Info Section (Strictly mapped inside a responsive flex column for zero overlapping) -->
+          <div class="flex-grow flex flex-col justify-between relative z-10 w-full pr-0 md:pr-4">
+            <div class="flex flex-col gap-3">
+              <!-- Title Row -->
+              <div class="flex items-center gap-3">
+                <span 
+                  class="w-1 h-5 rounded-full shrink-0" 
+                  style={`background-color: ${projects[0].accentColor}; box-shadow: 0 0 10px ${projects[0].accentColor};`}
+                ></span>
+                <span class="font-mono text-base font-bold text-white/40">01</span>
+                <h3 class="text-xl md:text-2xl font-bold text-white font-display transition-colors duration-300">{projects[0].title}</h3>
+              </div>
+
+              <span class="text-[10px] font-bold tracking-widest uppercase font-mono pl-4" style={`color: ${projects[0].accentColor};`}>
+                {projects[0].subtitle}
+              </span>
+
+              <p class="text-text-secondary text-xs xl:text-sm leading-relaxed pl-4">
+                {projects[0].description}
+              </p>
+              
+              <p class="text-[11px] text-text-muted border-l border-white/10 pl-3 ml-4 italic leading-relaxed">
+                {projects[0].technical}
+              </p>
+            </div>
+
+            <!-- Footer Details & Buttons -->
+            <div class="flex flex-col gap-3.5 pl-4 mt-6">
+              <div class="flex flex-wrap gap-1.5">
+                {projects[0].stack.map((tech) => (
+                  <span 
+                    class="text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded border" 
+                    style={`color: ${projects[0].accentColor}; background-color: ${projects[0].accentColor}12; border-color: ${projects[0].accentColor}25;`}
+                  >{tech}</span>
+                ))}
+              </div>
+              
+              <div class="flex items-center gap-3 relative z-20">
+                <a 
+                  href={projects[0].caseStudy} 
+                  class="px-4 py-2 rounded-full text-white font-semibold text-xs shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  style={`background-color: ${projects[0].accentColor}; box-shadow: 0 4px 12px ${projects[0].accentColor}25;`}
+                >Ver case study</a>
+                <a href={projects[0].github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white font-medium text-xs hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-0.5">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Showcase Image (Right Column - completely separate from text column) -->
+          <div class="project-image-container flex items-center justify-center shrink-0 w-full md:w-[160px] lg:w-[170px] xl:w-[210px] aspect-[16/10] md:aspect-auto md:h-full relative z-10 self-center">
+            <div 
+              class="project-image-wrapper w-full h-full md:h-[160px] lg:h-[170px] xl:h-[190px] rounded-2xl overflow-hidden border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.8)] relative bg-bg-primary/80 shrink-0 transition-all duration-700"
+              style="--rotate-angle: 2.5deg;"
+            >
+              <img 
+                src="/cinematic/case_fomo.png" 
+                alt="Vista previa de FOMO" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVATECH (Row 1 - Right - Estrecha - md:col-span-4) -->
+        <div 
+          data-project-card
+          data-project-id={projects[1].id}
+          data-accent-color={projects[1].accentColor}
+          class="bento-card md:col-span-4 group relative overflow-hidden rounded-[32px] p-6 md:p-8 flex flex-col justify-between cursor-pointer select-none min-h-[380px]"
+          style={`--hover-border-color: ${projects[1].accentColor}55; --hover-shadow-color: ${projects[1].accentColor}18; --hover-accent: ${projects[1].accentColor};`}
+        >
+          <!-- Neon Radial Glow Overlay on Hover -->
+          <div 
+            class="absolute top-0 right-0 w-72 h-72 opacity-0 group-hover:opacity-[0.06] rounded-full blur-[80px] pointer-events-none transition-opacity duration-500" 
+            style={`background-color: ${projects[1].accentColor};`}
+          ></div>
+
+          <!-- Text Part (Top) -->
+          <div class="flex flex-col gap-3 z-10">
+            <div class="flex items-center gap-2.5">
+              <span class="w-1 h-5 rounded-full shrink-0" style={`background-color: ${projects[1].accentColor}; box-shadow: 0 0 10px ${projects[1].accentColor};`}></span>
+              <span class="font-mono text-base font-bold text-white/40">02</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white font-display transition-colors duration-300">{projects[1].title}</h3>
+            </div>
+            
+            <div class="flex flex-col gap-1.5 pl-3.5">
+              <span class="text-[9px] font-bold tracking-widest uppercase font-mono" style={`color: ${projects[1].accentColor};`}>{projects[1].subtitle}</span>
+              
+              <div class="mt-0.5">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 w-fit text-[8px] font-bold uppercase tracking-wider text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.12)]">
+                  <span class="w-1 h-1 rounded-full bg-amber-400 animate-pulse"></span>
+                  Finalista Nacional · 10K€
+                </span>
+              </div>
+              <p class="text-text-secondary text-xs leading-relaxed mt-1.5">{projects[1].description}</p>
+            </div>
+          </div>
+
+          <!-- Stacks & Buttons (Middle) -->
+          <div class="flex flex-col gap-3 pl-3.5 mt-4 z-10">
+            <div class="flex flex-wrap gap-1">
+              {projects[1].stack.map((tech) => (
+                <span class="text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border" style={`color: ${projects[1].accentColor}; background-color: ${projects[1].accentColor}12; border-color: ${projects[1].accentColor}25;`}>{tech}</span>
+              ))}
+            </div>
+            <div class="flex items-center gap-2.5 relative z-20">
+              <a 
+                href={projects[1].caseStudy} 
+                class="px-4 py-2 rounded-full text-white font-semibold text-xs shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={`background-color: ${projects[1].accentColor}; box-shadow: 0 4px 12px ${projects[1].accentColor}25;`}
+              >Ver memoria</a>
+              <a href={projects[1].github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white font-medium text-xs hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-0.5">GitHub</a>
+            </div>
+          </div>
+
+          <!-- Image Part (Bottom - Bleeding out of the card bottom dynamically) -->
+          <div class="project-image-container flex items-center justify-center mt-6 w-full relative z-10 h-[100px] overflow-hidden">
+            <div class="project-image-wrapper w-full h-[130px] rounded-t-2xl overflow-hidden border-t border-x border-white/10 shadow-2xl bg-bg-primary/80 shrink-0 transition-all duration-700 translate-y-6 group-hover:translate-y-2 group-hover:scale-[1.03]" style="--rotate-angle: -1.5deg;">
+              <img src="/cinematic/case_quant.png" alt="Innovatech" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROW 2: ERP DE GESTIÓN (Full Width - md:col-span-12) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full relative overflow-visible">
+        
+        <!-- ERP (Ancho Completo - col-span-12) -->
+        <div 
+          data-project-card
+          data-project-id={projects[2].id}
+          data-accent-color={projects[2].accentColor}
+          class="bento-card md:col-span-12 group relative overflow-hidden rounded-[32px] p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 cursor-pointer select-none"
+          style={`--hover-border-color: ${projects[2].accentColor}55; --hover-shadow-color: ${projects[2].accentColor}18; --hover-accent: ${projects[2].accentColor};`}
+        >
+          <!-- Neon Radial Glow Overlay on Hover -->
+          <div 
+            class="absolute top-0 right-0 w-96 h-96 opacity-0 group-hover:opacity-[0.06] rounded-full blur-[80px] pointer-events-none transition-opacity duration-500" 
+            style={`background-color: ${projects[2].accentColor};`}
+          ></div>
+
+          <!-- Left Info Section (Strictly mapped inside a responsive flex column for zero overlapping) -->
+          <div class="flex-grow flex flex-col justify-between relative z-10 w-full pr-0 md:pr-4">
+            <div class="flex flex-col gap-3">
+              <!-- Title Row -->
+              <div class="flex items-center gap-3">
+                <span 
+                  class="w-1 h-5 rounded-full shrink-0" 
+                  style={`background-color: ${projects[2].accentColor}; box-shadow: 0 0 10px ${projects[2].accentColor};`}
+                ></span>
+                <span class="font-mono text-base font-bold text-white/40">03</span>
+                <h3 class="text-xl md:text-2xl font-bold text-white font-display transition-colors duration-300">{projects[2].title}</h3>
+              </div>
+
+              <span class="text-[10px] font-bold tracking-widest uppercase font-mono pl-4" style={`color: ${projects[2].accentColor};`}>
+                {projects[2].subtitle}
+              </span>
+
+              <p class="text-text-secondary text-xs xl:text-sm leading-relaxed pl-4 max-w-xl">
+                {projects[2].description}
+              </p>
+              
+              <p class="text-[11px] text-text-muted border-l border-white/10 pl-3 ml-4 italic leading-relaxed max-w-xl">
+                {projects[2].technical}
+              </p>
+            </div>
+
+            <!-- Footer Details & Buttons -->
+            <div class="flex flex-col gap-3.5 pl-4 mt-6">
+              <div class="flex flex-wrap gap-1.5">
+                {projects[2].stack.map((tech) => (
+                  <span 
+                    class="text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded border" 
+                    style={`color: ${projects[2].accentColor}; background-color: ${projects[2].accentColor}12; border-color: ${projects[2].accentColor}25;`}
+                  >{tech}</span>
+                ))}
+              </div>
+              
+              <div class="flex items-center gap-3 relative z-20">
+                <a 
+                  href={projects[2].caseStudy} 
+                  class="px-4 py-2 rounded-full text-white font-semibold text-xs shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  style={`background-color: ${projects[2].accentColor}; box-shadow: 0 4px 12px ${projects[2].accentColor}25;`}
+                >Ver case study</a>
+                <a href={projects[2].github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white font-medium text-xs hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-0.5">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Showcase Image (Right Column - completely separate from text column) -->
+          <div class="project-image-container flex items-center justify-center shrink-0 w-full md:w-[180px] lg:w-[220px] xl:w-[260px] aspect-[16/10] md:aspect-auto md:h-full relative z-10 self-center">
+            <div 
+              class="project-image-wrapper w-full h-full md:h-[180px] lg:h-[190px] xl:h-[210px] rounded-2xl overflow-hidden border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.8)] relative bg-bg-primary/80 shrink-0 transition-all duration-700"
+              style="--rotate-angle: -2.5deg;"
+            >
+              <img 
+                src="/cinematic/case_erp.png" 
+                alt="Vista previa de ERP" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* --- Base Bento Card Styling --- */
+  .bento-card {
+    background: linear-gradient(180deg, #0e122b 0%, #070914 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.3, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease,
+                background-color 0.5s ease;
+  }
+
+  /* Target reactive neon borders and glowing shadows based on custom inline variables */
+  .bento-card:hover {
+    transform: translateY(-4px) scale(1.015);
+    border-color: var(--hover-border-color) !important;
+    box-shadow: 0 20px 50px var(--hover-shadow-color), 0 0 35px rgba(0,0,0,0.6) !important;
+    background-color: rgba(14, 18, 43, 0.7);
+  }
+
+  /* --- Illustrative Project Image Scaling & Tilt --- */
+  /* Default tilted physical card appearance on desktop */
+  @media (min-width: 768px) {
+    .project-image-wrapper {
+      transform: rotate(var(--rotate-angle, 2deg)) translateY(0);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.65);
+    }
+
+    /* Straighten & scale images upon hover */
+    .bento-card:hover .project-image-wrapper {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+  }
+
+  /* Inject hover title color from JS variables */
+  .bento-card:hover h3 {
+    color: var(--hover-accent) !important;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 767px) {
+    .bento-card {
+      padding: 1.5rem;
+    }
+    .project-image-container {
+      width: 100%;
+      height: 180px;
+      margin-top: 1rem;
+    }
+    .project-image-wrapper {
+      transform: none !important;
+      border-radius: 1rem !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import avatarSaludo from '../assets/Saludo.png';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center pt-20">
+  
+  <!-- Giant Background Avatar with Cinematic Depth -->
+  <div id="cinematic-scene" class="absolute right-[-5%] md:right-0 lg:right-[2%] bottom-0 w-[115%] md:w-[80%] lg:w-[65%] max-w-[1050px] h-[85vh] z-0 pointer-events-auto opacity-85 md:opacity-100">
+    <!-- Glow suave y elegante detrás del avatar -->
+    <div id="avatar-glow" class="absolute inset-0 bg-gradient-to-tr from-accent-primary/25 to-accent-secondary/15 rounded-full blur-[100px] animate-breathe opacity-70 glow-mask"></div>
+    
+    <!-- Principal Avatar (Tu imagen original) -->
+    <Image 
+      src={avatarSaludo} 
+      alt="Avatar saludo de Rodrigo Fernández" 
+      id="main-avatar"
+      class="relative w-full h-full object-contain object-right-bottom drop-shadow-[0_0_40px_rgba(79,140,255,0.15)] avatar-mask scale-110 md:scale-100 origin-bottom transition-transform duration-700 ease-out z-10 opacity-0"
+    />
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col justify-center">
+    <div class="flex flex-col gap-6 max-w-4xl relative">
+      
+      <!-- Badge -->
+      <div data-hero-anim="badge" class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-accent-primary/40 bg-accent-primary/10 w-fit backdrop-blur-md shadow-[0_0_20px_rgba(79,140,255,0.2)] opacity-0 translate-y-8">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
+        </span>
+        <span class="text-sm font-semibold text-accent-primary tracking-widest uppercase">Software Engineer</span>
+      </div>
+      
+      <!-- Huge Typography -->
+      <h1 data-hero-anim="title" class="text-6xl md:text-[6rem] lg:text-[8.5rem] leading-[0.85] font-bold tracking-tighter opacity-0 translate-y-12">
+        Rodrigo <br/> 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-white to-accent-secondary bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] drop-shadow-lg inline-block">
+          Fernández
+        </span>
+      </h1>
+      
+      <!-- Glassmorphism Box for text readability over the avatar -->
+      <div data-hero-anim="box" class="mt-4 p-6 md:p-8 rounded-3xl bg-bg-primary/40 backdrop-blur-xl border border-white/10 shadow-2xl max-w-2xl hover:border-accent-primary/30 transition-colors duration-500 relative z-10 opacity-0 translate-y-8">
+        <h2 class="text-2xl md:text-3xl text-white font-medium mb-3 leading-tight">
+          Desarrollador software enfocado en backend, producto y aplicaciones escalables.
+        </h2>
+        
+        <p class="text-lg text-text-secondary leading-relaxed mb-6">
+          Construyendo sistemas y experiencias reales con Java, Spring, React Native y arquitecturas modernas.
+        </p>
+
+        <p class="text-sm text-text-muted border-l-2 border-accent-primary/50 pl-4 py-1 mb-6">
+          Actualmente finalizando DAM e Ingeniería Informática mientras desarrollo proyectos personales centrados en backend, cloud y experiencias digitales con identidad real.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#projects" class="btn-primary shadow-[0_0_30px_rgba(79,140,255,0.3)]">
+            Ver proyectos
+          </a>
+          <a href="#contact" class="btn-secondary bg-bg-primary/50">
+            Contacto
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // 1. Text Entry Animations
+  const heroElements = document.querySelectorAll('[data-hero-anim]');
+  if (heroElements.length > 0) {
+    gsap.to(heroElements, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: 'power4.out',
+      delay: 0.2
+    });
+  }
+
+  // 1.5. Avatar Cinematic Entry Animation
+  const mainAvatar = document.getElementById('main-avatar');
+  if (mainAvatar) {
+    gsap.fromTo(mainAvatar, 
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 1.8, ease: 'power3.out', delay: 0.5 }
+    );
+  }
+
+  // 2. Cinematic Mouse Parallax for Avatar and Glow
+  const scene = document.getElementById('cinematic-scene');
+  const avatarGlow = document.getElementById('avatar-glow');
+
+  if (scene && mainAvatar) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      // Move the main avatar slightly
+      gsap.to(mainAvatar, {
+        x: x * 15,
+        y: y * 15,
+        rotationY: x * 5,
+        rotationX: -y * 5,
+        duration: 1,
+        ease: 'power2.out'
+      });
+
+      // Move the background glow in the opposite direction for stereoscopic 3D depth
+      if (avatarGlow) {
+        gsap.to(avatarGlow, {
+          x: -x * 25,
+          y: -y * 25,
+          duration: 1.5,
+          ease: 'power2.out'
+        });
+      }
+    });
+  }
+</script>

@@ -1,0 +1,185 @@
+---
+const categories = [
+  {
+    title: "Backend",
+    skills: [
+      { id: "java", name: "Java" },
+      { id: "springboot", name: "Spring Boot" },
+      { id: "restapis", name: "REST APIs" },
+      { id: "postgresql", name: "PostgreSQL" },
+      { id: "jpa", name: "JPA / Hibernate" }
+    ]
+  },
+  {
+    title: "Frontend & Mobile",
+    skills: [
+      { id: "reactnative", name: "React Native" },
+      { id: "react", name: "React" },
+      { id: "angular", name: "Angular" }
+    ]
+  },
+  {
+    title: "Cloud & Tools",
+    skills: [
+      { id: "firebase", name: "Firebase" },
+      { id: "docker", name: "Docker" },
+      { id: "azure", name: "Azure" },
+      { id: "git", name: "Git" },
+      { id: "postman", name: "Postman" }
+    ]
+  }
+];
+---
+
+<section id="tech" class="section-container relative overflow-hidden">
+  
+  <div class="flex flex-col gap-12 relative z-10">
+    
+    <!-- Header -->
+    <div class="flex flex-col gap-4 max-w-2xl" data-tech-header>
+      <h2 class="text-3xl md:text-4xl">Tecnologías con las que trabajo</h2>
+      <p class="text-text-secondary text-lg leading-relaxed">
+        Principalmente ecosistema Java y Spring, aunque también disfruto construyendo producto con tecnologías modernas orientadas a mobile y cloud.
+      </p>
+    </div>
+
+    <!-- Symmetrical 3-Column Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {categories.map((category) => (
+        <div class="glass-card p-8 flex flex-col gap-6" data-tech-card>
+          <h3 class="text-xl font-semibold text-white">{category.title}</h3>
+          
+          <div class="flex flex-wrap gap-3">
+            {category.skills.map((skill) => (
+              <span 
+                data-tech-pill
+                class="group relative px-4 py-2 text-sm font-medium rounded-full bg-white/5 border border-white/10 text-text-secondary hover:text-white hover:border-accent-primary/50 transition-colors flex items-center gap-2 cursor-default select-none"
+              >
+                <!-- SVG Icon inline next to text -->
+                <span class="w-4 h-4 text-text-muted group-hover:text-accent-primary transition-colors duration-300">
+                  {skill.id === "java" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /><path d="M6 1v3M10 1v3M14 1v3" />
+                    </svg>
+                  )}
+                  {skill.id === "springboot" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 22 2c-2.48 5-3 6.5-4.1 12.2A7 7 0 0 1 11 20z" /><path d="M9 22a1 1 0 0 1 0-2" /><path d="M11 11c-2 2-3 4-3 6" />
+                    </svg>
+                  )}
+                  {skill.id === "restapis" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M6 21h12M12 17v4M7 8l3 3-3 3M12 14h5" />
+                    </svg>
+                  )}
+                  {skill.id === "postgresql" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                    </svg>
+                  )}
+                  {skill.id === "jpa" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="4" width="8" height="6" rx="1" /><rect x="14" y="14" width="8" height="6" rx="1" /><path d="M6 10v4h8v4M14 16l-2-2 2-2" />
+                    </svg>
+                  )}
+                  {(skill.id === "reactnative" || skill.id === "react") && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(30 12 12)" /><ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(90 12 12)" /><ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(150 12 12)" /><circle cx="12" cy="12" r="1" fill="currentColor" />
+                    </svg>
+                  )}
+                  {skill.id === "angular" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2L2 5l1.7 13.5L12 22l8.3-3.5L22 5z" /><path d="M12 2v20M12 7l4.5 9h-9z" />
+                    </svg>
+                  )}
+                  {skill.id === "firebase" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2c0 0-4 3.5-4 7s3.5 6 4 9c.5-3 4-5.5 4-9s-4-7-4-7zM9 11c0 0-2 2-2 4s2 3 3 5" />
+                    </svg>
+                  )}
+                  {skill.id === "docker" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="14" width="20" height="6" rx="1" /><rect x="4" y="8" width="6" height="6" rx="1" /><rect x="12" y="8" width="8" height="6" rx="1" /><rect x="8" y="2" width="6" height="6" rx="1" />
+                    </svg>
+                  )}
+                  {skill.id === "azure" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" /><path d="M7.5 13.5L12 9l4.5 4.5" />
+                    </svg>
+                  )}
+                  {skill.id === "git" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="18" cy="18" r="3" /><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 15V9a4 4 0 0 0-4-4H9M6 9v6" />
+                    </svg>
+                  )}
+                  {skill.id === "postman" && (
+                    <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4.5 16.5c-1.5 1.5-2.5 3.5-2.5 5.5C4 22 6 21 7.5 19.5M12 12l9-9-3 12-6 3-3-6zM9 15l3-3" />
+                    </svg>
+                  )}
+                </span>
+                {skill.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Smooth Entry Animation for Header
+  gsap.from('[data-tech-header]', {
+    scrollTrigger: {
+      trigger: '#tech',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out'
+  });
+
+  // Smooth Staggered Entry for Cards
+  const cards = document.querySelectorAll('[data-tech-card]');
+  if (cards.length > 0) {
+    gsap.from(cards, {
+      scrollTrigger: {
+        trigger: '#tech',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+  }
+
+  // Smooth micro-stagger for individual pills inside each card
+  const pills = document.querySelectorAll('[data-tech-pill]');
+  if (pills.length > 0) {
+    gsap.from(pills, {
+      scrollTrigger: {
+        trigger: '#tech',
+        start: 'top 75%',
+        toggleActions: 'play none none reverse'
+      },
+      scale: 0.85,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.02,
+      ease: 'back.out(1.2)',
+      delay: 0.2
+    });
+  }
+</script>
