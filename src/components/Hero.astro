@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import avatarSaludo from '../assets/Saludo.png';
+import MagneticButton from './MagneticButton.astro';
 ---
 
-<section id="hero" class="relative min-h-screen flex items-center pt-20">
+<section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
   
-  <!-- Giant Background Avatar with Cinematic Depth -->
-  <div id="cinematic-scene" class="absolute right-[-5%] md:right-0 lg:right-[2%] bottom-0 w-[115%] md:w-[80%] lg:w-[65%] max-w-[1050px] h-[85vh] z-0 pointer-events-auto opacity-85 md:opacity-100">
+  <!-- Giant Background Avatar with Cinematic Depth - RESPONSIVE -->
+  <div id="cinematic-scene" class="absolute right-[-15%] sm:right-[0%] md:right-[5%] lg:right-[8%] xl:right-[5%] bottom-0 w-[130%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[55%] max-w-[900px] h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] z-0 pointer-events-auto opacity-75 sm:opacity-85 md:opacity-100">
     <!-- Glow suave y elegante detrás del avatar -->
     <div id="avatar-glow" class="absolute inset-0 bg-gradient-to-tr from-accent-primary/25 to-accent-secondary/15 rounded-full blur-[100px] animate-breathe opacity-70 glow-mask"></div>
     
@@ -15,51 +16,51 @@ import avatarSaludo from '../assets/Saludo.png';
       src={avatarSaludo} 
       alt="Avatar saludo de Rodrigo Fernández" 
       id="main-avatar"
-      class="relative w-full h-full object-contain object-right-bottom drop-shadow-[0_0_40px_rgba(79,140,255,0.15)] avatar-mask scale-110 md:scale-100 origin-bottom transition-transform duration-700 ease-out z-10 opacity-0"
+      class="relative w-full h-full object-contain object-right-bottom drop-shadow-[0_0_40px_rgba(79,140,255,0.15)] avatar-mask origin-bottom transition-transform duration-700 ease-out z-10 opacity-0"
     />
   </div>
 
-  <div class="max-w-[1280px] mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col justify-center">
-    <div class="flex flex-col gap-6 max-w-4xl relative">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 relative z-10 w-full max-h-[80vh] flex items-center">
+    <div class="flex flex-col gap-[1.5vh] sm:gap-[2vh] md:gap-[2.5vh] max-w-3xl w-full">
       
       <!-- Badge -->
-      <div data-hero-anim="badge" class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-accent-primary/40 bg-accent-primary/10 w-fit backdrop-blur-md shadow-[0_0_20px_rgba(79,140,255,0.2)] opacity-0 translate-y-8">
+      <div data-hero-anim="badge" class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-accent-primary/40 bg-accent-primary/10 w-fit backdrop-blur-md shadow-[0_0_20px_rgba(79,140,255,0.2)] opacity-0 translate-y-8">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
+          <span class="relative inline-flex rounded-full h-full w-full bg-accent-primary"></span>
         </span>
-        <span class="text-sm font-semibold text-accent-primary tracking-widest uppercase">Software Engineer</span>
+        <span class="text-xs md:text-sm font-semibold text-accent-primary tracking-widest uppercase">Software Engineer</span>
       </div>
       
-      <!-- Huge Typography -->
-      <h1 data-hero-anim="title" class="text-6xl md:text-[6rem] lg:text-[8.5rem] leading-[0.85] font-bold tracking-tighter opacity-0 translate-y-12">
+      <!-- Huge Typography - RESPONSIVE con vh -->
+      <h1 data-hero-anim="title" class="text-[8vh] sm:text-[9vh] md:text-[12vh] lg:text-[14vh] leading-[0.9] font-bold tracking-tighter opacity-0 translate-y-12">
         Rodrigo <br/> 
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-white to-accent-secondary bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] drop-shadow-lg inline-block">
           Fernández
         </span>
       </h1>
       
-      <!-- Glassmorphism Box for text readability over the avatar -->
-      <div data-hero-anim="box" class="mt-4 p-6 md:p-8 rounded-3xl bg-bg-primary/40 backdrop-blur-xl border border-white/10 shadow-2xl max-w-2xl hover:border-accent-primary/30 transition-colors duration-500 relative z-10 opacity-0 translate-y-8">
-        <h2 class="text-2xl md:text-3xl text-white font-medium mb-3 leading-tight">
+      <!-- Glassmorphism Box - Escalado con vh -->
+      <div data-hero-anim="box" class="p-[2vh] sm:p-[2.5vh] md:p-[3vh] rounded-2xl md:rounded-3xl bg-bg-primary/40 backdrop-blur-xl border border-white/10 shadow-2xl max-w-2xl hover:border-accent-primary/30 transition-colors duration-500 relative z-10 opacity-0 translate-y-8">
+        <h2 class="text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] lg:text-[3vh] text-white font-medium mb-[1.5vh] leading-tight">
           Desarrollador software enfocado en backend, producto y aplicaciones escalables.
         </h2>
         
-        <p class="text-lg text-text-secondary leading-relaxed mb-6">
+        <p class="text-[1.6vh] sm:text-[1.8vh] md:text-[2vh] text-text-secondary leading-relaxed mb-[2vh]">
           Construyendo sistemas y experiencias reales con Java, Spring, React Native y arquitecturas modernas.
         </p>
 
-        <p class="text-sm text-text-muted border-l-2 border-accent-primary/50 pl-4 py-1 mb-6">
+        <p class="hidden md:block text-[1.6vh] text-text-muted border-l-2 border-accent-primary/50 pl-4 py-1 mb-[2vh]">
           Actualmente finalizando DAM e Ingeniería Informática mientras desarrollo proyectos personales centrados en backend, cloud y experiencias digitales con identidad real.
         </p>
 
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="#projects" class="btn-primary shadow-[0_0_30px_rgba(79,140,255,0.3)]">
+        <div class="flex flex-wrap items-center gap-3 md:gap-4">
+          <MagneticButton href="#projects" type="primary" class="shadow-[0_0_30px_rgba(79,140,255,0.3)]">
             Ver proyectos
-          </a>
-          <a href="#contact" class="btn-secondary bg-bg-primary/50">
+          </MagneticButton>
+          <MagneticButton href="#contact" type="secondary" class="bg-bg-primary/50">
             Contacto
-          </a>
+          </MagneticButton>
         </div>
       </div>
 

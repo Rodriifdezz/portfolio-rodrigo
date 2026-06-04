@@ -8,8 +8,8 @@ const projects = [
     description: "Digitaliza el pre, durante y post de las dinámicas sociales. Diseñado alrededor del comportamiento real de los grupos, facilitando la organización de eventos.",
     stack: ["React Native", "Firebase", "Zustand", "Cloud Functions"],
     metrics: { users: "500+", rating: "4.8/5", status: "En desarrollo" },
-    github: "https://github.com/Rodriifdezz", caseStudy: "#",
-    accentColor: "#7C5CFF", image: "/cinematic/case_fomo.png"
+    github: "https://github.com/Rodriifdezz", caseStudy: "/projects/fomo",
+    accentColor: "#FF0080", image: "/cinematic/case_fomo.png"
   },
   {
     id: "inno", title: "Innovatech", tagline: "Concurso Nacional",
@@ -109,9 +109,9 @@ const projects = [
           <div class={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
             
             <div class={`lg:col-span-6 ${index % 2 === 1 ? 'lg:col-start-7' : ''}`}>
-              <div class="project-image-wrapper group/img relative">
+              <div class="project-image-wrapper group/img relative" data-tilt>
                 <div class="absolute -inset-4 rounded-3xl blur-3xl opacity-20 group-hover/img:opacity-40 transition-all duration-700" style={`background: ${project.accentColor};`}></div>
-                <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl" style="transform-style: preserve-3d;">
                   <div class="aspect-[16/10] relative overflow-hidden bg-gradient-to-br from-white/5 to-transparent">
                     <img src={project.image} alt={project.title} class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110" loading="lazy"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
@@ -234,4 +234,62 @@ const projects = [
       gsap.to(avatar, { x, y, duration: 0.8, ease: 'power2.out' });
     });
   }
+
+  // 3D Tilt Effect on Project Cards - OPTIMIZED
+  const tiltElements = document.querySelectorAll('[data-tilt]');
+  
+  tiltElements.forEach((element) => {
+    let rafId: number | null = null;
+    
+    // Add will-change on hover
+    element.addEventListener('mouseenter', () => {
+      (element as HTMLElement).style.willChange = 'transform';
+    });
+    
+    element.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      
+      // Throttle with RAF
+      if (rafId) return;
+      
+      rafId = requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -5; // Reduced to 5deg for smoother experience
+        const rotateY = ((x - centerX) / centerX) * 5;
+        
+        gsap.to(element, {
+          rotationX: rotateX,
+          rotationY: rotateY,
+          transformPerspective: 1000,
+          duration: 0.4,
+          ease: 'power1.out'
+        });
+        
+        rafId = null;
+      });
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      
+      gsap.to(element, {
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+      
+      // Remove will-change
+      (element as HTMLElement).style.willChange = 'auto';
+    });
+  });
 </script>

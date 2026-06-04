@@ -58,6 +58,7 @@ const techStack = [
         <div 
           class="bubble-card group"
           data-tech-card
+          data-tilt-bubble
           style={`--index: ${index}; --color: ${tech.color ? '#' + tech.color : '#' + tech.icon?.hex};`}
         >
           <div class="bubble-content">
@@ -117,11 +118,11 @@ const techStack = [
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* SIN transition CSS - solo GSAP para control total */
+    transition: background 0.08s ease-out, border-color 0.08s ease-out, box-shadow 0.08s ease-out;
   }
 
   .bubble-card:hover .bubble-content {
-    transform: translateY(-4px) scale(1.05);
     background: linear-gradient(135deg, 
       rgba(255, 255, 255, 0.15) 0%,
       rgba(255, 255, 255, 0.08) 100%
@@ -140,7 +141,7 @@ const techStack = [
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.06s ease-out;
   }
 
   .bubble-card:hover .bubble-icon {
@@ -152,7 +153,7 @@ const techStack = [
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: color 0.06s ease, transform 0.06s ease;
   }
 
   .bubble-card:hover .bubble-name {
@@ -210,20 +211,87 @@ const techStack = [
 
   const cards = document.querySelectorAll('[data-tech-card]');
   cards.forEach((card) => {
+    // Set initial transform origin
+    gsap.set(card, { transformOrigin: 'center center' });
+    
     card.addEventListener('mouseenter', () => {
       gsap.to(card, { 
-        scale: 1.08,
-        duration: 0.4, 
-        ease: 'back.out(2)' 
+        scale: 1.1,
+        y: -5,
+        duration: 0.1, // MUY rápido
+        ease: 'power1.out',
+        overwrite: true
       });
     });
     
     card.addEventListener('mouseleave', () => {
       gsap.to(card, { 
         scale: 1,
-        duration: 0.3, 
-        ease: 'power2.out' 
+        y: 0,
+        duration: 0.15,
+        ease: 'power1.out',
+        overwrite: true
       });
+    });
+  });
+
+  // 3D Tilt Effect on Tech Bubbles - OPTIMIZED
+  const tiltBubbles = document.querySelectorAll('[data-tilt-bubble]');
+  
+  tiltBubbles.forEach((bubble) => {
+    let rafId: number | null = null;
+    
+    // Add will-change on hover
+    bubble.addEventListener('mouseenter', () => {
+      (bubble as HTMLElement).style.willChange = 'transform';
+    });
+    
+    bubble.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      
+      // Throttle with RAF
+      if (rafId) return;
+      
+      rafId = requestAnimationFrame(() => {
+        const rect = bubble.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -4; // Reduced to 4deg for smoother experience
+        const rotateY = ((x - centerX) / centerX) * 4;
+        
+        gsap.to(bubble, {
+          rotationX: rotateX,
+          rotationY: rotateY,
+          transformPerspective: 500,
+          duration: 0.08, // Ultra rápido para efecto acordeón
+          ease: 'power1.out',
+          overwrite: 'auto'
+        });
+        
+        rafId = null;
+      });
+    });
+    
+    bubble.addEventListener('mouseleave', () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      
+      gsap.to(bubble, {
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.12,
+        ease: 'power1.out',
+        overwrite: 'auto'
+      });
+      
+      // Remove will-change
+      (bubble as HTMLElement).style.willChange = 'auto';
     });
   });
 </script>

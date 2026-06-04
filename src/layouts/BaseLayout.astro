@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CustomCursor from '../components/CustomCursor.astro';
 
 interface Props {
   title?: string;
@@ -31,6 +32,9 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="relative min-h-screen flex flex-col bg-bg-primary text-text-primary">
+    <!-- Custom Cursor -->
+    <CustomCursor />
+    
     <!-- Premium Background Layers -->
     <div class="fixed inset-0 z-[-2] bg-grid-pattern"></div>
     <div class="fixed inset-0 z-[-1] bg-noise"></div>
@@ -43,7 +47,7 @@ const {
 
     <slot />
 
-    <!-- Lenis & GSAP Global Smooth Scroll Setup -->
+    <!-- Lenis & GSAP Global Smooth Scroll Setup - OPTIMIZED -->
     <script>
       import Lenis from 'lenis';
       import { gsap } from 'gsap';
@@ -52,8 +56,14 @@ const {
       gsap.registerPlugin(ScrollTrigger);
 
       const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
       });
 
       lenis.on('scroll', ScrollTrigger.update);

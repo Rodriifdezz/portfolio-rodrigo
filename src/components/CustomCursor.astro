@@ -1,0 +1,156 @@
+---
+// Cursor personalizado que cambia según el contexto
+---
+
+<div id="custom-cursor" class="custom-cursor">
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+</div>
+
+<style>
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  }
+
+  .cursor-outline {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Hover states */
+  .custom-cursor.hover-link .cursor-dot {
+    width: 0;
+    height: 0;
+  }
+
+  .custom-cursor.hover-link .cursor-outline {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(79, 140, 255, 0.8);
+    background: rgba(79, 140, 255, 0.1);
+  }
+
+  .custom-cursor.hover-button .cursor-dot {
+    width: 0;
+    height: 0;
+  }
+
+  .custom-cursor.hover-button .cursor-outline {
+    width: 80px;
+    height: 80px;
+    border-color: rgba(124, 92, 255, 0.8);
+    background: rgba(124, 92, 255, 0.15);
+  }
+
+  .custom-cursor.hover-project .cursor-outline {
+    width: 100px;
+    height: 100px;
+    border-color: rgba(79, 140, 255, 1);
+    background: rgba(79, 140, 255, 0.2);
+  }
+
+  /* Hide default cursor */
+  body {
+    cursor: none !important;
+  }
+
+  a, button, [role="button"], .clickable {
+    cursor: none !important;
+  }
+
+  /* Mobile: show default cursor */
+  @media (pointer: coarse) {
+    .custom-cursor {
+      display: none;
+    }
+    
+    body, a, button {
+      cursor: auto !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // Check if device has mouse
+  const isMobile = window.matchMedia("(pointer: coarse)").matches;
+  
+  if (!isMobile) {
+    const cursor = document.getElementById('custom-cursor');
+    const dot = cursor?.querySelector('.cursor-dot');
+    const outline = cursor?.querySelector('.cursor-outline');
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    // Update mouse position
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // FIXED: Ambos elementos se mueven a la misma velocidad
+    function animate() {
+      // Ease más alto = menos lag, más cercano al ratón real
+      const ease = 0.35; // Aumentado de 0.15 a 0.35 para menos retraso
+      
+      currentX += (mouseX - currentX) * ease;
+      currentY += (mouseY - currentY) * ease;
+      
+      // Ambos usan las mismas coordenadas
+      if (dot) {
+        gsap.set(dot, { x: currentX, y: currentY });
+      }
+      
+      if (outline) {
+        gsap.set(outline, { x: currentX, y: currentY });
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Hover effects
+    const links = document.querySelectorAll('a');
+    const buttons = document.querySelectorAll('button, .btn-primary, .btn-secondary');
+    const projects = document.querySelectorAll('[data-project-id]');
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => cursor?.classList.add('hover-link'));
+      link.addEventListener('mouseleave', () => cursor?.classList.remove('hover-link'));
+    });
+
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', () => cursor?.classList.add('hover-button'));
+      button.addEventListener('mouseleave', () => cursor?.classList.remove('hover-button'));
+    });
+
+    projects.forEach(project => {
+      project.addEventListener('mouseenter', () => cursor?.classList.add('hover-project'));
+      project.addEventListener('mouseleave', () => cursor?.classList.remove('hover-project'));
+    });
+  }
+</script>

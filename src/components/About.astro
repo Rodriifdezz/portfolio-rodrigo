@@ -1,66 +1,125 @@
 ---
 import { Image } from 'astro:assets';
 import avatarPortatil from '../assets/Portatileo.png';
-
-const highlights = [
-  "FP Dual en entorno enterprise",
-  "Microsoft Azure Fundamentals (AZ-900)",
-  "Python Certification — UNIR",
-  "DAM + Ingeniería Informática en curso"
-];
 ---
 
-<section id="about" class="section-container">
-  <div class="glass-card p-8 md:p-12">
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+<section id="about" class="section-container py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Sobre <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-accent-secondary">mí</span>
+      </h2>
+      <p class="text-text-secondary text-lg">
+        Desarrollador enfocado en backend y producto real
+      </p>
+    </div>
+
+    <!-- Layout Integrado: Imagen + Info -->
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
       
-      <!-- Text Content -->
-      <div class="lg:col-span-3 flex flex-col gap-6">
-        <h2 class="text-3xl md:text-4xl">Sobre mí</h2>
-        
-        <div class="space-y-4 text-text-secondary text-lg leading-relaxed">
-          <p>
-            Me gusta construir aplicaciones que mezclen tecnología, producto y comportamiento real de usuario.
-          </p>
-          <p>
-            Actualmente me estoy desarrollando principalmente en backend Java dentro de entorno enterprise mediante FP Dual, trabajando con tecnologías como Spring, SQL y APIs REST.
-          </p>
-          <p>
-            Al mismo tiempo, disfruto creando proyectos personales donde puedo explorar producto, experiencia de usuario y arquitecturas cloud modernas.
-          </p>
-          <p class="text-white font-medium">
-            No me interesa construir software por postureo o complejidad innecesaria. Me interesa crear productos útiles, bien pensados y que realmente conecten con las personas que los utilizan.
-          </p>
-        </div>
-
-        <div class="mt-6">
-          <ul class="flex flex-col gap-3">
-            {highlights.map((item) => (
-              <li class="flex items-center gap-3 text-text-secondary">
-                <svg class="w-5 h-5 text-accent-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <!-- Avatar Image -->
-      <div class="lg:col-span-2 flex justify-center items-center h-full">
-        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 animate-float">
-          <!-- Premium Backdrop -->
-          <div class="absolute inset-0 bg-accent-primary/10 rounded-full blur-[80px] animate-breathe"></div>
+      <!-- Columna Izquierda: Avatar -->
+      <div class="flex items-center justify-center lg:sticky lg:top-24">
+        <div class="relative w-full max-w-lg">
+          <!-- Glow -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-full blur-[100px]"></div>
           
-          <!-- Glass Platform under Avatar -->
-          <div class="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[80%] h-12 bg-white/5 border border-white/10 rounded-[100%] blur-[2px] -rotate-12 z-0"></div>
-          
+          <!-- Avatar -->
           <Image 
             src={avatarPortatil} 
             alt="Rodrigo programando" 
-            class="relative w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(79,140,255,0.25)] z-10"
+            class="relative w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(79,140,255,0.4)]"
           />
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Cards de Info -->
+      <div class="space-y-6">
+        
+        <!-- Sobre mí -->
+        <div class="glass-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">👨‍💻</span>
+            <h3 class="text-xl font-bold">Sobre mí</h3>
+          </div>
+          <div class="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>Me gusta construir aplicaciones que mezclen tecnología, producto y comportamiento real de usuario.</p>
+            <p>Actualmente desarrollándome en <span class="text-white font-medium">backend Java</span> mediante <span class="text-accent-primary font-medium">FP Dual</span>, trabajando con Spring, SQL y APIs REST.</p>
+          </div>
+        </div>
+
+        <!-- Grid 2x2 para el resto -->
+        <div class="grid sm:grid-cols-2 gap-6">
+          
+          <!-- Estudios -->
+          <div class="glass-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">🎓</span>
+              <h3 class="text-lg font-bold">Estudios</h3>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <p class="font-semibold text-white">DAM</p>
+                <p class="text-text-secondary">Finaliza Sept 2026 - TFC</p>
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <p class="font-semibold text-white">Ingeniería Informática</p>
+                <p class="text-text-secondary">En curso</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificaciones -->
+          <div class="glass-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">📜</span>
+              <h3 class="text-lg font-bold">Certificaciones</h3>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <span class="px-2 py-0.5 rounded bg-blue-500 text-white text-[10px] font-bold">AZ-900</span>
+                <p class="text-white mt-1">Azure Fundamentals</p>
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <span class="px-2 py-0.5 rounded bg-yellow-500 text-white text-[10px] font-bold">UNIR</span>
+                <p class="text-white mt-1">Python Certification</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ahora -->
+          <div class="glass-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">🚀</span>
+              <h3 class="text-lg font-bold">Ahora</h3>
+            </div>
+            <div class="space-y-1.5 text-xs text-text-secondary">
+              <p>✓ Prácticas FP Dual</p>
+              <p>✓ TFC - Sept 2026</p>
+              <p>✓ Proyectos backend</p>
+              <p>✓ Explorando cloud</p>
+            </div>
+          </div>
+
+          <!-- Experiencia -->
+          <div class="glass-card p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">💼</span>
+              <h3 class="text-lg font-bold">Experiencia</h3>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <p class="font-semibold text-white">FP Dual - Prácticas</p>
+                <p class="text-text-secondary">Backend Java - Spring</p>
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5">
+                <p class="font-semibold text-white">Proyectos personales</p>
+                <p class="text-text-secondary">Full-stack development</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
