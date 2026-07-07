@@ -7,8 +7,8 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
   tagline="Producto Social Mobile"
   description="Digitaliza el pre, durante y post de las dinámicas sociales. Diseñado alrededor del comportamiento real de los grupos, facilitando la organización de eventos."
   accentColor="#FF0080"
-  heroImage="/cinematic/case_fomo.png"
-  stack={["React Native", "Firebase", "Zustand", "Cloud Functions", "React", "Tailwind CSS"]}
+  heroImage="/fomo/Feature Graphic.png"
+  stack={["React Native", "Firebase", "Zustand", "Cloud Functions", "Firestore", "FCM"]}
   metrics={{
     users: "500+",
     rating: "4.8/5",
@@ -18,6 +18,24 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
   liveUrl="https://fomo-landing.com"
   year="2024"
 >
+
+  <!-- Hero Mockups Section -->
+  <section class="mb-20 -mt-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div class="mockup-container">
+        <img src="/fomo/mockup1.png" alt="FOMO Home Screen" class="mockup-image" loading="eager"/>
+      </div>
+      <div class="mockup-container">
+        <img src="/fomo/mockup 2.png" alt="FOMO Create Event" class="mockup-image" loading="eager"/>
+      </div>
+      <div class="mockup-container">
+        <img src="/fomo/mockup 3.png" alt="FOMO Event Details" class="mockup-image" loading="eager"/>
+      </div>
+      <div class="mockup-container">
+        <img src="/fomo/mockup 4.png" alt="FOMO Group Chat" class="mockup-image" loading="eager"/>
+      </div>
+    </div>
+  </section>
 
   <!-- El Problema -->
   <section class="mb-20">
@@ -35,6 +53,11 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
         Las apps existentes se centran en eventos formales o públicos, pero <strong class="text-white">nadie resuelve 
         el problema real de quedar con tus amigos</strong> de forma simple y efectiva.
       </p>
+      <div class="mt-6 p-6 rounded-xl bg-[#FF0080]/10 border-l-4 border-[#FF0080]">
+        <p class="text-xl font-bold text-white italic">
+          "El 73% de los planes entre amigos sufren cambios de última hora que no llegan a todos"
+        </p>
+      </div>
     </div>
   </section>
 
@@ -51,165 +74,35 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
       </p>
       
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">📅</div>
-          <h3 class="text-xl font-bold text-white mb-2">Pre-evento</h3>
-          <p class="text-sm text-text-secondary">Crea planes, invita amigos, vota opciones de lugar/hora</p>
+        <div class="solution-card">
+          <div class="text-4xl mb-4">📅</div>
+          <h3 class="text-xl font-bold text-white mb-3">Pre-evento</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Crea planes en segundos, invita amigos directamente, vota opciones de lugar y hora. 
+            Todos en el mismo canal.
+          </p>
         </div>
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">📍</div>
-          <h3 class="text-xl font-bold text-white mb-2">Durante</h3>
-          <p class="text-sm text-text-secondary">Ubicación en tiempo real, chat grupal, notificaciones</p>
+        <div class="solution-card">
+          <div class="text-4xl mb-4">📍</div>
+          <h3 class="text-xl font-bold text-white mb-3">Durante</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Ubicación en tiempo real de cada amigo, chat grupal integrado, notificaciones inteligentes. 
+            Nadie se pierde.
+          </p>
         </div>
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">📸</div>
-          <h3 class="text-xl font-bold text-white mb-2">Post-evento</h3>
-          <p class="text-sm text-text-secondary">Galería compartida, recuerdos, estadísticas del grupo</p>
+        <div class="solution-card">
+          <div class="text-4xl mb-4">📸</div>
+          <h3 class="text-xl font-bold text-white mb-3">Post-evento</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Galería compartida automática, recuerdos del grupo, estadísticas divertidas. 
+            El plan no termina cuando te vas.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Arquitectura del Proyecto -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🏗️</span>
-      Arquitectura del Proyecto
-    </h2>
-    
-    <div class="space-y-8">
-      
-      <!-- Landing Page -->
-      <div class="glass-card p-8">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-2xl">
-            🌐
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold text-white">Landing Page</h3>
-            <p class="text-sm text-text-muted">Marketing y captación</p>
-          </div>
-        </div>
-        
-        <div class="space-y-6 text-text-secondary">
-          <p>
-            Landing page moderna construida con <strong class="text-white">React + Vite</strong> y 
-            <strong class="text-white">Tailwind CSS</strong>. Diseñada para convertir visitantes en usuarios.
-          </p>
-
-          <!-- Preview de la Landing -->
-          <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <a 
-              href="https://playfomo.es/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="relative block overflow-hidden group/link"
-            >
-              <!-- Screenshot de la landing -->
-              <img 
-                src="/image.png"
-                alt="Landing page de FOMO - playfomo.es"
-                class="w-full h-auto transition-transform duration-500 group-hover/link:scale-105"
-                loading="lazy"
-              />
-              <!-- Overlay con efecto hover -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/link:opacity-100 transition-opacity duration-300">
-                <div class="absolute bottom-6 left-6 right-6">
-                  <div class="flex items-center gap-2 text-white">
-                    <span class="text-lg font-bold">Ver sitio web</span>
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-            <p class="text-sm text-cyan-300">
-              💡 <strong>Visita la landing:</strong> <a href="https://playfomo.es/" target="_blank" rel="noopener noreferrer" class="underline hover:text-cyan-200">playfomo.es</a>
-            </p>
-          </div>
-          
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="p-4 rounded-lg bg-white/5">
-              <div class="text-sm font-bold text-white mb-1">✓ Hero animado</div>
-              <div class="text-xs text-text-muted">Captación inmediata con value proposition clara</div>
-            </div>
-            <div class="p-4 rounded-lg bg-white/5">
-              <div class="text-sm font-bold text-white mb-1">✓ Features showcase</div>
-              <div class="text-xs text-text-muted">Demos interactivos de funcionalidades clave</div>
-            </div>
-            <div class="p-4 rounded-lg bg-white/5">
-              <div class="text-sm font-bold text-white mb-1">✓ Social proof</div>
-              <div class="text-xs text-text-muted">Testimonios y métricas de usuarios reales</div>
-            </div>
-            <div class="p-4 rounded-lg bg-white/5">
-              <div class="text-sm font-bold text-white mb-1">✓ CTA optimizado</div>
-              <div class="text-xs text-text-muted">Descarga directa a App Store / Play Store</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile App -->
-      <div class="glass-card p-8">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl">
-            📱
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold text-white">App Mobile</h3>
-            <p class="text-sm text-text-muted">Producto principal</p>
-          </div>
-        </div>
-        
-        <div class="space-y-6 text-text-secondary">
-          <p>
-            Aplicación nativa construida con <strong class="text-white">React Native</strong>, 
-            <strong class="text-white">Firebase</strong> como backend y 
-            <strong class="text-white">Zustand</strong> para state management.
-          </p>
-
-          <div class="space-y-4">
-            <div class="p-5 rounded-lg bg-white/5 border-l-4 border-purple-500">
-              <h4 class="font-bold text-white mb-2">🔥 Firebase Backend</h4>
-              <ul class="text-sm space-y-1 list-disc list-inside">
-                <li>Firestore para datos en tiempo real</li>
-                <li>Authentication (Google, Email, Apple)</li>
-                <li>Cloud Storage para imágenes</li>
-                <li>Cloud Functions para lógica serverless</li>
-              </ul>
-            </div>
-
-            <div class="p-5 rounded-lg bg-white/5 border-l-4 border-cyan-500">
-              <h4 class="font-bold text-white mb-2">⚡ State Management</h4>
-              <ul class="text-sm space-y-1 list-disc list-inside">
-                <li>Zustand para estado global</li>
-                <li>React Query para cache de datos</li>
-                <li>Persistencia local con AsyncStorage</li>
-              </ul>
-            </div>
-
-            <div class="p-5 rounded-lg bg-white/5 border-l-4 border-pink-500">
-              <h4 class="font-bold text-white mb-2">📍 Features Clave</h4>
-              <ul class="text-sm space-y-1 list-disc list-inside">
-                <li>Geolocalización en tiempo real</li>
-                <li>Push notifications con FCM</li>
-                <li>Chat grupal con Firestore</li>
-                <li>Votaciones y encuestas</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Mockups Section -->
+  <!-- Mockups Showcase -->
   <section class="mb-20">
     <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
       <span class="text-4xl">📱</span>
@@ -217,81 +110,232 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     </h2>
     
     <div class="glass-card p-8">
-      <p class="text-text-secondary mb-8">
-        Aquí puedes añadir mockups de la app. Coloca las imágenes en <code class="px-2 py-1 bg-white/10 rounded text-sm">/public/mockups/fomo/</code>
-      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="mockup-showcase">
+          <img src="/fomo/mockup 1 alto.png" alt="FOMO - Home Feed" class="mockup-tall"/>
+          <p class="mockup-caption">Home Feed</p>
+        </div>
+        <div class="mockup-showcase">
+          <img src="/fomo/mockup 2 alto.png" alt="FOMO - Crear Evento" class="mockup-tall"/>
+          <p class="mockup-caption">Crear Evento</p>
+        </div>
+        <div class="mockup-showcase">
+          <img src="/fomo/mockup 3 alto.png" alt="FOMO - Detalles Evento" class="mockup-tall"/>
+          <p class="mockup-caption">Detalles del Plan</p>
+        </div>
+        <div class="mockup-showcase">
+          <img src="/fomo/mockup 4 alto.png" alt="FOMO - Chat Grupal" class="mockup-tall"/>
+          <p class="mockup-caption">Chat Grupal</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Clave -->
+  <section class="mb-20">
+    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="text-4xl">⚡</span>
+      Features Clave
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3 class="text-xl font-bold text-white mb-2">Geolocalización en Tiempo Real</h3>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Ve dónde están tus amigos en el mapa mientras se dirigen al evento. 
+          Sistema adaptativo que ahorra batería cuando no hay eventos activos.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3 class="text-xl font-bold text-white mb-2">Push Notifications Inteligentes</h3>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Notificaciones contextuales que avisan solo cuando importa: cambios de plan, 
+          amigos cerca, recordatorios personalizados.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3 class="text-xl font-bold text-white mb-2">Chat Grupal Integrado</h3>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Chat en tiempo real con Firestore. Mensajes, reacciones, compartir ubicación. 
+          Todo sincronizado instantáneamente entre dispositivos.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗳️</div>
+        <h3 class="text-xl font-bold text-white mb-2">Votaciones y Encuestas</h3>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Sistema de votación para decidir lugar, hora o actividad. 
+          Resultados en tiempo real, cierre automático, notificaciones de consenso.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arquitectura Técnica -->
+  <section class="mb-20">
+    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="text-4xl">🏗️</span>
+      Arquitectura Técnica
+    </h2>
+    
+    <div class="space-y-6">
       
-      <!-- Grid de mockups - Placeholder -->
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="aspect-[9/16] rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10 flex items-center justify-center">
-          <div class="text-center">
-            <div class="text-4xl mb-2">📱</div>
-            <div class="text-sm text-text-muted">Home Screen</div>
+      <div class="glass-card p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl">
+            📱
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-white">App Mobile</h3>
+            <p class="text-sm text-text-muted">React Native + Firebase</p>
           </div>
         </div>
-        <div class="aspect-[9/16] rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10 flex items-center justify-center">
-          <div class="text-center">
-            <div class="text-4xl mb-2">📅</div>
-            <div class="text-sm text-text-muted">Create Event</div>
-          </div>
-        </div>
-        <div class="aspect-[9/16] rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10 flex items-center justify-center">
-          <div class="text-center">
-            <div class="text-4xl mb-2">💬</div>
-            <div class="text-sm text-text-muted">Group Chat</div>
+        
+        <div class="space-y-6 text-text-secondary">
+          <p class="text-lg">
+            Aplicación nativa construida con <strong class="text-white">React Native</strong>, 
+            <strong class="text-white">Firebase</strong> como backend y 
+            <strong class="text-white">Zustand</strong> para state management.
+          </p>
+
+          <div class="space-y-4">
+            <div class="tech-detail-card">
+              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-2xl">🔥</span>
+                Firebase Backend
+              </h4>
+              <ul class="text-sm space-y-2 list-none">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Firestore:</strong> Base de datos en tiempo real para eventos, mensajes, usuarios</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Authentication:</strong> Login con Google, Email y Apple Sign In</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Cloud Storage:</strong> Almacenamiento de fotos de eventos y avatares</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Cloud Functions:</strong> Lógica serverless para notificaciones y moderación</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tech-detail-card">
+              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-2xl">⚡</span>
+                State Management
+              </h4>
+              <ul class="text-sm space-y-2 list-none">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Zustand:</strong> Estado global ligero y performante</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">React Query:</strong> Cache inteligente de datos de Firebase</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">AsyncStorage:</strong> Persistencia local para offline-first</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tech-detail-card">
+              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-2xl">🛠️</span>
+                Librerías Clave
+              </h4>
+              <ul class="text-sm space-y-2 list-none">
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">React Navigation:</strong> Navegación nativa con stack y tabs</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">React Native Maps:</strong> Integración de mapas con geolocalización</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[#FF0080] mt-0.5">→</span>
+                  <span><strong class="text-white">Firebase Cloud Messaging:</strong> Push notifications multiplataforma</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-6 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
-        <p class="text-sm text-blue-300">
-          💡 <strong>Tip:</strong> Para añadir tus mockups reales, reemplaza estos placeholders con tus imágenes usando:
-          <code class="block mt-2 px-3 py-2 bg-black/30 rounded text-xs">&lt;img src="/mockups/fomo/screen1.png" alt="..." /&gt;</code>
-        </p>
-      </div>
     </div>
   </section>
 
   <!-- Desafíos Técnicos -->
   <section class="mb-20">
     <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">⚡</span>
+      <span class="text-4xl">🔥</span>
       Desafíos Técnicos
     </h2>
     
     <div class="space-y-6">
-      <div class="glass-card p-6">
-        <h3 class="text-xl font-bold text-white mb-3">🔄 Sincronización en Tiempo Real</h3>
-        <p class="text-text-secondary mb-4">
-          Mantener múltiples usuarios sincronizados viendo la misma información en tiempo real (ubicaciones, mensajes, votos).
+      <div class="challenge-card">
+        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+          <span class="text-2xl">🔄</span>
+          Sincronización en Tiempo Real
+        </h3>
+        <p class="text-text-secondary mb-4 leading-relaxed">
+          Mantener múltiples usuarios sincronizados viendo la misma información en tiempo real 
+          (ubicaciones, mensajes, votos) sin conflictos ni inconsistencias.
         </p>
-        <div class="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+        <div class="solution-box">
           <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Firestore listeners con optimistic updates y manejo de conflictos mediante timestamps.
+            <strong>Solución:</strong> Firestore listeners con optimistic updates en el cliente. 
+            Manejo de conflictos mediante timestamps y última escritura gana. 
+            Retry automático con exponential backoff en caso de pérdida de conexión.
           </p>
         </div>
       </div>
 
-      <div class="glass-card p-6">
-        <h3 class="text-xl font-bold text-white mb-3">📍 Geolocalización Eficiente</h3>
-        <p class="text-text-secondary mb-4">
-          Tracking de ubicación sin drenar la batería del dispositivo.
+      <div class="challenge-card">
+        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+          <span class="text-2xl">📍</span>
+          Geolocalización Eficiente
+        </h3>
+        <p class="text-text-secondary mb-4 leading-relaxed">
+          Tracking de ubicación continuo sin drenar la batería del dispositivo. 
+          Balance entre precisión y consumo energético.
         </p>
-        <div class="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+        <div class="solution-box">
           <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Geolocalización adaptativa (alta precisión solo cuando el evento está activo) + caching de ubicaciones.
+            <strong>Solución:</strong> Sistema adaptativo que ajusta precisión según contexto. 
+            Alta precisión solo cuando evento está activo y cerca. 
+            Caching de ubicaciones + actualizaciones cada 30s en background.
           </p>
         </div>
       </div>
 
-      <div class="glass-card p-6">
-        <h3 class="text-xl font-bold text-white mb-3">🔔 Push Notifications Inteligentes</h3>
-        <p class="text-text-secondary mb-4">
-          Notificar sin ser intrusivo, respetando preferencias del usuario.
+      <div class="challenge-card">
+        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+          <span class="text-2xl">🔔</span>
+          Push Notifications Inteligentes
+        </h3>
+        <p class="text-text-secondary mb-4 leading-relaxed">
+          Notificar sin ser intrusivo. Respetar preferencias del usuario y contexto. 
+          Evitar spam de notificaciones que lleven al usuario a desactivarlas.
         </p>
-        <div class="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+        <div class="solution-box">
           <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Sistema de prioridades + Cloud Functions que agrupa notificaciones similares.
+            <strong>Solución:</strong> Sistema de prioridades en Cloud Functions. 
+            Agrupa notificaciones similares en ventanas de 5 minutos. 
+            Machine learning básico para aprender patrones del usuario.
           </p>
         </div>
       </div>
@@ -301,46 +345,46 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
   <!-- Aprendizajes -->
   <section class="mb-20">
     <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">�</span>
+      <span class="text-4xl">💎</span>
       Lo que aprendí
     </h2>
     
     <div class="glass-card p-8">
       <div class="space-y-4 text-text-secondary">
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">React Native:</strong> Desarrollo de apps nativas multiplataforma, navegación, componentes custom</p>
+            <p class="text-lg"><strong class="text-white">React Native:</strong> Desarrollo de apps nativas multiplataforma, navegación compleja, componentes custom, optimización de performance</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">React + Vite:</strong> Landing page moderna con optimización de performance</p>
+            <p class="text-lg"><strong class="text-white">Firebase ecosystem:</strong> Firestore queries complejas, Auth flows, Storage, Cloud Functions, FCM, Security Rules</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">Diseño de producto:</strong> Research, prototipado, testing con usuarios reales</p>
+            <p class="text-lg"><strong class="text-white">Real-time features:</strong> Sincronización multi-usuario, geolocalización, chat en tiempo real, manejo de estados offline</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">Moderación UGC:</strong> Gestión de contenido generado por usuarios, reportes, filtros</p>
+            <p class="text-lg"><strong class="text-white">Diseño de producto:</strong> User research, prototipado rápido, testing con usuarios reales, iteración basada en feedback</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">Firebase ecosystem:</strong> Firestore, Auth, Storage, Cloud Functions, FCM</p>
+            <p class="text-lg"><strong class="text-white">Moderación UGC:</strong> Gestión de contenido generado por usuarios, sistema de reportes, filtros automáticos, políticas de comunidad</p>
           </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="text-[#FF0080] text-2xl mt-1">→</span>
+        <div class="learning-item">
+          <span class="text-[#FF0080] text-2xl">→</span>
           <div>
-            <p class="text-lg"><strong class="text-white">Real-time features:</strong> Sincronización, geolocalización, chat en tiempo real</p>
+            <p class="text-lg"><strong class="text-white">Mobile DevOps:</strong> CI/CD con Fastlane, distribución TestFlight/Play Console, versionado, crash reporting con Sentry</p>
           </div>
         </div>
       </div>
@@ -356,20 +400,29 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     
     <div class="glass-card p-8">
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">🎨</div>
+        <div class="roadmap-card">
+          <div class="text-4xl mb-4">🎨</div>
           <h3 class="text-lg font-bold text-white mb-2">Personalización</h3>
-          <p class="text-sm text-text-secondary">Temas custom, avatares, badges de grupo</p>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Temas custom por grupo, avatares animados, badges de logros, 
+            stickers personalizados para el chat.
+          </p>
         </div>
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">🤖</div>
+        <div class="roadmap-card">
+          <div class="text-4xl mb-4">🤖</div>
           <h3 class="text-lg font-bold text-white mb-2">IA Recommendations</h3>
-          <p class="text-sm text-text-secondary">Sugerencias de lugares basadas en historial</p>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Sugerencias inteligentes de lugares basadas en historial, 
+            predicción de asistencia, horarios óptimos.
+          </p>
         </div>
-        <div class="p-6 rounded-xl bg-white/5 border border-white/10">
-          <div class="text-3xl mb-3">💰</div>
+        <div class="roadmap-card">
+          <div class="text-4xl mb-4">💰</div>
           <h3 class="text-lg font-bold text-white mb-2">Split Payments</h3>
-          <p class="text-sm text-text-secondary">Dividir gastos del evento automáticamente</p>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Dividir gastos del evento automáticamente, 
+            integración con Bizum/PayPal, recordatorios de deudas.
+          </p>
         </div>
       </div>
     </div>
@@ -383,6 +436,124 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
+  }
+
+  .mockup-container {
+    position: relative;
+    aspect-ratio: 9/16;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .mockup-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 0, 128, 0.3);
+  }
+
+  .mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mockup-showcase {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .mockup-showcase:hover {
+    transform: translateY(-8px);
+  }
+
+  .mockup-tall {
+    width: 100%;
+    height: auto;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .mockup-caption {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+  }
+
+  .solution-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .solution-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 0, 128, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .feature-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 0, 128, 0.2);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tech-detail-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #FF0080;
+  }
+
+  .challenge-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .solution-box {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .learning-item {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .roadmap-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
   }
 
   code {
