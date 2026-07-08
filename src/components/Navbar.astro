@@ -10,7 +10,7 @@ const navItems = [
 ];
 ---
 
-<header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
+<header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div
     class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg-primary via-bg-primary/90 to-transparent backdrop-blur-[12px] [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] -z-10"
   >
@@ -43,7 +43,7 @@ const navItems = [
 
     <button
       type="button"
-      class="md:hidden text-text-secondary hover:text-white transition-colors p-1 -mr-1"
+      class="md:hidden relative z-[70] text-text-secondary hover:text-white transition-colors p-1 -mr-1"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-nav"
@@ -61,17 +61,17 @@ const navItems = [
     </button>
   </div>
 
-  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-40 pointer-events-none opacity-0 invisible md:hidden" aria-hidden="true">
-    <div class="mobile-nav__backdrop absolute inset-0 bg-bg-primary/80 backdrop-blur-md" data-nav-close></div>
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] pointer-events-none opacity-0 invisible md:hidden" aria-hidden="true">
+    <div class="mobile-nav__backdrop absolute inset-0 z-0 bg-bg-primary/85 backdrop-blur-md" data-nav-close></div>
     <nav
-      class="mobile-nav__panel absolute top-0 right-0 h-full w-[min(100%,320px)] bg-bg-secondary/95 border-l border-white/10 px-6 pt-[calc(var(--header-height)+1rem)] pb-10 flex flex-col gap-1 shadow-2xl translate-x-full transition-transform duration-300"
+      class="mobile-nav__panel absolute top-0 right-0 z-10 h-full w-[min(100%,320px)] bg-bg-secondary border-l border-white/10 px-6 pt-[calc(var(--header-height)+1rem)] pb-10 flex flex-col gap-1 shadow-2xl translate-x-full transition-transform duration-300 pointer-events-auto"
       aria-label="Menú móvil"
     >
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="mobile-nav__link py-3 text-lg font-medium text-text-secondary hover:text-white border-b border-white/5 transition-colors"
+            class="mobile-nav__link py-3.5 text-lg font-medium text-white/85 hover:text-white border-b border-white/8 transition-colors"
             data-nav-link
             data-nav-hash={item.hash}
           >
@@ -96,6 +96,10 @@ const navItems = [
     max-width: var(--section-max);
   }
 
+  .site-header[data-nav-open='true'] {
+    pointer-events: auto;
+  }
+
   .site-header[data-nav-open='true'] .nav-icon-open {
     display: none;
   }
@@ -111,7 +115,12 @@ const navItems = [
   }
 
   .mobile-nav[data-open='true'] .mobile-nav__panel {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .mobile-nav__link {
+    display: block;
+    width: 100%;
   }
 
   :global(.nav-link[aria-current='page']),

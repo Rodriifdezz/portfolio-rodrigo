@@ -1,9 +1,23 @@
-<div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true" hidden>
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
 </div>
 
 <style>
+  .custom-cursor {
+    display: none;
+  }
+
+  :global(html.custom-cursor-active) .custom-cursor {
+    display: block;
+  }
+
+  @media (hover: none), (pointer: coarse), (max-width: 1023px) {
+    .custom-cursor {
+      display: none !important;
+    }
+  }
+
   :global(html.custom-cursor-active) body,
   :global(html.custom-cursor-active) a,
   :global(html.custom-cursor-active) button,
@@ -75,17 +89,16 @@
 
 <script>
   import { gsap } from 'gsap';
+  import { canUseCustomCursor } from '../scripts/motion';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-  const canUseCustomCursor = !prefersReducedMotion && !isCoarsePointer;
+  const cursor = document.getElementById('custom-cursor');
 
-  if (!canUseCustomCursor) {
+  if (!canUseCustomCursor()) {
     document.documentElement.classList.remove('custom-cursor-active');
+    cursor?.setAttribute('hidden', '');
   } else {
     document.documentElement.classList.add('custom-cursor-active');
-
-    const cursor = document.getElementById('custom-cursor');
+    cursor?.removeAttribute('hidden');
     const dot = cursor?.querySelector('.cursor-dot');
     const outline = cursor?.querySelector('.cursor-outline');
 

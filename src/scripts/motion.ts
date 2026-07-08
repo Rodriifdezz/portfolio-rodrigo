@@ -18,8 +18,32 @@ export function isFinePointer(): boolean {
   return window.matchMedia('(pointer: fine)').matches;
 }
 
+export function isTouchDevice(): boolean {
+  return (
+    window.matchMedia('(hover: none), (pointer: coarse)').matches ||
+    navigator.maxTouchPoints > 0
+  );
+}
+
+export function isDesktopMotionContext(): boolean {
+  return (
+    !prefersReducedMotion() &&
+    !isTouchDevice() &&
+    window.matchMedia('(min-width: 1024px)').matches &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+}
+
+export function canUseCustomCursor(): boolean {
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion();
+}
+
+export function canUseSmoothScroll(): boolean {
+  return isDesktopMotionContext();
+}
+
 export function canAnimate(): boolean {
-  return !prefersReducedMotion();
+  return isDesktopMotionContext();
 }
 
 export function setLenis(
@@ -54,7 +78,7 @@ export function scrollToHash(hash: string): boolean {
 
   const offset = getHeaderOffset();
 
-  if (lenisInstance && canAnimate()) {
+  if (lenisInstance && canUseSmoothScroll()) {
     lenisInstance.scrollTo(target, { offset, duration: 1.15 });
     return true;
   }

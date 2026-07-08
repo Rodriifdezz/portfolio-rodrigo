@@ -122,6 +122,32 @@
     }
   }
 
+  @media (max-width: 1023px), (hover: none), (pointer: coarse) {
+    [data-hero-anim],
+    [data-about-reveal],
+    [data-projects-header],
+    .project-card,
+    [data-tech-header],
+    [data-tech-card],
+    [data-tech-design],
+    [data-cs-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+      translate: none !important;
+    }
+
+    .animate-breathe {
+      animation: none !important;
+    }
+
+    .glass-card:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
   }

@@ -109,12 +109,19 @@ const caseStudySchema = caseStudyTitle
       import Lenis from 'lenis';
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      import { bindAnchorScroll, canAnimate, initGsap, initNavScrollSpy, setLenis, tickNavScrollSpy } from '../scripts/motion';
+      import {
+        bindAnchorScroll,
+        canUseSmoothScroll,
+        initGsap,
+        initNavScrollSpy,
+        setLenis,
+        tickNavScrollSpy,
+      } from '../scripts/motion';
 
       initGsap();
       initNavScrollSpy();
 
-      if (canAnimate()) {
+      if (canUseSmoothScroll()) {
         const lenis = new Lenis({
           duration: 1,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -122,7 +129,7 @@ const caseStudySchema = caseStudyTitle
           gestureOrientation: 'vertical',
           smoothWheel: true,
           wheelMultiplier: 1,
-          touchMultiplier: 2,
+          touchMultiplier: 1,
           infinite: false,
         });
 
@@ -140,7 +147,7 @@ const caseStudySchema = caseStudyTitle
         gsap.ticker.lagSmoothing(0);
       }
 
-      bindAnchorScroll('.site-header a[href*="#"], .site-footer a[href*="#"]');
+      bindAnchorScroll('a[data-nav-link], .site-header a[href*="#"], .site-footer a[href*="#"]');
     </script>
   </body>
 </html>
