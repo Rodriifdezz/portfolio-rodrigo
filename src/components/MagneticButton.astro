@@ -3,14 +3,16 @@ interface Props {
   href?: string;
   class?: string;
   type?: 'primary' | 'secondary';
+  download?: boolean | string;
 }
 
-const { href, class: className = '', type = 'primary' } = Astro.props;
+const { href, class: className = '', type = 'primary', download } = Astro.props;
 const Tag = href ? 'a' : 'button';
 ---
 
-<Tag 
+<Tag
   href={href}
+  download={download}
   class={`magnetic-button ${type === 'primary' ? 'btn-primary' : 'btn-secondary'} ${className}`}
   data-magnetic
 >
@@ -22,85 +24,15 @@ const Tag = href ? 'a' : 'button';
 <style>
   .magnetic-button {
     position: relative;
-    transition: transform 0.3s ease;
-    will-change: transform;
   }
 
   .magnetic-content {
     display: inline-block;
-    transition: transform 0.2s ease;
-    will-change: transform;
   }
 </style>
 
 <script>
-  import { gsap } from 'gsap';
+  import { bindMagnetic } from '../scripts/motion';
 
-  const magneticButtons = document.querySelectorAll('[data-magnetic]');
-
-  magneticButtons.forEach((button) => {
-    const content = button.querySelector('.magnetic-content');
-    let rafId: number | null = null;
-    
-    button.addEventListener('mouseenter', function(e) {
-      gsap.to(button, { scale: 1.1, duration: 0.3, ease: 'power2.out' });
-    });
-
-    button.addEventListener('mouseleave', function(e) {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-      
-      gsap.to(button, { 
-        scale: 1, 
-        x: 0, 
-        y: 0, 
-        duration: 0.5, 
-        ease: 'elastic.out(1, 0.3)' 
-      });
-      
-      if (content) {
-        gsap.to(content, { 
-          x: 0, 
-          y: 0, 
-          duration: 0.5, 
-          ease: 'elastic.out(1, 0.3)' 
-        });
-      }
-    });
-
-    button.addEventListener('mousemove', function(e: Event) {
-      const mouseEvent = e as MouseEvent;
-      
-      // Throttle with RAF
-      if (rafId) return;
-      
-      rafId = requestAnimationFrame(() => {
-        const rect = button.getBoundingClientRect();
-        const x = mouseEvent.clientX - rect.left - rect.width / 2;
-        const y = mouseEvent.clientY - rect.top - rect.height / 2;
-        
-        // Move button (reduced factor for performance)
-        gsap.to(button, {
-          x: x * 0.2,
-          y: y * 0.2,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-        
-        // Move content
-        if (content) {
-          gsap.to(content, {
-            x: x * 0.1,
-            y: y * 0.1,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-        
-        rafId = null;
-      });
-    });
-  });
+  bindMagnetic('[data-magnetic]');
 </script>

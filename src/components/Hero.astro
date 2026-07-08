@@ -1,137 +1,318 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import avatarSaludo from '../assets/Saludo.png';
 import MagneticButton from './MagneticButton.astro';
+import { site } from '../data/site';
+
+const heroImage = await getImage({
+  src: avatarSaludo,
+  format: 'webp',
+  width: 1400,
+});
 ---
 
-<section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-  
-  <!-- Giant Background Avatar with Cinematic Depth - RESPONSIVE -->
-  <div id="cinematic-scene" class="absolute right-[-15%] sm:right-[0%] md:right-[5%] lg:right-[8%] xl:right-[5%] bottom-0 w-[130%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[55%] max-w-[900px] h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] z-0 pointer-events-auto opacity-75 sm:opacity-85 md:opacity-100">
-    <!-- Glow suave y elegante detrás del avatar -->
-    <div id="avatar-glow" class="absolute inset-0 bg-gradient-to-tr from-accent-primary/25 to-accent-secondary/15 rounded-full blur-[100px] animate-breathe opacity-70 glow-mask"></div>
-    
-    <!-- Principal Avatar (Tu imagen original) -->
-    <Image 
-      src={avatarSaludo} 
-      alt="Avatar saludo de Rodrigo Fernández" 
-      id="main-avatar"
-      class="relative w-full h-full object-contain object-right-bottom drop-shadow-[0_0_40px_rgba(79,140,255,0.15)] avatar-mask origin-bottom transition-transform duration-700 ease-out z-10 opacity-0"
-    />
-  </div>
+<link rel="preload" as="image" href={heroImage.src} type="image/webp" fetchpriority="high" />
 
-  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 relative z-10 w-full max-h-[80vh] flex items-center">
-    <div class="flex flex-col gap-[1.5vh] sm:gap-[2vh] md:gap-[2.5vh] max-w-3xl w-full">
-      
-      <!-- Badge -->
-      <div data-hero-anim="badge" class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-accent-primary/40 bg-accent-primary/10 w-fit backdrop-blur-md shadow-[0_0_20px_rgba(79,140,255,0.2)] opacity-0 translate-y-8">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-full w-full bg-accent-primary"></span>
-        </span>
-        <span class="text-xs md:text-sm font-semibold text-accent-primary tracking-widest uppercase">Software Engineer</span>
-      </div>
-      
-      <!-- Huge Typography - RESPONSIVE con vh -->
-      <h1 data-hero-anim="title" class="text-[8vh] sm:text-[9vh] md:text-[12vh] lg:text-[14vh] leading-[0.9] font-bold tracking-tighter opacity-0 translate-y-12">
-        Rodrigo <br/> 
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-white to-accent-secondary bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] drop-shadow-lg inline-block">
-          Fernández
-        </span>
-      </h1>
-      
-      <!-- Glassmorphism Box - Escalado con vh -->
-      <div data-hero-anim="box" class="p-[2vh] sm:p-[2.5vh] md:p-[3vh] rounded-2xl md:rounded-3xl bg-bg-primary/40 backdrop-blur-xl border border-white/10 shadow-2xl max-w-2xl hover:border-accent-primary/30 transition-colors duration-500 relative z-10 opacity-0 translate-y-8">
-        <h2 class="text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] lg:text-[3vh] text-white font-medium mb-[1.5vh] leading-tight">
-          Desarrollador software enfocado en backend, producto y aplicaciones escalables.
-        </h2>
-        
-        <p class="text-[1.6vh] sm:text-[1.8vh] md:text-[2vh] text-text-secondary leading-relaxed mb-[2vh]">
-          Construyendo sistemas y experiencias reales con Java, Spring, React Native y arquitecturas modernas.
-        </p>
+<section id="hero" class="hero">
+  <div class="hero__layout section-container">
+    <div class="hero__copy">
+      <div class="hero__panel" data-hero-anim>
+        <p class="hero__greeting">{site.heroGreeting}</p>
 
-        <p class="hidden md:block text-[1.6vh] text-text-muted border-l-2 border-accent-primary/50 pl-4 py-1 mb-[2vh]">
-          Actualmente finalizando DAM e Ingeniería Informática mientras desarrollo proyectos personales centrados en backend, cloud y experiencias digitales con identidad real.
-        </p>
+        <h1 class="hero__name">
+          Rodrigo<br />
+          <span class="hero__surname">Fernández</span>
+        </h1>
 
-        <div class="flex flex-wrap items-center gap-3 md:gap-4">
-          <MagneticButton href="#projects" type="primary" class="shadow-[0_0_30px_rgba(79,140,255,0.3)]">
-            Ver proyectos
-          </MagneticButton>
-          <MagneticButton href="#contact" type="secondary" class="bg-bg-primary/50">
-            Contacto
-          </MagneticButton>
+        <p class="hero__role">{site.heroRole}</p>
+
+        <p class="hero__body">{site.heroBody}</p>
+
+        <div class="hero__ctas">
+          <MagneticButton href="#projects" type="primary">Ver proyectos</MagneticButton>
+          <MagneticButton href={site.cvPath} type="secondary" download>Descargar CV</MagneticButton>
         </div>
       </div>
+    </div>
 
+    <div class="hero__visual" data-hero-anim aria-hidden="true">
+      <div class="hero__photo-wrap">
+        <Image
+          src={avatarSaludo}
+          alt=""
+          class="hero__photo"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .hero {
+    position: relative;
+    z-index: 1;
+    overflow-x: clip;
   }
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+
+  .hero__layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100svh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
+    padding-top: var(--header-height);
+    padding-bottom: clamp(2rem, 5vh, 3rem);
+    position: relative;
+  }
+
+  .hero__copy {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .hero__panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vh, 1.1rem);
+    width: 100%;
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border-subtle);
+    background: color-mix(in srgb, var(--color-bg-primary) 78%, transparent);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero__greeting {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .hero__name {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+
+  .hero__surname {
+    background: linear-gradient(
+      120deg,
+      var(--color-accent-primary) 0%,
+      #e8eeff 45%,
+      var(--color-accent-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__role {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__body {
+    font-size: clamp(0.95rem, 1.9vw, 1.05rem);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .hero__ctas :global(.btn-primary),
+  .hero__ctas :global(.btn-secondary) {
+    padding: 0.85rem 1.5rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+  }
+
+  .hero__visual {
+    display: none;
+  }
+
+  @media (max-width: 374px) {
+    .hero__name {
+      font-size: clamp(2.2rem, 11vw, 2.6rem);
+    }
+
+    .hero__ctas :global(.btn-primary),
+    .hero__ctas :global(.btn-secondary) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      min-height: 100svh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: clamp(1rem, 2vw, 2rem);
+      align-items: center;
+      min-height: 100svh;
+      min-height: 100dvh;
+      padding-bottom: clamp(1.5rem, 4vh, 3rem);
+    }
+
+    .hero__panel {
+      max-width: 36rem;
+      padding: clamp(1.75rem, 2.5vw, 2.5rem);
+      gap: clamp(0.85rem, 1.8vh, 1.25rem);
+    }
+
+    .hero__name {
+      font-size: clamp(3.25rem, 5.5vw, 5rem);
+    }
+
+    .hero__body {
+      max-width: 46ch;
+    }
+
+    .hero__visual {
+      display: flex;
+      position: absolute;
+      right: clamp(0.5rem, 1.5vw, 1.25rem);
+      bottom: clamp(-2rem, -5vh, -3rem);
+      width: min(46vw, 720px);
+      height: calc(100dvh - var(--header-height) + clamp(2rem, 5vh, 3.5rem));
+      justify-content: flex-end;
+      align-items: flex-end;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero__photo-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero__photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0 -5% -8% 0;
+      background: radial-gradient(
+        ellipse at 55% 88%,
+        color-mix(in srgb, var(--color-accent-primary) 32%, transparent),
+        transparent 78%
+      );
+      filter: blur(64px);
+      z-index: 0;
+    }
+
+    .hero__photo {
+      position: relative;
+      z-index: 1;
+      width: auto;
+      height: 100%;
+      max-width: none;
+      object-fit: contain;
+      object-position: right bottom;
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 38%,
+        rgba(0, 0, 0, 0.95) 55%,
+        rgba(0, 0, 0, 0.82) 68%,
+        rgba(0, 0, 0, 0.62) 78%,
+        rgba(0, 0, 0, 0.38) 88%,
+        rgba(0, 0, 0, 0.16) 96%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 38%,
+        rgba(0, 0, 0, 0.95) 55%,
+        rgba(0, 0, 0, 0.82) 68%,
+        rgba(0, 0, 0, 0.62) 78%,
+        rgba(0, 0, 0, 0.38) 88%,
+        rgba(0, 0, 0, 0.16) 96%,
+        transparent 100%
+      );
+      filter: drop-shadow(0 24px 72px rgba(79, 140, 255, 0.28));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero__layout {
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    }
+
+    .hero__panel {
+      max-width: 40rem;
+    }
+
+    .hero__name {
+      font-size: clamp(3.5rem, 4.8vw, 5.25rem);
+    }
+
+    .hero__visual {
+      width: min(50vw, 860px);
+      height: calc(100dvh - var(--header-height) + clamp(2.5rem, 6vh, 4rem));
+      right: clamp(1rem, 2.5vw, 2rem);
+      bottom: clamp(-2.5rem, -6vh, -3.5rem);
+    }
+
+    .hero__photo {
+      height: 102%;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .hero__visual {
+      width: min(52vw, 980px);
+      right: max(1.5rem, calc((100vw - var(--section-max)) / -2 + 2.5rem));
+    }
+
+    .hero__photo {
+      height: 108%;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero__visual {
+      width: min(54vw, 1100px);
+      height: calc(100dvh - var(--header-height) + clamp(3rem, 7vh, 4.5rem));
+      right: max(2rem, calc((100vw - var(--section-max)) / -2 + 3rem));
+      bottom: clamp(-3rem, -7vh, -4rem);
+    }
+
+    .hero__photo {
+      height: 112%;
+    }
   }
 </style>
 
 <script>
-  import { gsap } from 'gsap';
+  import { canAnimate, heroEntrance } from '../scripts/motion';
 
-  // 1. Text Entry Animations
-  const heroElements = document.querySelectorAll('[data-hero-anim]');
-  if (heroElements.length > 0) {
-    gsap.to(heroElements, {
-      y: 0,
-      opacity: 1,
-      duration: 1.2,
-      stagger: 0.15,
-      ease: 'power4.out',
-      delay: 0.2
-    });
-  }
-
-  // 1.5. Avatar Cinematic Entry Animation
-  const mainAvatar = document.getElementById('main-avatar');
-  if (mainAvatar) {
-    gsap.fromTo(mainAvatar, 
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1.8, ease: 'power3.out', delay: 0.5 }
-    );
-  }
-
-  // 2. Cinematic Mouse Parallax for Avatar and Glow
-  const scene = document.getElementById('cinematic-scene');
-  const avatarGlow = document.getElementById('avatar-glow');
-
-  if (scene && mainAvatar) {
-    window.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-      // Move the main avatar slightly
-      gsap.to(mainAvatar, {
-        x: x * 15,
-        y: y * 15,
-        rotationY: x * 5,
-        rotationX: -y * 5,
-        duration: 1,
-        ease: 'power2.out'
-      });
-
-      // Move the background glow in the opposite direction for stereoscopic 3D depth
-      if (avatarGlow) {
-        gsap.to(avatarGlow, {
-          x: -x * 25,
-          y: -y * 25,
-          duration: 1.5,
-          ease: 'power2.out'
-        });
-      }
-    });
+  if (canAnimate()) {
+    heroEntrance('[data-hero-anim]', 0.05);
   }
 </script>

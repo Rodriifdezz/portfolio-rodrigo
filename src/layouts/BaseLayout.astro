@@ -1,78 +1,146 @@
 ---
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
+import SeoJsonLd from '../components/SeoJsonLd.astro';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogType?: string;
+  noindex?: boolean;
+  caseStudyTitle?: string;
 }
 
-const { 
-  title = "Rodrigo Fernández | Junior Software Engineer",
-  description = "Portfolio de Rodrigo Fernández, desarrollador software enfocado en backend, cloud, producto y aplicaciones escalables con Java, Spring, React Native y Firebase."
+const {
+  title = `${site.name} | Desarrollador Backend y Mobile`,
+  description = site.description,
+  ogImage = '/og.png',
+  ogImageWidth = 1792,
+  ogImageHeight = 2390,
+  ogType = 'website',
+  noindex = false,
+  caseStudyTitle,
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, site.siteUrl);
+const ogImageURL = new URL(ogImage, site.siteUrl);
+const showCanonical = !noindex;
+const caseStudySchema = caseStudyTitle
+  ? {
+      title: caseStudyTitle,
+      description,
+      url: canonicalURL.href,
+    }
+  : undefined;
 ---
 
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#060816" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    
-    <!-- SEO -->
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Rodrigo Fernández" />
+    <meta name="author" content={site.name} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+    />
+    {showCanonical && <link rel="canonical" href={canonicalURL} />}
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:alt" content={`${site.name} — ${site.role}`} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={site.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <SeoJsonLd caseStudy={caseStudySchema} />
   </head>
   <body class="relative min-h-screen flex flex-col bg-bg-primary text-text-primary">
-    <!-- Custom Cursor -->
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
     <CustomCursor />
-    
-    <!-- Premium Background Layers -->
+
     <div class="fixed inset-0 z-[-2] bg-grid-pattern"></div>
     <div class="fixed inset-0 z-[-1] bg-noise"></div>
-    
-    <!-- Animated Glows -->
+
     <div class="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
-      <div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-accent-primary/10 blur-[120px] animate-breathe mix-blend-screen"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-secondary/10 blur-[120px] animate-breathe mix-blend-screen" style="animation-delay: 2s;"></div>
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-accent-primary/10 blur-[120px] animate-breathe mix-blend-screen"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-secondary/10 blur-[120px] animate-breathe mix-blend-screen"
+        style="animation-delay: 2s;"
+      >
+      </div>
     </div>
 
     <slot />
 
-    <!-- Lenis & GSAP Global Smooth Scroll Setup - OPTIMIZED -->
     <script>
       import Lenis from 'lenis';
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { bindAnchorScroll, canAnimate, initGsap, initNavScrollSpy, setLenis, tickNavScrollSpy } from '../scripts/motion';
 
-      gsap.registerPlugin(ScrollTrigger);
+      initGsap();
+      initNavScrollSpy();
 
-      const lenis = new Lenis({
-        duration: 1,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
-      });
+      if (canAnimate()) {
+        const lenis = new Lenis({
+          duration: 1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 2,
+          infinite: false,
+        });
 
-      lenis.on('scroll', ScrollTrigger.update);
+        setLenis(lenis);
 
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
+        lenis.on('scroll', () => {
+          ScrollTrigger.update();
+          tickNavScrollSpy();
+        });
 
-      gsap.ticker.lagSmoothing(0);
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      bindAnchorScroll('.site-header a[href*="#"], .site-footer a[href*="#"]');
     </script>
   </body>
 </html>

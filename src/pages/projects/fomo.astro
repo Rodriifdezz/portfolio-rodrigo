@@ -1,562 +1,390 @@
 ---
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+
+const brand = '#FF2D9B';
+
+const journey = [
+  { emoji: '🍻', label: 'Pre', desc: 'El grupo se junta' },
+  { emoji: '🎮', label: 'Juego', desc: 'El líder rompe el hielo' },
+  { emoji: '⚡', label: 'Jangueo', desc: 'Retos durante la noche' },
+  { emoji: '📸', label: 'Momentos', desc: 'Recuerdos en caliente' },
+  { emoji: '🌅', label: 'After', desc: 'La noche no acaba' },
+  { emoji: '🎬', label: 'Recap', desc: 'La peli del grupo' },
+];
+
+const promoStrip = [
+  '/fomo/mockup1.png',
+  '/fomo/mockup-2.png',
+  '/fomo/mockup-3.png',
+  '/fomo/mockup-4.png',
+];
 ---
 
 <CaseStudyLayout
   title="FOMO"
-  tagline="Producto Social Mobile"
-  description="Digitaliza el pre, durante y post de las dinámicas sociales. Diseñado alrededor del comportamiento real de los grupos, facilitando la organización de eventos."
-  accentColor="#FF0080"
-  heroImage="/fomo/Feature Graphic.png"
-  stack={["React Native", "Firebase", "Zustand", "Cloud Functions", "Firestore", "FCM"]}
-  metrics={{
-    users: "500+",
-    rating: "4.8/5",
-    status: "En desarrollo"
-  }}
-  github="https://github.com/Rodriifdezz"
-  liveUrl="https://fomo-landing.com"
-  year="2024"
+  role="Desarrollo full-stack · Producto"
+  discipline="Diseño de producto · App móvil"
+  context="Proyecto personal"
+  platform="React Native"
+  brandColor={brand}
+  description="Caso de estudio de FOMO: producto móvil personal construido de extremo a extremo con React Native, Firebase, arquitectura de estado y decisiones de UX."
+  ogImage="/fomo/feature-graphic.png"
 >
-
-  <!-- Hero Mockups Section -->
-  <section class="mb-20 -mt-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      <div class="mockup-container">
-        <img src="/fomo/mockup1.png" alt="FOMO Home Screen" class="mockup-image" loading="eager"/>
+  <CaseStudySection
+    eyebrow="01 — El problema"
+    title="Quedar es fácil. Que la noche funcione, no."
+  >
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="cs-prose">
+          Un grupo de amigos se organiza por WhatsApp: cincuenta mensajes, tres encuestas
+          y nadie confirma. Cuando por fin quedan, el <strong>pre se improvisa</strong>: hay
+          bebida pero no plan, ganas pero no chispa.
+        </p>
+        <p class="cs-prose">
+          Siempre falta ese amigo que "anima". Los juegos se olvidan, las fotos acaban
+          <strong>desperdigadas</strong> en cinco móviles distintos y, al día siguiente, la noche
+          se recuerda a trozos. No hay un hilo que conecte todo.
+        </p>
       </div>
-      <div class="mockup-container">
-        <img src="/fomo/mockup 2.png" alt="FOMO Create Event" class="mockup-image" loading="eager"/>
-      </div>
-      <div class="mockup-container">
-        <img src="/fomo/mockup 3.png" alt="FOMO Event Details" class="mockup-image" loading="eager"/>
-      </div>
-      <div class="mockup-container">
-        <img src="/fomo/mockup 4.png" alt="FOMO Group Chat" class="mockup-image" loading="eager"/>
-      </div>
-    </div>
-  </section>
-
-  <!-- El Problema -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🎯</span>
-      El Problema
-    </h2>
-    <div class="glass-card p-8 space-y-4 text-text-secondary">
-      <p class="text-lg leading-relaxed">
-        Organizar eventos sociales entre grupos de amigos es un caos: mensajes perdidos en grupos de WhatsApp, 
-        confirmaciones que nunca llegan, cambios de última hora que nadie ve, y siempre ese amigo que pregunta 
-        "¿Dónde quedamos?" cuando ya están todos en el sitio.
-      </p>
-      <p class="text-lg leading-relaxed">
-        Las apps existentes se centran en eventos formales o públicos, pero <strong class="text-white">nadie resuelve 
-        el problema real de quedar con tus amigos</strong> de forma simple y efectiva.
-      </p>
-      <div class="mt-6 p-6 rounded-xl bg-[#FF0080]/10 border-l-4 border-[#FF0080]">
-        <p class="text-xl font-bold text-white italic">
-          "El 73% de los planes entre amigos sufren cambios de última hora que no llegan a todos"
+      <div class="lg:pt-6">
+        <p class="cs-quote">
+          ¿Y si una app se encargara de <span>animar la noche</span> por ti?
         </p>
       </div>
     </div>
-  </section>
-
-  <!-- La Solución -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">💡</span>
-      La Solución
-    </h2>
-    <div class="glass-card p-8 space-y-6">
-      <p class="text-lg text-text-secondary leading-relaxed">
-        FOMO es una <strong class="text-white">app social mobile</strong> que digitaliza todo el ciclo de vida 
-        de tus planes con amigos:
-      </p>
-      
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="solution-card">
-          <div class="text-4xl mb-4">📅</div>
-          <h3 class="text-xl font-bold text-white mb-3">Pre-evento</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Crea planes en segundos, invita amigos directamente, vota opciones de lugar y hora. 
-            Todos en el mismo canal.
-          </p>
-        </div>
-        <div class="solution-card">
-          <div class="text-4xl mb-4">📍</div>
-          <h3 class="text-xl font-bold text-white mb-3">Durante</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Ubicación en tiempo real de cada amigo, chat grupal integrado, notificaciones inteligentes. 
-            Nadie se pierde.
-          </p>
-        </div>
-        <div class="solution-card">
-          <div class="text-4xl mb-4">📸</div>
-          <h3 class="text-xl font-bold text-white mb-3">Post-evento</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Galería compartida automática, recuerdos del grupo, estadísticas divertidas. 
-            El plan no termina cuando te vas.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mockups Showcase -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">📱</span>
-      Capturas de la App
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="mockup-showcase">
-          <img src="/fomo/mockup 1 alto.png" alt="FOMO - Home Feed" class="mockup-tall"/>
-          <p class="mockup-caption">Home Feed</p>
-        </div>
-        <div class="mockup-showcase">
-          <img src="/fomo/mockup 2 alto.png" alt="FOMO - Crear Evento" class="mockup-tall"/>
-          <p class="mockup-caption">Crear Evento</p>
-        </div>
-        <div class="mockup-showcase">
-          <img src="/fomo/mockup 3 alto.png" alt="FOMO - Detalles Evento" class="mockup-tall"/>
-          <p class="mockup-caption">Detalles del Plan</p>
-        </div>
-        <div class="mockup-showcase">
-          <img src="/fomo/mockup 4 alto.png" alt="FOMO - Chat Grupal" class="mockup-tall"/>
-          <p class="mockup-caption">Chat Grupal</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Clave -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">⚡</span>
-      Features Clave
-    </h2>
-    
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="feature-card">
-        <div class="feature-icon">📍</div>
-        <h3 class="text-xl font-bold text-white mb-2">Geolocalización en Tiempo Real</h3>
-        <p class="text-text-secondary text-sm leading-relaxed">
-          Ve dónde están tus amigos en el mapa mientras se dirigen al evento. 
-          Sistema adaptativo que ahorra batería cuando no hay eventos activos.
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="02 — Investigación"
+    title="Lo que aprendí observando cómo salen los grupos"
+    lead="Sin encuestas grandes ni datos inventados: observación directa de mi propio entorno y cómo se comporta un grupo cuando sale."
+  >
+    <div class="cs-observations">
+      <div class="cs-observation">
+        <span class="cs-observation__num">01</span>
+        <p class="cs-observation__text">
+          El pre es el <strong>momento clave</strong> de la noche, pero es donde menos herramientas hay.
+          Todo pasa en un grupo de chat que no está pensado para eso.
         </p>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🔔</div>
-        <h3 class="text-xl font-bold text-white mb-2">Push Notifications Inteligentes</h3>
-        <p class="text-text-secondary text-sm leading-relaxed">
-          Notificaciones contextuales que avisan solo cuando importa: cambios de plan, 
-          amigos cerca, recordatorios personalizados.
+      <div class="cs-observation">
+        <span class="cs-observation__num">02</span>
+        <p class="cs-observation__text">
+          Siempre hay un <strong>líder natural</strong> que propone. Si esa persona se despista,
+          el grupo se queda mirando el móvil en silencio.
         </p>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3 class="text-xl font-bold text-white mb-2">Chat Grupal Integrado</h3>
-        <p class="text-text-secondary text-sm leading-relaxed">
-          Chat en tiempo real con Firestore. Mensajes, reacciones, compartir ubicación. 
-          Todo sincronizado instantáneamente entre dispositivos.
+      <div class="cs-observation">
+        <span class="cs-observation__num">03</span>
+        <p class="cs-observation__text">
+          Los juegos que funcionan son <strong>cortos, sociales y sin reglas complejas</strong>.
+          En cuanto hay que leer un tutorial, se abandona.
         </p>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🗳️</div>
-        <h3 class="text-xl font-bold text-white mb-2">Votaciones y Encuestas</h3>
-        <p class="text-text-secondary text-sm leading-relaxed">
-          Sistema de votación para decidir lugar, hora o actividad. 
-          Resultados en tiempo real, cierre automático, notificaciones de consenso.
+      <div class="cs-observation">
+        <span class="cs-observation__num">04</span>
+        <p class="cs-observation__text">
+          Nadie quiere otra <strong>red social pública</strong>. Lo que pasa en el grupo se queda
+          en el grupo. La intimidad es parte de la gracia.
         </p>
       </div>
     </div>
-  </section>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="03 — Visión de producto"
+    title="Un compañero para la noche, no otra red social"
+  >
+    <p class="cs-lead">
+      FOMO no organiza eventos. FOMO se sienta con el grupo y se encarga de que la noche fluya:
+      propone juegos, lanza retos, guarda los momentos y, al final, los devuelve convertidos en
+      recuerdo. <strong>Por colegas, para colegas.</strong>
+    </p>
 
-  <!-- Arquitectura Técnica -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🏗️</span>
-      Arquitectura Técnica
-    </h2>
-    
-    <div class="space-y-6">
-      
-      <div class="glass-card p-8">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl">
-            📱
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold text-white">App Mobile</h3>
-            <p class="text-sm text-text-muted">React Native + Firebase</p>
-          </div>
-        </div>
-        
-        <div class="space-y-6 text-text-secondary">
-          <p class="text-lg">
-            Aplicación nativa construida con <strong class="text-white">React Native</strong>, 
-            <strong class="text-white">Firebase</strong> como backend y 
-            <strong class="text-white">Zustand</strong> para state management.
-          </p>
-
-          <div class="space-y-4">
-            <div class="tech-detail-card">
-              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                <span class="text-2xl">🔥</span>
-                Firebase Backend
-              </h4>
-              <ul class="text-sm space-y-2 list-none">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Firestore:</strong> Base de datos en tiempo real para eventos, mensajes, usuarios</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Authentication:</strong> Login con Google, Email y Apple Sign In</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Cloud Storage:</strong> Almacenamiento de fotos de eventos y avatares</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Cloud Functions:</strong> Lógica serverless para notificaciones y moderación</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="tech-detail-card">
-              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                <span class="text-2xl">⚡</span>
-                State Management
-              </h4>
-              <ul class="text-sm space-y-2 list-none">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Zustand:</strong> Estado global ligero y performante</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">React Query:</strong> Cache inteligente de datos de Firebase</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">AsyncStorage:</strong> Persistencia local para offline-first</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="tech-detail-card">
-              <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-                <span class="text-2xl">🛠️</span>
-                Librerías Clave
-              </h4>
-              <ul class="text-sm space-y-2 list-none">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">React Navigation:</strong> Navegación nativa con stack y tabs</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">React Native Maps:</strong> Integración de mapas con geolocalización</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#FF0080] mt-0.5">→</span>
-                  <span><strong class="text-white">Firebase Cloud Messaging:</strong> Push notifications multiplataforma</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="cs-figure mt-14">
+      <img src="/fomo/feature-graphic.png" alt="FOMO — propuesta de valor" loading="lazy" decoding="async" />
     </div>
-  </section>
-
-  <!-- Desafíos Técnicos -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🔥</span>
-      Desafíos Técnicos
-    </h2>
-    
-    <div class="space-y-6">
-      <div class="challenge-card">
-        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
-          <span class="text-2xl">🔄</span>
-          Sincronización en Tiempo Real
-        </h3>
-        <p class="text-text-secondary mb-4 leading-relaxed">
-          Mantener múltiples usuarios sincronizados viendo la misma información en tiempo real 
-          (ubicaciones, mensajes, votos) sin conflictos ni inconsistencias.
-        </p>
-        <div class="solution-box">
-          <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Firestore listeners con optimistic updates en el cliente. 
-            Manejo de conflictos mediante timestamps y última escritura gana. 
-            Retry automático con exponential backoff en caso de pérdida de conexión.
-          </p>
+    <p class="cs-figcaption">La propuesta de FOMO en una imagen: squad, juegos y momentos.</p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="04 — Recorrido de usuario"
+    title="El arco de una noche con FOMO"
+    lead="Todo el producto está pensado como un recorrido continuo, del primer pre al recap del día siguiente."
+  >
+    <div class="cs-journey">
+      {journey.map((step) => (
+        <div class="cs-journey__step">
+          <div class="cs-journey__node">{step.emoji}</div>
+          <span class="cs-journey__label">{step.label}</span>
+          <span class="cs-journey__desc">{step.desc}</span>
         </div>
-      </div>
-
-      <div class="challenge-card">
-        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
-          <span class="text-2xl">📍</span>
-          Geolocalización Eficiente
-        </h3>
-        <p class="text-text-secondary mb-4 leading-relaxed">
-          Tracking de ubicación continuo sin drenar la batería del dispositivo. 
-          Balance entre precisión y consumo energético.
-        </p>
-        <div class="solution-box">
-          <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Sistema adaptativo que ajusta precisión según contexto. 
-            Alta precisión solo cuando evento está activo y cerca. 
-            Caching de ubicaciones + actualizaciones cada 30s en background.
-          </p>
-        </div>
-      </div>
-
-      <div class="challenge-card">
-        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
-          <span class="text-2xl">🔔</span>
-          Push Notifications Inteligentes
-        </h3>
-        <p class="text-text-secondary mb-4 leading-relaxed">
-          Notificar sin ser intrusivo. Respetar preferencias del usuario y contexto. 
-          Evitar spam de notificaciones que lleven al usuario a desactivarlas.
-        </p>
-        <div class="solution-box">
-          <p class="text-sm text-green-300">
-            <strong>Solución:</strong> Sistema de prioridades en Cloud Functions. 
-            Agrupa notificaciones similares en ventanas de 5 minutos. 
-            Machine learning básico para aprender patrones del usuario.
-          </p>
-        </div>
-      </div>
+      ))}
     </div>
-  </section>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="05 — Decisiones de diseño"
+    title="Cada decisión responde a un problema real"
+    lead="El corazón del case study: por qué FOMO es como es."
+  >
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué squads y no eventos?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Los eventos son formales y de un solo uso; los grupos de amigos son estables.</span>
+          </div>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">La unidad central es el <strong>squad</strong>: el grupo persiste entre noches.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">Cero fricción para repetir. Abres la app y tu gente ya está ahí.</span>
+          </div>
+        </div>
+      </div>
 
-  <!-- Aprendizajes -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">💎</span>
-      Lo que aprendí
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="space-y-4 text-text-secondary">
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">React Native:</strong> Desarrollo de apps nativas multiplataforma, navegación compleja, componentes custom, optimización de performance</p>
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué decide el líder?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Cuando todos deciden, no decide nadie. Las votaciones frenan el momento.</span>
+          </div>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">Un <strong>rol de líder</strong> rotativo que arranca el juego sin consultar.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">La noche avanza. Se replica el "amigo que anima" en forma de rol.</span>
           </div>
         </div>
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Firebase ecosystem:</strong> Firestore queries complejas, Auth flows, Storage, Cloud Functions, FCM, Security Rules</p>
+      </div>
+
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué modo oscuro siempre?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">FOMO se usa de noche, en bares y sitios con poca luz.</span>
+          </div>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">Interfaz oscura con un único acento <strong>magenta</strong> de alta energía.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">No deslumbra, encaja con el ambiente y los CTA destacan al instante.</span>
           </div>
         </div>
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Real-time features:</strong> Sincronización multi-usuario, geolocalización, chat en tiempo real, manejo de estados offline</p>
+      </div>
+
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué no hay feed público?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Un feed público añade presión social y mata la espontaneidad.</span>
+          </div>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">Todo es <strong>privado dentro del squad</strong>. Nada sale del grupo.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">La gente se suelta porque sabe que nadie de fuera lo verá.</span>
           </div>
         </div>
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Diseño de producto:</strong> User research, prototipado rápido, testing con usuarios reales, iteración basada en feedback</p>
+      </div>
+
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué juegos cortos?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Un juego largo obliga a mirar el móvil y rompe la conversación.</span>
+          </div>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">Rondas de <strong>una acción</strong>: leer, reaccionar, seguir hablando.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">El teléfono es un catalizador social, no el centro de atención.</span>
           </div>
         </div>
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Moderación UGC:</strong> Gestión de contenido generado por usuarios, sistema de reportes, filtros automáticos, políticas de comunidad</p>
+      </div>
+
+      <div class="cs-decision">
+        <p class="cs-decision__q">¿Por qué código y QR para unirse?</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Buscar y añadir amigos uno a uno es lento y estás en persona.</span>
           </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#FF0080] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Mobile DevOps:</strong> CI/CD con Fastlane, distribución TestFlight/Play Console, versionado, crash reporting con Sentry</p>
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Decisión</span>
+            <span class="cs-decision__val">Unirse con <strong>código o QR</strong> en segundos, cara a cara.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">El squad se forma en el mismo momento en que el grupo se junta.</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="06 — La interfaz"
+    title="Flujos clave de la app"
+    lead="Mockups promocionales que recorren los flujos principales: squad, juegos, retos y momentos."
+  >
+    <div class="cs-appstore-strip" data-cs-reveal tabindex="0" aria-label="Mockup promocional FOMO en continuo">
+      <div class="cs-appstore-strip__track">
+        {promoStrip.map((src, i) => (
+          <img
+            src={src}
+            alt={`FOMO — mockup promocional, panel ${i + 1} de ${promoStrip.length}`}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            draggable="false"
+          />
+        ))}
+      </div>
+      <p class="cs-appstore-strip__hint">Desliza para ver el mockup completo</p>
+    </div>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="07 — Identidad visual"
+    title="Una marca con la energía de la noche"
+  >
+    <div class="cs-identity">
+      <div class="cs-identity__logo">
+        <img src="/fomo/logotipo.png" alt="Logotipo de FOMO" loading="lazy" decoding="async" />
+      </div>
+      <div class="cs-identity__side">
+        <div class="cs-identity__panel">
+          <h4>Color</h4>
+          <div class="cs-swatches">
+            <div class="cs-swatch" style="background:#FF2D9B"></div>
+            <div class="cs-swatch" style="background:#12071A"></div>
+            <div class="cs-swatch" style="background:#060816"></div>
+            <div class="cs-swatch" style="background:#FFFFFF"></div>
+          </div>
+        </div>
+        <div class="cs-identity__panel">
+          <h4>Tipografía</h4>
+          <div class="cs-type-sample">
+            <p class="display">Por colegas</p>
+            <p class="body">Titulares bold y contundentes · texto directo y coloquial</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="08 — Decisiones técnicas"
+    title="Arquitectura móvil de producto"
+  >
+    <div class="cs-deflist" style="max-width: 46rem;">
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">React Native</span>
+        <span class="cs-deflist__desc">Una base de código para iOS y Android, con estructura pensada para evolucionar funcionalidades sin duplicar lógica.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Firebase</span>
+        <span class="cs-deflist__desc">Auth y backend gestionado para centrarme en producto, no en infraestructura.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Firestore</span>
+        <span class="cs-deflist__desc">Base en tiempo real para el estado del squad y las partidas.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Zustand</span>
+        <span class="cs-deflist__desc">Estado global ligero, sin el boilerplate de soluciones más pesadas.</span>
+      </div>
+    </div>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="09 — Alcance técnico"
+    title="Un producto completo, no una demo"
+    lead="FOMO me permitió trabajar el ciclo completo de un producto móvil: definición, diseño, arquitectura, implementación, estado global, backend gestionado y validación de flujos reales."
+  >
+    <p class="cs-prose mb-10">
+      La aplicación se construyó como un producto real: con onboarding, squads, juegos, retos,
+      momentos, estado compartido e integración con servicios backend. El foco no fue solo diseñar
+      pantallas, sino conectar decisiones de producto con una implementación mantenible.
+    </p>
 
-  <!-- Próximos Pasos -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🚀</span>
-      Próximos Pasos
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="roadmap-card">
-          <div class="text-4xl mb-4">🎨</div>
-          <h3 class="text-lg font-bold text-white mb-2">Personalización</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Temas custom por grupo, avatares animados, badges de logros, 
-            stickers personalizados para el chat.
+    <div class="cs-cols mb-10">
+      <div>
+        <h4 class="cs-deflist__term mb-4">Qué se alcanzó</h4>
+        <div class="cs-status-list">
+          <span class="cs-status"><span class="cs-status__dot cs-status__dot--done"></span> Producto funcional end-to-end</span>
+          <span class="cs-status"><span class="cs-status__dot cs-status__dot--done"></span> Arquitectura móvil con React Native</span>
+          <span class="cs-status"><span class="cs-status__dot cs-status__dot--done"></span> Backend gestionado con Firebase</span>
+          <span class="cs-status"><span class="cs-status__dot cs-status__dot--done"></span> Squads, juegos, Jangueo y momentos</span>
+          <span class="cs-status"><span class="cs-status__dot cs-status__dot--done"></span> Gestión de estado con Zustand</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="cs-deflist__term mb-4">Qué demuestra</h4>
+        <p class="cs-prose text-sm">
+          El valor principal del proyecto está en haber recorrido todas las fases: entender el problema,
+          convertirlo en flujos, diseñar una experiencia móvil, elegir stack, implementar la lógica y
+          preparar una base técnica lista para seguir creciendo.
+        </p>
+        <p class="cs-prose text-sm mt-4" style="color: var(--color-text-muted);">
+          FOMO funciona como evidencia de criterio de producto y capacidad técnica aplicada a una app
+          completa, no como una landing pensada para vender una idea.
+        </p>
+      </div>
+    </div>
+
+    <p class="cs-lead" style="font-size: 1.05rem;">
+      Hoy FOMO se presenta como caso de estudio de <strong>diseño de producto</strong>, arquitectura móvil
+      y desarrollo de aplicaciones sociales: un producto concebido, diseñado y construido de extremo a extremo.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="10 — Aprendizajes"
+    title="Qué me llevo de construir FOMO"
+  >
+    <div class="cs-lessons">
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">01</span>
+        <div>
+          <h3 class="cs-lesson__title">El producto empieza en el comportamiento, no en la pantalla</h3>
+          <p class="cs-lesson__text">
+            La mejor decisión de FOMO (el rol de líder) no salió de un Figma, salió de observar
+            que en cada grupo hay alguien que tira del carro. Diseñar es traducir comportamiento.
           </p>
         </div>
-        <div class="roadmap-card">
-          <div class="text-4xl mb-4">🤖</div>
-          <h3 class="text-lg font-bold text-white mb-2">IA Recommendations</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Sugerencias inteligentes de lugares basadas en historial, 
-            predicción de asistencia, horarios óptimos.
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">02</span>
+        <div>
+          <h3 class="cs-lesson__title">Restringir es diseñar</h3>
+          <p class="cs-lesson__text">
+            Decir "no" al feed público, a los juegos largos y a las votaciones definió el producto
+            más que cualquier feature que añadí. Cada límite tenía un motivo.
           </p>
         </div>
-        <div class="roadmap-card">
-          <div class="text-4xl mb-4">💰</div>
-          <h3 class="text-lg font-bold text-white mb-2">Split Payments</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Dividir gastos del evento automáticamente, 
-            integración con Bizum/PayPal, recordatorios de deudas.
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">03</span>
+        <div>
+          <h3 class="cs-lesson__title">Llegar a producción no termina en el código</h3>
+          <p class="cs-lesson__text">
+            Superar revisión en Android y encontrar un límite editorial en iOS me enseñó que la
+            distribución es parte del producto. Construir algo real implica navegar plataformas,
+            categorías y decisiones que el diseño por sí solo no anticipa.
           </p>
         </div>
       </div>
     </div>
-  </section>
+  </CaseStudySection>
 
 </CaseStudyLayout>
-
-<style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-  }
-
-  .mockup-container {
-    position: relative;
-    aspect-ratio: 9/16;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .mockup-container:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(255, 0, 128, 0.3);
-  }
-
-  .mockup-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .mockup-showcase {
-    position: relative;
-    transition: transform 0.3s ease;
-  }
-
-  .mockup-showcase:hover {
-    transform: translateY(-8px);
-  }
-
-  .mockup-tall {
-    width: 100%;
-    height: auto;
-    border-radius: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .mockup-caption {
-    margin-top: 0.75rem;
-    text-align: center;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 600;
-  }
-
-  .solution-card {
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .solution-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 0, 128, 0.3);
-    transform: translateY(-4px);
-  }
-
-  .feature-card {
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 0, 128, 0.2);
-  }
-
-  .feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tech-detail-card {
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 4px solid #FF0080;
-  }
-
-  .challenge-card {
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .solution-box {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.2);
-  }
-
-  .learning-item {
-    display: flex;
-    align-items: start;
-    gap: 1rem;
-  }
-
-  .roadmap-card {
-    padding: 1.5rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .roadmap-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-4px);
-  }
-
-  code {
-    font-family: 'Courier New', monospace;
-  }
-</style>

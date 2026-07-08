@@ -1,0 +1,61 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  label?: string;
+  aspect?: string;
+}
+
+const { src, poster, label = 'Reproducir', aspect = '16 / 9' } = Astro.props;
+---
+
+<div class="cs-video" data-cs-video style={`--cs-video-aspect: ${aspect};`}>
+  <video
+    class="cs-video__player"
+    preload="none"
+    playsinline
+    muted
+    loop
+    poster={poster}
+    data-src={src}
+  />
+  <button type="button" class="cs-video__trigger" aria-label={label}>
+    <span class="cs-video__play" aria-hidden="true"></span>
+    <span class="cs-video__label">{label}</span>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll('[data-cs-video]').forEach((wrap) => {
+    const video = wrap.querySelector('video');
+    const trigger = wrap.querySelector('.cs-video__trigger');
+    if (!video || !trigger) return;
+
+    const loadAndPlay = () => {
+      const source = video.dataset.src;
+      if (source && !video.getAttribute('src')) {
+        video.setAttribute('src', source);
+        video.load();
+      }
+      wrap.classList.add('is-playing');
+      video.play().catch(() => wrap.classList.remove('is-playing'));
+    };
+
+    trigger.addEventListener('click', loadAndPlay);
+
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        loadAndPlay();
+      } else {
+        video.pause();
+        wrap.classList.remove('is-playing');
+      }
+    });
+
+    video.addEventListener('pause', () => {
+      if (video.currentTime === 0 || video.ended) {
+        wrap.classList.remove('is-playing');
+      }
+    });
+  });
+</script>

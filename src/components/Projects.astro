@@ -1,295 +1,422 @@
 ---
-import { Image } from 'astro:assets';
-import avatarProyectos from '../assets/Proyectos.png';
-
-const projects = [
-  {
-    id: "fomo", title: "FOMO", tagline: "Producto Social Mobile",
-    description: "Digitaliza el pre, durante y post de las dinámicas sociales. Diseñado alrededor del comportamiento real de los grupos, facilitando la organización de eventos.",
-    stack: ["React Native", "Firebase", "Zustand", "Cloud Functions"],
-    metrics: { users: "500+", rating: "4.8/5", status: "En desarrollo" },
-    github: "https://github.com/Rodriifdezz", caseStudy: "/projects/fomo",
-    accentColor: "#FF0080", image: "/fomo/Feature Graphic.png"
-  },
-  {
-    id: "inno", title: "Innovatech", tagline: "Concurso Nacional",
-    description: "Propuesta de producto funcional seleccionada como finalista para el prestigioso premio nacional Innovatech. Diseño de interfaz impecable con memoria técnica rigurosa.",
-    stack: ["UI/UX Design", "Figma", "Prototipado", "User Research"],
-    metrics: { prize: "€10K", position: "Finalista", year: "2024" },
-    github: "https://github.com/Rodriifdezz", caseStudy: "/projects/innovatech",
-    accentColor: "#F59E0B", image: "/innovatech/ChatGPT Image 22 may 2026, 15_48_16.png"
-  },
-  {
-    id: "erp", title: "ERP Gestión", tagline: "Software a Medida",
-    description: "Digitalización operativa para negocio familiar de tapicería artesanal. Modela lógicas complejas de presupuestación variable según tipo de encargo y materiales.",
-    stack: ["Spring Boot", "PostgreSQL", "Angular", "JPA"],
-    metrics: { modules: "8", automation: "90%", status: "Producción" },
-    github: "https://github.com/Rodriifdezz", caseStudy: "#",
-    accentColor: "#4F8CFF", image: "/cinematic/case_erp.png"
-  }
-];
+import SectionLabel from './SectionLabel.astro';
+import { projects, projectsSection } from '../data/site';
 ---
 
-<section id="projects" class="relative py-32 overflow-hidden">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-    
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-center">
-      
-      <div class="lg:col-span-7 space-y-6" data-projects-header>
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 backdrop-blur-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
-          </span>
-          <span class="text-sm font-semibold text-accent-primary tracking-wide">Portfolio · 2024</span>
-        </div>
-        
-        <h2 class="text-5xl md:text-7xl font-display font-bold tracking-tight leading-[0.9]">
-          Proyectos que <br/>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
-            construyen valor
-          </span>
-        </h2>
-        
-        <p class="text-xl text-text-secondary leading-relaxed max-w-2xl">
-          Cada proyecto es una oportunidad para resolver problemas reales. 
-          Desde <strong class="text-white">backend estructurado</strong> hasta 
-          <strong class="text-white">experiencias de usuario</strong> que conectan.
-        </p>
+<section id="projects" class="projects section-container">
+  <header class="projects__header" data-projects-header>
+    <SectionLabel label="Proyectos" variant="neutral" />
+    <h2 class="projects__title">{projectsSection.title}</h2>
+    <p class="projects__subtitle">{projectsSection.subtitle}</p>
+  </header>
 
-        <div class="flex flex-wrap gap-4 pt-4">
-          <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
-            <span class="text-2xl font-bold text-white">3</span>
-            <span class="text-sm text-text-muted">Proyectos</span>
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
-            <span class="text-2xl font-bold text-accent-primary">Full Stack</span>
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
-            <span class="text-2xl font-bold text-accent-secondary">2024</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="lg:col-span-5 relative" data-avatar-container>
-        <div class="relative aspect-square max-w-[450px] mx-auto lg:ml-auto">
-          <div class="absolute inset-0 bg-gradient-to-tr from-accent-primary/30 via-accent-secondary/20 to-transparent rounded-full blur-[100px] animate-breathe"></div>
-          
-          <div class="relative w-full h-full flex items-end justify-center">
-            <Image 
-              src={avatarProyectos} 
-              alt="Rodrigo - Proyectos" 
-              id="hero-avatar"
-              class="relative w-full h-[110%] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.8)] avatar-mask scale-105 origin-bottom"
-            />
-          </div>
-
-          <div class="absolute inset-0 pointer-events-none">
-            <div class="tech-orb" style="top: 10%; right: 10%; animation-delay: 0s;">
-              <div class="orb-glow" style="background: linear-gradient(135deg, #61dafb 0%, #4fa8ff 100%);"></div>
-              <svg class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="2"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-            </div>
-            <div class="tech-orb" style="top: 40%; left: 5%; animation-delay: 1s;">
-              <div class="orb-glow" style="background: linear-gradient(135deg, #6DB33F 0%, #4caf50 100%);"></div>
-              <svg class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 22 2c-2.48 5-3 6.5-4.1 12.2A7 7 0 0 1 11 20z"/></svg>
-            </div>
-            <div class="tech-orb" style="bottom: 20%; right: 15%; animation-delay: 2s;">
-              <div class="orb-glow" style="background: linear-gradient(135deg, #FFCA28 0%, #ff9800 100%);"></div>
-              <svg class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 0-4 3.5-4 7s3.5 6 4 9c.5-3 4-5.5 4-9s-4-7-4-7z"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="space-y-32">
-      {projects.map((project, index) => (
-        <article class="project-showcase group" data-project-id={project.id} style={`--accent: ${project.accentColor};`}>
-          <div class={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-            
-            <div class={`lg:col-span-6 ${index % 2 === 1 ? 'lg:col-start-7' : ''}`}>
-              <div class="project-image-wrapper group/img relative" data-tilt>
-                <div class="absolute -inset-4 rounded-3xl blur-3xl opacity-20 group-hover/img:opacity-40 transition-all duration-700" style={`background: ${project.accentColor};`}></div>
-                <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl" style="transform-style: preserve-3d;">
-                  <div class="aspect-[16/10] relative overflow-hidden bg-gradient-to-br from-white/5 to-transparent">
-                    <img src={project.image} alt={project.title} class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110" loading="lazy"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
+  <div class="projects__list">
+    {projects.map((project, index) => (
+      <article
+        class={`project-card project-card--${project.emphasis}`}
+        data-project-id={project.id}
+        style={`--accent: ${project.accentColor};`}
+      >
+        <div class={`project-card__grid ${index % 2 === 1 ? 'project-card__grid--reverse' : ''}`}>
+          <div class="project-card__media">
+            <div class="project-card__image-wrap" data-tilt>
+              <div class="project-card__glow" aria-hidden="true"></div>
+              <div class="project-card__frame" style={`aspect-ratio: ${project.imageAspect};`}>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class={`project-card__img ${project.id === 'inno' ? 'project-card__img--banner' : ''}`}
+                    style={`object-position: ${project.imagePosition};`}
+                    loading="lazy"
+                    width={project.id === 'inno' ? 1672 : 1024}
+                    height={project.id === 'inno' ? 941 : 500}
+                  />
+                ) : (
+                  <div class="project-card__placeholder" aria-hidden="true">
+                    <div class="project-card__placeholder-layers">
+                      <span>API REST</span>
+                      <span>Spring Boot</span>
+                      <span>PostgreSQL</span>
+                      <span>React</span>
+                      <span>Electron</span>
+                    </div>
+                    <p class="project-card__placeholder-note">ERP en uso diario — sin capturas inventadas</p>
                   </div>
-                </div>
-                <div class="absolute -top-8 -left-8 w-24 h-24 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl flex items-center justify-center shadow-2xl">
-                  <span class="text-4xl font-bold text-white/90">0{index + 1}</span>
-                </div>
+                )}
               </div>
+              <span class="project-card__index" aria-hidden="true">0{index + 1}</span>
             </div>
-
-            <div class={`lg:col-span-6 ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-6`}>
-              <div class="space-y-3">
-                <div class="flex items-center gap-3">
-                  <div class="h-1 w-12 rounded-full" style={`background: ${project.accentColor};`}></div>
-                  <span class="text-sm font-mono font-bold uppercase tracking-wider" style={`color: ${project.accentColor};`}>{project.tagline}</span>
-                </div>
-                <h3 class="text-4xl md:text-5xl font-display font-bold text-white group-hover:text-[var(--accent)] transition-colors duration-300">{project.title}</h3>
-              </div>
-
-              {project.id === 'inno' && (
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 backdrop-blur-sm">
-                  <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <span class="text-sm font-bold text-amber-400">Finalista Nacional • €10,000</span>
-                </div>
-              )}
-
-              <p class="text-lg text-text-secondary leading-relaxed">{project.description}</p>
-
-              <div class="grid grid-cols-3 gap-4 py-4">
-                {Object.entries(project.metrics).map(([key, value]) => (
-                  <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                    <div class="text-2xl font-bold text-white mb-1">{value}</div>
-                    <div class="text-xs text-text-muted uppercase tracking-wider">{key}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div class="flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <span class="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-lg border backdrop-blur-sm transition-all hover:scale-105 hover:-translate-y-0.5" style={`color: ${project.accentColor}; background: ${project.accentColor}15; border-color: ${project.accentColor}30;`}>{tech}</span>
-                ))}
-              </div>
-
-              <div class="flex items-center gap-4 pt-4">
-                <a href={project.caseStudy} class="px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl" style={`background: ${project.accentColor}; box-shadow: 0 10px 30px ${project.accentColor}40;`}>Ver case study</a>
-                <a href={project.github} target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all hover:-translate-y-1">GitHub →</a>
-              </div>
-            </div>
-
           </div>
-        </article>
-      ))}
-    </div>
 
+          <div class="project-card__content">
+            <div class="project-card__meta">
+              <span class="project-card__bar" aria-hidden="true"></span>
+              <span class="project-card__tagline">{project.tagline}</span>
+            </div>
+
+            <h3 class="project-card__title">{project.title}</h3>
+
+            {project.id === 'inno' && (
+              <span class="project-card__badge project-card__badge--team">
+                Innovatech FP · Proyecto en equipo
+              </span>
+            )}
+
+            {project.id === 'erp' && (
+              <span class="project-card__badge project-card__badge--backend">
+                TFC de DAM · Uso real en producción
+              </span>
+            )}
+
+            <p class="project-card__desc">{project.description}</p>
+
+            <dl class="project-card__metrics">
+              {Object.entries(project.metrics).map(([key, value]) => (
+                <div class="project-card__metric">
+                  <dt class="project-card__metric-value">{value}</dt>
+                  <dd class="project-card__metric-key">{key}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div class="project-card__stack">
+              {project.stack.map((tech) => (
+                <span class="project-card__chip">{tech}</span>
+              ))}
+            </div>
+
+            <a href={project.caseStudy} class="project-card__cta btn-primary">
+              Ver caso de estudio
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
   </div>
 </section>
 
 <style>
-  .tech-orb {
+  .projects__header {
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .projects__header :global(.section-label) {
+    margin-bottom: 1rem;
+  }
+
+  .projects__title {
+    font-size: var(--text-section);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+
+  .projects__subtitle {
+    font-size: var(--text-body-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+
+  .projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects__list {
+      gap: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects__list {
+      gap: 6rem;
+    }
+  }
+
+  .project-card--primary .project-card__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .project-card__grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .project-card__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .project-card--primary .project-card__grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .project-card__grid--reverse .project-card__media {
+      order: 2;
+    }
+
+    .project-card__grid--reverse .project-card__content {
+      order: 1;
+    }
+  }
+
+  .project-card__image-wrap {
+    position: relative;
+  }
+
+  .project-card__glow {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    inset: -1rem;
+    border-radius: var(--radius-xl);
+    background: var(--accent);
+    filter: blur(48px);
+    opacity: 0.18;
+    transition: opacity 0.5s ease;
+  }
+
+  .project-card__image-wrap:hover .project-card__glow {
+    opacity: 0.32;
+  }
+
+  .project-card__frame {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-card);
+    background: var(--color-bg-secondary);
+  }
+
+  .project-card__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .project-card__img--banner {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .project-card__image-wrap:hover .project-card__img {
+    transform: scale(1.03);
+  }
+
+  .project-card__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    background:
+      radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
+      linear-gradient(160deg, var(--color-bg-secondary), var(--color-bg-primary));
+  }
+
+  .project-card__placeholder-layers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 16rem;
+  }
+
+  .project-card__placeholder-layers span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.55rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .project-card__placeholder-note {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 18rem;
+    line-height: 1.5;
+  }
+
+  .project-card__index {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .orb-glow {
-    position: absolute;
-    inset: -8px;
     border-radius: 50%;
-    opacity: 0.3;
-    filter: blur(16px);
-    animation: pulse 3s ease-in-out infinite;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.1); }
+  @media (min-width: 768px) {
+    .project-card__index {
+      top: -0.5rem;
+      left: -0.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.25rem;
+    }
   }
 
-  .project-showcase {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.2s);
+  .project-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
-  @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-    from { opacity: 0; transform: translateY(40px); }
+  .project-card__bar {
+    width: 2.5rem;
+    height: 3px;
+    border-radius: var(--radius-full);
+    background: var(--accent);
+  }
+
+  .project-card__tagline {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .project-card__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+  }
+
+  .project-card:hover .project-card__title {
+    color: var(--accent);
+  }
+
+  .project-card__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+  }
+
+  .project-card__badge--team {
+    color: #34d399;
+    background: rgba(31, 169, 143, 0.15);
+    border: 1px solid rgba(31, 169, 143, 0.35);
+  }
+
+  .project-card__badge--backend {
+    color: var(--color-accent-primary);
+    background: rgba(79, 140, 255, 0.12);
+    border: 1px solid rgba(79, 140, 255, 0.35);
+  }
+
+  .project-card__desc {
+    font-size: var(--text-body-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-card__metrics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    margin: 0 0 1.25rem;
+  }
+
+  @media (min-width: 480px) {
+    .project-card__metrics {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+  }
+
+  .project-card__metric {
+    text-align: center;
+    padding: 0.85rem 0.65rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .project-card__metric-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .project-card__metric-key {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .project-card__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-card__chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  .project-card__cta {
+    background: var(--accent) !important;
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .project-card__cta:hover {
+    background: var(--accent) !important;
+    filter: brightness(1.08);
   }
 </style>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { bindTilt3d, scrollReveal } from '../scripts/motion';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from('[data-projects-header]', {
-    scrollTrigger: { trigger: '#projects', start: 'top 80%' },
-    y: 40, opacity: 0, duration: 1, ease: 'power3.out'
-  });
-
-  gsap.from('[data-avatar-container]', {
-    scrollTrigger: { trigger: '#projects', start: 'top 80%' },
-    scale: 0.8, opacity: 0, duration: 1.2, ease: 'back.out(1.2)', delay: 0.2
-  });
-
-  const avatar = document.getElementById('hero-avatar');
-  if (avatar) {
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      gsap.to(avatar, { x, y, duration: 0.8, ease: 'power2.out' });
-    });
-  }
-
-  // 3D Tilt Effect on Project Cards - OPTIMIZED
-  const tiltElements = document.querySelectorAll('[data-tilt]');
-  
-  tiltElements.forEach((element) => {
-    let rafId: number | null = null;
-    
-    // Add will-change on hover
-    element.addEventListener('mouseenter', () => {
-      (element as HTMLElement).style.willChange = 'transform';
-    });
-    
-    element.addEventListener('mousemove', (e: Event) => {
-      const mouseEvent = e as MouseEvent;
-      
-      // Throttle with RAF
-      if (rafId) return;
-      
-      rafId = requestAnimationFrame(() => {
-        const rect = element.getBoundingClientRect();
-        const x = mouseEvent.clientX - rect.left;
-        const y = mouseEvent.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -5; // Reduced to 5deg for smoother experience
-        const rotateY = ((x - centerX) / centerX) * 5;
-        
-        gsap.to(element, {
-          rotationX: rotateX,
-          rotationY: rotateY,
-          transformPerspective: 1000,
-          duration: 0.4,
-          ease: 'power1.out'
-        });
-        
-        rafId = null;
-      });
-    });
-    
-    element.addEventListener('mouseleave', () => {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-      
-      gsap.to(element, {
-        rotationX: 0,
-        rotationY: 0,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
-      
-      // Remove will-change
-      (element as HTMLElement).style.willChange = 'auto';
-    });
-  });
+  scrollReveal('[data-projects-header]', { trigger: '#projects', start: 'top 85%' });
+  scrollReveal('.project-card', { start: 'top 88%', y: 28 });
+  bindTilt3d('[data-tilt]', 4);
 </script>

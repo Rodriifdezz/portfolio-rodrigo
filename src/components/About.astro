@@ -1,128 +1,318 @@
 ---
 import { Image } from 'astro:assets';
-import avatarPortatil from '../assets/Portatileo.png';
+import profilePhoto from '../assets/profile.png';
+import SectionLabel from './SectionLabel.astro';
+import { about, site } from '../data/site';
 ---
 
-<section id="about" class="section-container py-24">
-  <div class="max-w-7xl mx-auto px-4">
-    
-    <!-- Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
-        Sobre <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-accent-secondary">mí</span>
-      </h2>
-      <p class="text-text-secondary text-lg">
-        Desarrollador enfocado en backend y producto real
-      </p>
-    </div>
-
-    <!-- Layout Integrado: Imagen + Info -->
-    <div class="grid lg:grid-cols-2 gap-8 items-start">
-      
-      <!-- Columna Izquierda: Avatar -->
-      <div class="flex items-center justify-center lg:sticky lg:top-24">
-        <div class="relative w-full max-w-lg">
-          <!-- Glow -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-full blur-[100px]"></div>
-          
-          <!-- Avatar -->
-          <Image 
-            src={avatarPortatil} 
-            alt="Rodrigo programando" 
-            class="relative w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(79,140,255,0.4)]"
+<section id="about" class="about section-container">
+  <article class="about__intro" data-about-reveal>
+    <figure class="about__avatar">
+      <div class="about__avatar-ring">
+        <div class="about__avatar-frame">
+          <Image
+            src={profilePhoto}
+            alt={site.name}
+            width={720}
+            height={960}
+            fit="inside"
+            densities={[1, 2]}
+            loading="lazy"
+            class="about__avatar-img"
           />
         </div>
       </div>
+    </figure>
 
-      <!-- Columna Derecha: Cards de Info -->
-      <div class="space-y-6">
-        
-        <!-- Sobre mí -->
-        <div class="glass-card p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-3xl">👨‍💻</span>
-            <h3 class="text-xl font-bold">Sobre mí</h3>
-          </div>
-          <div class="space-y-3 text-text-secondary text-sm leading-relaxed">
-            <p>Me gusta construir aplicaciones que mezclen tecnología, producto y comportamiento real de usuario.</p>
-            <p>Actualmente desarrollándome en <span class="text-white font-medium">backend Java</span> mediante <span class="text-accent-primary font-medium">FP Dual</span>, trabajando con Spring, SQL y APIs REST.</p>
-          </div>
-        </div>
+    <div class="about__copy">
+      <SectionLabel label={about.intro.title} variant="neutral" />
+      <h2 class="sr-only">{about.intro.title}</h2>
 
-        <!-- Grid 2x2 para el resto -->
-        <div class="grid sm:grid-cols-2 gap-6">
-          
-          <!-- Estudios -->
-          <div class="glass-card p-5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">🎓</span>
-              <h3 class="text-lg font-bold">Estudios</h3>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <p class="font-semibold text-white">DAM</p>
-                <p class="text-text-secondary">Finaliza Sept 2026 - TFC</p>
-              </div>
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <p class="font-semibold text-white">Ingeniería Informática</p>
-                <p class="text-text-secondary">En curso</p>
-              </div>
-            </div>
-          </div>
+      <div class="about__prose">
+        {about.intro.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </article>
 
-          <!-- Certificaciones -->
-          <div class="glass-card p-5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">📜</span>
-              <h3 class="text-lg font-bold">Certificaciones</h3>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <span class="px-2 py-0.5 rounded bg-blue-500 text-white text-[10px] font-bold">AZ-900</span>
-                <p class="text-white mt-1">Azure Fundamentals</p>
-              </div>
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <span class="px-2 py-0.5 rounded bg-yellow-500 text-white text-[10px] font-bold">UNIR</span>
-                <p class="text-white mt-1">Python Certification</p>
-              </div>
-            </div>
-          </div>
+  <div class="about__blocks" data-about-reveal>
+    <article class="about__block about__block--work">
+      <div class="about__block-head">
+        <span class="about__block-bar" aria-hidden="true"></span>
+        <h3 class="about__block-title">{about.work.title}</h3>
+      </div>
+      <p class="about__block-lead">{about.work.lead}</p>
 
-          <!-- Ahora -->
-          <div class="glass-card p-5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">🚀</span>
-              <h3 class="text-lg font-bold">Ahora</h3>
-            </div>
-            <div class="space-y-1.5 text-xs text-text-secondary">
-              <p>✓ Prácticas FP Dual</p>
-              <p>✓ TFC - Sept 2026</p>
-              <p>✓ Proyectos backend</p>
-              <p>✓ Explorando cloud</p>
-            </div>
-          </div>
+      <ul class="about__principles" aria-label="Principios de trabajo">
+        {about.work.principles.map((principle) => (
+          <li class="about__principle">
+            <h4 class="about__principle-title">{principle.title}</h4>
+            <p class="about__principle-text">{principle.text}</p>
+          </li>
+        ))}
+      </ul>
+    </article>
 
-          <!-- Experiencia -->
-          <div class="glass-card p-5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">💼</span>
-              <h3 class="text-lg font-bold">Experiencia</h3>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <p class="font-semibold text-white">FP Dual - Prácticas</p>
-                <p class="text-text-secondary">Backend Java - Spring</p>
-              </div>
-              <div class="p-2.5 rounded-lg bg-white/5">
-                <p class="font-semibold text-white">Proyectos personales</p>
-                <p class="text-text-secondary">Full-stack development</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+    <article class="about__block about__block--now">
+      <div class="about__block-head">
+        <span class="about__block-bar" aria-hidden="true"></span>
+        <h3 class="about__block-title">{about.now.title}</h3>
       </div>
 
-    </div>
+      <dl class="about__facts">
+        {about.now.items.map((item) => (
+          <div class="about__fact">
+            <dt class="about__fact-label">{item.label}</dt>
+            <dd class="about__fact-value">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </article>
   </div>
 </section>
+
+<style>
+  .about {
+    position: relative;
+    z-index: 3;
+    margin-top: 0;
+    padding-top: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  @media (min-width: 1024px) {
+    .about {
+      padding-top: clamp(3.5rem, 8vh, 5rem);
+    }
+  }
+
+  .about__intro {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: clamp(3rem, 6vh, 4.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .about__intro {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .about__intro {
+      gap: clamp(3rem, 6vw, 5rem);
+    }
+  }
+
+  .about__avatar {
+    margin: 0;
+    justify-self: center;
+  }
+
+  @media (min-width: 768px) {
+    .about__avatar {
+      justify-self: start;
+      padding-top: 0.25rem;
+    }
+  }
+
+  .about__avatar-ring {
+    padding: 3px;
+    border-radius: 50%;
+    background: linear-gradient(
+      145deg,
+      rgba(79, 140, 255, 0.35),
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(124, 92, 255, 0.2)
+    );
+    box-shadow: var(--shadow-card);
+  }
+
+  .about__avatar-frame {
+    width: clamp(180px, 42vw, 260px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (min-width: 1280px) {
+    .about__avatar-frame {
+      width: 280px;
+    }
+  }
+
+  .about__avatar-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 14%;
+    transform: scale(1.08);
+    transform-origin: 50% 18%;
+  }
+
+  .about__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .about__copy :global(.section-label) {
+    margin-bottom: 1.25rem;
+  }
+
+  .about__prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: 60ch;
+  }
+
+  .about__prose p {
+    margin: 0;
+    font-size: clamp(0.98rem, 1.7vw, 1.06rem);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .about__note {
+    margin: 1.5rem 0 0;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid color-mix(in srgb, var(--color-accent-primary) 50%, transparent);
+    max-width: 58ch;
+  }
+
+  .about__note p {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.02rem);
+    color: var(--color-text-primary);
+    line-height: 1.68;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .about__blocks {
+    display: grid;
+    gap: clamp(2rem, 4vh, 2.75rem);
+    padding-top: clamp(2.5rem, 5vh, 3.5rem);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  @media (min-width: 1024px) {
+    .about__blocks {
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: clamp(2.5rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+  }
+
+  .about__block-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .about__block-bar {
+    width: 2rem;
+    height: 2px;
+    background: var(--color-accent-primary);
+    flex-shrink: 0;
+  }
+
+  .about__block-title {
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .about__block-lead {
+    margin: 0 0 1.35rem;
+    font-size: clamp(0.95rem, 1.5vw, 1.02rem);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+
+  .about__principles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .about__principles {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  .about__principle {
+    padding: 1.15rem 1.2rem;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .about__principle-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    margin: 0 0 0.45rem;
+    line-height: 1.35;
+  }
+
+  .about__principle-text {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .about__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .about__fact {
+    padding: 1rem 1.1rem;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-bg-secondary) 80%, transparent);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .about__fact-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 0.35rem;
+  }
+
+  .about__fact-value {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+</style>
+
+<script>
+  import { scrollReveal } from '../scripts/motion';
+
+  scrollReveal('[data-about-reveal]', { start: 'top 90%', y: 16, duration: 0.7 });
+</script>

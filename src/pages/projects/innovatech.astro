@@ -1,581 +1,363 @@
 ---
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+import LazyVideo from '../../components/case-study/LazyVideo.astro';
+
+const brand = '#1FA98F';
+
+const journey = [
+  { emoji: '🌿', label: 'Descubrir', desc: 'El producto en tienda' },
+  { emoji: '📱', label: 'Escanear', desc: 'QR en el envase' },
+  { emoji: '📖', label: 'Aprender', desc: 'Sobre cada alga' },
+  { emoji: '✨', label: 'Cocinar', desc: 'Recetas con IA' },
+  { emoji: '🧺', label: 'Despensa', desc: 'Favoritos y stock' },
+  { emoji: '👨‍🍳', label: 'Confianza', desc: 'Animarse a probar' },
+];
+
+const gallery = [
+  { img: '/innovatech/screen-11.png', caption: 'Escanear QR' },
+  { img: '/innovatech/screen-06.png', caption: 'Producto detectado' },
+  { img: '/innovatech/screen-07.png', caption: 'Ficha de producto' },
+  { img: '/innovatech/screen-04.png', caption: 'Receta paso a paso' },
+  { img: '/innovatech/screen-05.png', caption: 'AlgaeChef' },
+  { img: '/innovatech/screen-02.png', caption: 'Inicio' },
+];
+
+const screens = [
+  {
+    index: '01',
+    img: '/innovatech/screen-11.png',
+    title: 'Escanear el QR del producto',
+    problem: 'El usuario compra en tienda pero no sabe qué hacer después. Falta el puente entre lo físico y lo digital.',
+    why: 'El escáner conecta el envase con una experiencia personalizada al instante, sin buscar la app manualmente.',
+  },
+  {
+    index: '02',
+    img: '/innovatech/screen-06.png',
+    title: 'Información clara del producto',
+    problem: '¿Qué alga estoy comprando? ¿Para qué sirve? La incertidumbre frena la compra.',
+    why: 'Tras escanear, ficha con descripción, valoración, precio y receta recomendada. Reduce la barrera en el momento de decidir.',
+  },
+  {
+    index: '03',
+    img: '/innovatech/screen-04.png',
+    title: 'Recetas con estructura clara',
+    problem: 'El clásico "¿y ahora qué hago con esto?" después de comprar un producto desconocido.',
+    why: 'Ingredientes y pasos en pestañas, foto apetecible. Baja la fricción de empezar a cocinar.',
+  },
+  {
+    index: '04',
+    img: '/innovatech/screen-05.png',
+    title: 'AlgaeChef — recetas con IA',
+    problem: 'Cocinar con algas requiere conocimiento que la mayoría no tiene.',
+    why: 'Sugerencias adaptadas al despensa, recomendaciones de algas y recetas generadas según lo que tienes.',
+  },
+  {
+    index: '05',
+    img: '/innovatech/screen-02.png',
+    title: 'Inicio — descubrir y volver',
+    problem: 'Sin un hub central, cada visita empieza de cero y la experiencia no mejora.',
+    why: 'Recetas destacadas, productos y acceso directo a AlgaeChef. Favoritos y despensa construyen hábito.',
+  },
+];
 ---
 
 <CaseStudyLayout
-  title="InnovaTech"
-  tagline="Concurso Nacional"
-  description="Propuesta de producto funcional seleccionada como finalista para el prestigioso premio nacional Innovatech. Diseño de interfaz impecable con memoria técnica rigurosa."
-  accentColor="#F59E0B"
-  heroImage="/innovatech/ChatGPT Image 22 may 2026, 15_48_16.png"
-  stack={["UI/UX Design", "Figma", "Prototipado", "User Research", "Design Systems"]}
-  metrics={{
-    prize: "€10K",
-    position: "Finalista",
-    year: "2024"
-  }}
-  github="https://github.com/Rodriifdezz"
-  year="2024"
+  title="Innovatech FP × Porto-Muiños"
+  subtitle="Diseñando una experiencia digital para acercar el consumo de algas al día a día."
+  role="Diseño de producto · Equipo"
+  discipline="Producto digital · Cliente real"
+  context="Cliente real · Equipo"
+  platform="App móvil · IA"
+  brandColor={brand}
+  description="Caso de estudio de Porto-Muiños: app móvil con escaneo QR, recetas e IA (AlgaeChef) para Innovatech FP. Cliente real Porto-Muiños."
+  ogImage="/innovatech/concept.jpeg"
 >
-
-  <!-- Award Badge -->
-  <section class="mb-16 -mt-8">
-    <div class="glass-card p-8 text-center">
-      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 backdrop-blur-sm">
-        <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <span class="text-lg font-bold text-amber-400">Premio Nacional Innovatech • €10,000 • Finalista 2024</span>
+  <CaseStudySection eyebrow="Introducción" title="Un reto de empresa, una respuesta de producto">
+    <p class="cs-prose">
+      Durante Innovatech FP trabajamos junto a <strong>Porto-Muiños</strong>, empresa referente en Europa
+      en el cultivo y comercialización de algas, con un reto muy concreto: hacer que un producto
+      desconocido para la mayoría de consumidores resultara más <strong>accesible, comprensible y fácil
+      de incorporar a la cocina diaria</strong>.
+    </p>
+    <p class="cs-prose">
+      Nuestra propuesta combinó diseño de producto, inteligencia artificial y una experiencia móvil
+      centrada en descubrir, aprender y cocinar con algas de una forma sencilla.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="01 — El reto"
+    title="Un gran producto no siempre significa una experiencia sencilla"
+  >
+    <p class="cs-prose">
+      Porto-Muiños llevaba años innovando en torno a las algas como alimento, pero seguía existiendo
+      una barrera evidente: la mayoría de personas no sabía qué hacer con ellas.
+    </p>
+    <div class="cs-observations mt-8">
+      <div class="cs-observation">
+        <span class="cs-observation__num">?</span>
+        <p class="cs-observation__text">¿Qué tipo de alga estoy comprando?</p>
+      </div>
+      <div class="cs-observation">
+        <span class="cs-observation__num">?</span>
+        <p class="cs-observation__text">¿Para qué sirve?</p>
+      </div>
+      <div class="cs-observation">
+        <span class="cs-observation__num">?</span>
+        <p class="cs-observation__text">¿Cómo se cocina?</p>
+      </div>
+      <div class="cs-observation">
+        <span class="cs-observation__num">?</span>
+        <p class="cs-observation__text">¿Con qué ingredientes combina?</p>
       </div>
     </div>
-  </section>
-
-  <!-- Hero Screens Section -->
-  <section class="mb-20">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      <div class="screen-container">
-        <img src="/innovatech/Frame 1.png" alt="InnovaTech - Pantalla principal" class="screen-image" loading="eager"/>
-      </div>
-      <div class="screen-container">
-        <img src="/innovatech/Frame 1 (1).png" alt="InnovaTech - Dashboard" class="screen-image" loading="eager"/>
-      </div>
-      <div class="screen-container">
-        <img src="/innovatech/Frame 1 (2).png" alt="InnovaTech - Analytics" class="screen-image" loading="eager"/>
-      </div>
-      <div class="screen-container">
-        <img src="/innovatech/Frame 1 (3).png" alt="InnovaTech - Settings" class="screen-image" loading="eager"/>
-      </div>
-    </div>
-  </section>
-
-  <!-- El Contexto -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🏆</span>
-      El Contexto
-    </h2>
-    <div class="glass-card p-8 space-y-4 text-text-secondary">
-      <p class="text-lg leading-relaxed">
-        Innovatech es el <strong class="text-white">premio nacional más prestigioso</strong> para jóvenes innovadores 
-        tecnológicos en España. Con más de 500 participantes cada año, solo los 10 mejores proyectos llegan a la final.
+    <p class="cs-lead mt-10">
+      El problema no era el producto. Era la <strong>experiencia que existía alrededor del producto</strong>.
+      Ese fue el punto de partida del proyecto.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="02 — Investigación"
+    title="Entender antes de diseñar"
+    lead="Antes de pensar en pantallas o funcionalidades, dedicamos tiempo a comprender el contexto."
+  >
+    <p class="cs-prose">
+      Observamos cómo una persona descubre un producto nuevo en un supermercado, qué dudas aparecen
+      durante la compra y por qué muchas veces termina descartándolo.
+    </p>
+    <p class="cs-prose">
+      Identificamos un patrón claro: cuando un alimento requiere <strong>demasiado aprendizaje previo</strong>,
+      la mayoría de consumidores abandona antes incluso de probarlo.
+    </p>
+    <p class="cs-lead mt-8">
+      La oportunidad no estaba en vender más. Estaba en <strong>reducir esa barrera inicial</strong>.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection eyebrow="03 — La pregunta" title="La pregunta que guió el proyecto">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <p class="cs-quote">
+        ¿Cómo conseguimos que cualquiera pueda empezar a <span>cocinar con algas</span> sin sentirse perdido?
       </p>
-      <p class="text-lg leading-relaxed">
-        La propuesta debía demostrar <strong class="text-white">viabilidad técnica, impacto social y excelencia en diseño</strong>. 
-        Cada proyecto se evalúa por un jurado de expertos de la industria tecnológica.
-      </p>
-      <div class="mt-6 p-6 rounded-xl bg-[#F59E0B]/10 border-l-4 border-[#F59E0B]">
-        <p class="text-xl font-bold text-white italic">
-          "Entre los 10 finalistas de 500+ participantes a nivel nacional"
+      <div>
+        <p class="cs-prose">
+          Esa fue la pregunta que guió todas las decisiones posteriores.
+        </p>
+        <p class="cs-prose">
+          No buscábamos crear otra aplicación. Queríamos diseñar una experiencia que acompañara al
+          usuario desde el <strong>primer contacto con el producto</strong> hasta el momento de cocinarlo.
         </p>
       </div>
     </div>
-  </section>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="04 — La solución"
+    title="Conectar el producto físico con el mundo digital"
+  >
+    <p class="cs-lead">
+      Una aplicación móvil capaz de acompañar al usuario durante todo el recorrido. Mediante el escaneo
+      de un <strong>código QR</strong> en el producto, accedía a una experiencia personalizada: información
+      sobre cada alga, propiedades, recomendaciones y recetas adaptadas mediante <strong>inteligencia artificial</strong>.
+    </p>
+    <p class="cs-prose mt-6">
+      El objetivo no era sustituir la experiencia de compra. Era <strong>enriquecerla</strong>.
+    </p>
 
-  <!-- El Reto -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🎯</span>
-      El Reto
-    </h2>
-    <div class="glass-card p-8 space-y-6">
-      <p class="text-lg text-text-secondary leading-relaxed">
-        Diseñar una solución tecnológica completa que resuelva un problema real, con:
-      </p>
-      
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="challenge-card-inno">
-          <div class="text-4xl mb-4">📐</div>
-          <h3 class="text-xl font-bold text-white mb-3">Diseño Impecable</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Interfaz profesional que cumpla estándares de usabilidad y accesibilidad. 
-            Diseño visual coherente y atractivo.
-          </p>
-        </div>
-        <div class="challenge-card-inno">
-          <div class="text-4xl mb-4">📄</div>
-          <h3 class="text-xl font-bold text-white mb-3">Memoria Técnica</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Documentación rigurosa de arquitectura, tecnologías, metodología 
-            y plan de implementación detallado.
-          </p>
-        </div>
-        <div class="challenge-card-inno">
-          <div class="text-4xl mb-4">💡</div>
-          <h3 class="text-xl font-bold text-white mb-3">Innovación Real</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Propuesta diferenciadora que aporte valor real al mercado. 
-            Solución viable y escalable.
-          </p>
-        </div>
-      </div>
+    <div class="cs-figure mt-14">
+      <img src="/innovatech/concept.jpeg" alt="Porto-Muiños — mapa de la experiencia" loading="lazy" decoding="async" />
     </div>
-  </section>
+    <p class="cs-figcaption">Vista general del recorrido: descubrir, escanear, aprender y cocinar.</p>
 
-  <!-- Diseño UI/UX -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🎨</span>
-      Diseño UI/UX
-    </h2>
-    
-    <div class="glass-card p-8 mb-8">
-      <p class="text-lg text-text-secondary leading-relaxed mb-6">
-        Sistema de diseño completo desarrollado en <strong class="text-white">Figma</strong>, 
-        con componentes reutilizables, guías de estilo y prototipo interactivo de alta fidelidad.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="design-feature">
-          <h4 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-            <span class="text-2xl">🎯</span>
-            Design System
-          </h4>
-          <ul class="text-sm space-y-2 text-text-secondary list-none">
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Paleta de colores coherente y accesible</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Tipografía escalable y legible</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Componentes modulares reutilizables</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Sistema de espaciado consistente</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="design-feature">
-          <h4 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-            <span class="text-2xl">⚡</span>
-            Prototipado
-          </h4>
-          <ul class="text-sm space-y-2 text-text-secondary list-none">
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Prototipo interactivo navegable</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Flujos de usuario optimizados</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Micro-interacciones y transiciones</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Testing con usuarios reales</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div class="mt-16" data-cs-reveal>
+      <LazyVideo
+        src="/innovatech/demo.mp4"
+        poster="/innovatech/concept.jpeg"
+        label="Ver prototipo en movimiento"
+        aspect="16 / 9"
+      />
     </div>
-
-    <!-- Screens Showcase -->
-    <div class="glass-card p-8">
-      <h3 class="text-2xl font-bold text-white mb-6">Pantallas Principales</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (4).png" alt="InnovaTech - Onboarding" class="screen-full"/>
-          <p class="screen-caption">Onboarding</p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="05 — Experiencia"
+    title="Un recorrido natural"
+    lead="Cada paso elimina una pequeña barrera que normalmente impide probar un alimento desconocido."
+  >
+    <div class="cs-journey">
+      {journey.map((step) => (
+        <div class="cs-journey__step">
+          <div class="cs-journey__node">{step.emoji}</div>
+          <span class="cs-journey__label">{step.label}</span>
+          <span class="cs-journey__desc">{step.desc}</span>
         </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (5).png" alt="InnovaTech - Dashboard" class="screen-full"/>
-          <p class="screen-caption">Dashboard</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (6).png" alt="InnovaTech - Analytics" class="screen-full"/>
-          <p class="screen-caption">Analytics</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (7).png" alt="InnovaTech - Profile" class="screen-full"/>
-          <p class="screen-caption">Profile</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (8).png" alt="InnovaTech - Settings" class="screen-full"/>
-          <p class="screen-caption">Settings</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (9).png" alt="InnovaTech - Notifications" class="screen-full"/>
-          <p class="screen-caption">Notifications</p>
-        </div>
-      </div>
+      ))}
     </div>
-  </section>
-
-  <!-- Más Pantallas -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">📱</span>
-      Flujos Completos
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (10).png" alt="InnovaTech - Flow 1" class="screen-full"/>
-          <p class="screen-caption">User Flow 1</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (11).png" alt="InnovaTech - Flow 2" class="screen-full"/>
-          <p class="screen-caption">User Flow 2</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 1 (12).png" alt="InnovaTech - Flow 3" class="screen-full"/>
-          <p class="screen-caption">User Flow 3</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 2 (1).png" alt="InnovaTech - Components" class="screen-full"/>
-          <p class="screen-caption">Components</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/Frame 2 (2).png" alt="InnovaTech - Style Guide" class="screen-full"/>
-          <p class="screen-caption">Style Guide</p>
-        </div>
-        <div class="screen-showcase">
-          <img src="/innovatech/ChatGPT_Image_27_may_2026,_202605291120.jpeg" alt="InnovaTech - Concept" class="screen-full"/>
-          <p class="screen-caption">Concept Art</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Metodología -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🔬</span>
-      Metodología de Diseño
-    </h2>
-    
-    <div class="space-y-6">
-      <div class="methodology-card">
-        <div class="flex items-start gap-4">
-          <div class="methodology-number">1</div>
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2">Research & Discovery</h3>
-            <p class="text-text-secondary leading-relaxed">
-              Investigación de usuarios, análisis competitivo, identificación de pain points. 
-              Entrevistas con stakeholders y definición de user personas.
-            </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="06 — Decisiones de diseño"
+    title="Cada pantalla respondía a una pregunta del usuario"
+    lead="No diseñamos funcionalidades porque sí. Cada una resolvía una necesidad concreta."
+  >
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <p class="cs-decision__q">Información clara del producto</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Incertidumbre en el momento de la compra.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">El usuario entiende qué compra antes de llevarlo a casa.</span>
           </div>
         </div>
       </div>
-
-      <div class="methodology-card">
-        <div class="flex items-start gap-4">
-          <div class="methodology-number">2</div>
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2">Ideation & Wireframing</h3>
-            <p class="text-text-secondary leading-relaxed">
-              Sketches iniciales, wireframes low-fidelity, arquitectura de información. 
-              Iteración rápida basada en feedback.
-            </p>
+      <div class="cs-decision">
+        <p class="cs-decision__q">Recetas generadas mediante IA</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">El clásico "¿y ahora qué hago con esto?"</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">AlgaeChef propone recetas adaptadas al despensa del usuario.</span>
           </div>
         </div>
       </div>
-
-      <div class="methodology-card">
-        <div class="flex items-start gap-4">
-          <div class="methodology-number">3</div>
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2">Visual Design</h3>
-            <p class="text-text-secondary leading-relaxed">
-              Creación del design system, mockups high-fidelity, definición de brand identity. 
-              Asegurar consistencia visual en todas las pantallas.
-            </p>
+      <div class="cs-decision">
+        <p class="cs-decision__q">Mi despensa</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Productos comprados que se olvidan en la cocina.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">Fomentar la reutilización y aprovechar lo que ya tienes.</span>
           </div>
         </div>
       </div>
-
-      <div class="methodology-card">
-        <div class="flex items-start gap-4">
-          <div class="methodology-number">4</div>
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2">Prototyping & Testing</h3>
-            <p class="text-text-secondary leading-relaxed">
-              Prototipo interactivo en Figma, testing de usabilidad con usuarios, 
-              ajustes basados en métricas y feedback cualitativo.
-            </p>
+      <div class="cs-decision">
+        <p class="cs-decision__q">Favoritos</p>
+        <div class="cs-decision__body">
+          <div class="cs-decision__row">
+            <span class="cs-decision__key">Problema</span>
+            <span class="cs-decision__val">Sin memoria, cada sesión empieza de cero.</span>
+          </div>
+          <div class="cs-decision__row cs-decision__row--outcome">
+            <span class="cs-decision__key">Resultado</span>
+            <span class="cs-decision__val">Una experiencia que mejora con el tiempo y genera hábito.</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Memoria Técnica -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">📋</span>
-      Memoria Técnica
-    </h2>
-    
-    <div class="glass-card p-8">
-      <p class="text-lg text-text-secondary leading-relaxed mb-6">
-        Documentación completa presentada al jurado, incluyendo arquitectura técnica, 
-        plan de desarrollo y estrategia de go-to-market.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="technical-section">
-          <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            <span class="text-2xl">🏗️</span>
-            Arquitectura
-          </h4>
-          <ul class="text-sm space-y-2 text-text-secondary list-none">
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Diagrama de arquitectura completo</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Stack tecnológico justificado</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Modelo de datos y relaciones</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Infraestructura y escalabilidad</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="technical-section">
-          <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            <span class="text-2xl">📊</span>
-            Plan de Negocio
-          </h4>
-          <ul class="text-sm space-y-2 text-text-secondary list-none">
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Análisis de mercado y competencia</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Modelo de monetización</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Roadmap de desarrollo</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-[#F59E0B] mt-0.5">→</span>
-              <span>Proyección financiera a 3 años</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="07 — Pantallas del producto"
+    title="Pantallas que cuentan la historia"
+    lead="El recorrido completo, de izquierda a derecha: escanear, aprender, cocinar y volver al inicio."
+  >
+    <div class="cs-mockup-grid" data-cs-reveal>
+      {gallery.map((item) => (
+        <figure class="cs-mockup-grid__item">
+          <img src={item.img} alt={`Porto-Muiños — ${item.caption}`} loading="lazy" decoding="async" />
+          <figcaption class="cs-mockup-grid__caption">{item.caption}</figcaption>
+        </figure>
+      ))}
     </div>
-  </section>
 
-  <!-- Aprendizajes -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">💎</span>
-      Lo que aprendí
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="space-y-4 text-text-secondary">
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Diseño de Producto:</strong> Proceso completo desde research hasta prototipo final, validación con usuarios, iteración basada en feedback</p>
+    {screens.map((screen, i) => (
+      <article class={`cs-screen ${i % 2 === 1 ? 'cs-screen--flip' : ''}`} data-cs-reveal>
+        <div class="cs-screen__media">
+          <div class="cs-screen__mockup">
+            <img src={screen.img} alt={`Porto-Muiños — ${screen.title}`} loading="lazy" decoding="async" />
           </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Figma Avanzado:</strong> Design systems, componentes, auto-layout, prototyping interactivo, colaboración en equipo</p>
-          </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">User Research:</strong> Entrevistas, análisis cualitativo, definición de personas, journey mapping, testing de usabilidad</p>
-          </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Documentación Técnica:</strong> Redacción de memoria técnica profesional, diagramas de arquitectura, justificación de decisiones</p>
-          </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Presentación:</strong> Pitch ante jurado experto, storytelling, defensa de propuesta, gestión de Q&A</p>
-          </div>
-        </div>
-        <div class="learning-item">
-          <span class="text-[#F59E0B] text-2xl">→</span>
-          <div>
-            <p class="text-lg"><strong class="text-white">Trabajo bajo presión:</strong> Cumplir deadlines estrictos, gestión de tiempo, priorización de tareas críticas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reconocimiento -->
-  <section class="mb-20">
-    <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-      <span class="text-4xl">🏅</span>
-      Reconocimiento
-    </h2>
-    
-    <div class="glass-card p-8">
-      <div class="text-center space-y-6">
-        <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 text-5xl">
-          🏆
         </div>
         <div>
-          <h3 class="text-3xl font-bold text-white mb-2">Finalista Nacional</h3>
-          <p class="text-xl text-amber-400 font-semibold mb-4">Premio Innovatech 2024</p>
-          <p class="text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Seleccionado entre más de 500 participantes a nivel nacional. 
-            El proyecto destacó por su <strong class="text-white">excelencia en diseño UI/UX</strong>, 
-            <strong class="text-white">viabilidad técnica</strong> y 
-            <strong class="text-white">potencial de impacto social</strong>.
+          <p class="cs-screen__index">{screen.index}</p>
+          <h3 class="cs-screen__title">{screen.title}</h3>
+          <dl>
+            <div class="cs-screen__annotation">
+              <dt>Qué resuelve</dt>
+              <dd>{screen.problem}</dd>
+            </div>
+            <div class="cs-screen__annotation">
+              <dt>Por qué así</dt>
+              <dd>{screen.why}</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    ))}
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="08 — Cliente real"
+    title="Diseñar cambia cuando existe un cliente al otro lado"
+  >
+    <p class="cs-lead">
+      Uno de los mayores aprendizajes fue trabajar sobre un reto planteado por una <strong>empresa real</strong>.
+    </p>
+    <p class="cs-prose mt-6">
+      Cada decisión debía justificarse. Cada funcionalidad debía aportar valor. Cada presentación
+      suponía explicar por qué una idea era mejor que otra. El proyecto dejó de ser un ejercicio
+      académico para convertirse en un <strong>proceso de diseño orientado a resolver un problema existente</strong>.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="09 — Innovatech FP"
+    title="Mucho más que una competición"
+  >
+    <p class="cs-prose">
+      Innovatech FP nos permitió trabajar bajo un contexto muy similar al de un proyecto profesional:
+      investigar un problema real, desarrollar una propuesta, iterar sobre ella y defenderla ante un
+      jurado formado por profesionales.
+    </p>
+    <p class="cs-prose">
+      Más allá del resultado obtenido, la experiencia nos enseñó la importancia de <strong>validar ideas</strong>,
+      comunicar decisiones y construir soluciones pensando siempre en el usuario final.
+    </p>
+  </CaseStudySection>
+  <CaseStudySection
+    eyebrow="10 — Resultado"
+    title="Facilitar la adopción de un producto poco conocido"
+  >
+    <p class="cs-lead">
+      Un prototipo funcional que integraba contenido educativo, recetas generadas mediante inteligencia
+      artificial y herramientas para acompañar al usuario antes, durante y después de la compra.
+    </p>
+    <p class="cs-prose mt-6">
+      La propuesta fue presentada dentro del programa <strong>Innovatech FP</strong> como respuesta
+      al reto planteado por Porto-Muiños.
+    </p>
+
+    <div class="cs-figure cs-figure--poster mt-14">
+      <img src="/innovatech/hero.png" alt="Porto-Muiños — memoria final Innovatech FP" loading="lazy" decoding="async" />
+    </div>
+    <p class="cs-figcaption">Portada de la memoria del proyecto — curso 2024/2025.</p>
+  </CaseStudySection>
+  <CaseStudySection eyebrow="11 — Aprendizajes" title="Lo que me llevo de este proyecto">
+    <div class="cs-lessons">
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">01</span>
+        <div>
+          <h3 class="cs-lesson__title">El diseño empieza por comprender el problema</h3>
+          <p class="cs-lesson__text">
+            El diseño de producto no consiste únicamente en crear interfaces atractivas. Consiste en
+            comprender un problema, cuestionar su origen y construir una solución capaz de mejorar
+            la experiencia de las personas.
           </p>
         </div>
-        <div class="flex flex-wrap justify-center gap-4 pt-4">
-          <div class="px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/30">
-            <div class="text-2xl font-bold text-amber-400">€10,000</div>
-            <div class="text-xs text-text-muted uppercase">Premio</div>
-          </div>
-          <div class="px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/30">
-            <div class="text-2xl font-bold text-amber-400">Top 10</div>
-            <div class="text-xs text-text-muted uppercase">Finalista</div>
-          </div>
-          <div class="px-6 py-3 rounded-xl bg-amber-500/10 border border-amber-500/30">
-            <div class="text-2xl font-bold text-amber-400">500+</div>
-            <div class="text-xs text-text-muted uppercase">Participantes</div>
-          </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">02</span>
+        <div>
+          <h3 class="cs-lesson__title">La tecnología debe desaparecer</h3>
+          <p class="cs-lesson__text">
+            Trabajar con Porto-Muiños reforzó una idea que hoy guía todos mis proyectos: la mejor
+            tecnología es aquella que desaparece y deja que la experiencia sea la protagonista.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </CaseStudySection>
 
 </CaseStudyLayout>
-
-<style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-  }
-
-  .screen-container {
-    position: relative;
-    aspect-ratio: 16/10;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .screen-container:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);
-  }
-
-  .screen-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .screen-showcase {
-    position: relative;
-    transition: transform 0.3s ease;
-  }
-
-  .screen-showcase:hover {
-    transform: translateY(-8px);
-  }
-
-  .screen-full {
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .screen-caption {
-    margin-top: 0.75rem;
-    text-align: center;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 600;
-  }
-
-  .challenge-card-inno {
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .challenge-card-inno:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(245, 158, 11, 0.3);
-    transform: translateY(-4px);
-  }
-
-  .design-feature {
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 4px solid #F59E0B;
-  }
-
-  .methodology-card {
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .methodology-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(245, 158, 11, 0.2);
-  }
-
-  .methodology-number {
-    min-width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-  }
-
-  .technical-section {
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .learning-item {
-    display: flex;
-    align-items: start;
-    gap: 1rem;
-  }
-</style>

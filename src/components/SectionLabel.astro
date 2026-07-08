@@ -1,0 +1,49 @@
+---
+interface Props {
+  label: string;
+  variant?: 'primary' | 'secondary' | 'neutral';
+  class?: string;
+}
+
+const { label, variant = 'primary', class: className = '' } = Astro.props;
+---
+
+<span class={`section-label section-label--${variant} ${className}`}>
+  <slot name="icon" />
+  {label}
+</span>
+
+<style>
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    backdrop-filter: blur(8px);
+    width: fit-content;
+  }
+
+  .section-label--primary {
+    color: var(--color-accent-primary);
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  }
+
+  .section-label--secondary {
+    color: var(--color-accent-secondary);
+    background: color-mix(in srgb, var(--color-accent-secondary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent-secondary) 25%, transparent);
+  }
+
+  .section-label--neutral {
+    color: var(--color-text-secondary);
+    background: var(--color-bg-card);
+    border-color: var(--color-border-subtle);
+  }
+</style>

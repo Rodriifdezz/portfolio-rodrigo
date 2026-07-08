@@ -1,13 +1,17 @@
----
-// Cursor personalizado que cambia según el contexto
----
-
-<div id="custom-cursor" class="custom-cursor">
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true">
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
 </div>
 
 <style>
+  :global(html.custom-cursor-active) body,
+  :global(html.custom-cursor-active) a,
+  :global(html.custom-cursor-active) button,
+  :global(html.custom-cursor-active) [role="button"],
+  :global(html.custom-cursor-active) .clickable {
+    cursor: none !important;
+  }
+
   .custom-cursor {
     position: fixed;
     top: 0;
@@ -37,7 +41,6 @@
     transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
   }
 
-  /* Hover states */
   .custom-cursor.hover-link .cursor-dot {
     width: 0;
     height: 0;
@@ -68,35 +71,20 @@
     border-color: rgba(79, 140, 255, 1);
     background: rgba(79, 140, 255, 0.2);
   }
-
-  /* Hide default cursor */
-  body {
-    cursor: none !important;
-  }
-
-  a, button, [role="button"], .clickable {
-    cursor: none !important;
-  }
-
-  /* Mobile: show default cursor */
-  @media (pointer: coarse) {
-    .custom-cursor {
-      display: none;
-    }
-    
-    body, a, button {
-      cursor: auto !important;
-    }
-  }
 </style>
 
 <script>
   import { gsap } from 'gsap';
 
-  // Check if device has mouse
-  const isMobile = window.matchMedia("(pointer: coarse)").matches;
-  
-  if (!isMobile) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const canUseCustomCursor = !prefersReducedMotion && !isCoarsePointer;
+
+  if (!canUseCustomCursor) {
+    document.documentElement.classList.remove('custom-cursor-active');
+  } else {
+    document.documentElement.classList.add('custom-cursor-active');
+
     const cursor = document.getElementById('custom-cursor');
     const dot = cursor?.querySelector('.cursor-dot');
     const outline = cursor?.querySelector('.cursor-outline');
@@ -105,50 +93,45 @@
     let mouseY = 0;
     let currentX = 0;
     let currentY = 0;
+    let rafId: number | null = null;
 
-    // Update mouse position
+    const tick = () => {
+      const ease = 0.35;
+      currentX += (mouseX - currentX) * ease;
+      currentY += (mouseY - currentY) * ease;
+
+      if (dot) gsap.set(dot, { x: currentX, y: currentY });
+      if (outline) gsap.set(outline, { x: currentX, y: currentY });
+
+      const delta = Math.abs(mouseX - currentX) + Math.abs(mouseY - currentY);
+      if (delta > 0.25) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    };
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (!rafId) rafId = requestAnimationFrame(tick);
     });
 
-    // FIXED: Ambos elementos se mueven a la misma velocidad
-    function animate() {
-      // Ease más alto = menos lag, más cercano al ratón real
-      const ease = 0.35; // Aumentado de 0.15 a 0.35 para menos retraso
-      
-      currentX += (mouseX - currentX) * ease;
-      currentY += (mouseY - currentY) * ease;
-      
-      // Ambos usan las mismas coordenadas
-      if (dot) {
-        gsap.set(dot, { x: currentX, y: currentY });
-      }
-      
-      if (outline) {
-        gsap.set(outline, { x: currentX, y: currentY });
-      }
-
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // Hover effects
     const links = document.querySelectorAll('a');
     const buttons = document.querySelectorAll('button, .btn-primary, .btn-secondary');
     const projects = document.querySelectorAll('[data-project-id]');
 
-    links.forEach(link => {
+    links.forEach((link) => {
       link.addEventListener('mouseenter', () => cursor?.classList.add('hover-link'));
       link.addEventListener('mouseleave', () => cursor?.classList.remove('hover-link'));
     });
 
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       button.addEventListener('mouseenter', () => cursor?.classList.add('hover-button'));
       button.addEventListener('mouseleave', () => cursor?.classList.remove('hover-button'));
     });
 
-    projects.forEach(project => {
+    projects.forEach((project) => {
       project.addEventListener('mouseenter', () => cursor?.classList.add('hover-project'));
       project.addEventListener('mouseleave', () => cursor?.classList.remove('hover-project'));
     });

@@ -1,0 +1,65 @@
+---
+import { site } from '../data/site';
+
+interface CaseStudySchema {
+  title: string;
+  description: string;
+  url: string;
+}
+
+interface Props {
+  caseStudy?: CaseStudySchema;
+}
+
+const { caseStudy } = Astro.props;
+const { pathname } = Astro.url;
+const isHome = pathname === '/';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.siteUrl,
+  jobTitle: 'Desarrollador de Software',
+  sameAs: [site.linkedin],
+  knowsAbout: [
+    'Java',
+    'Spring Boot',
+    'React Native',
+    'Backend development',
+    'Mobile applications',
+    'Product design',
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: `${site.name} — Portfolio`,
+  url: site.siteUrl,
+  description: site.description,
+  inLanguage: 'es-ES',
+  author: { '@type': 'Person', name: site.name },
+};
+
+const caseStudySchema = caseStudy
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      name: caseStudy.title,
+      description: caseStudy.description,
+      url: caseStudy.url,
+      inLanguage: 'es-ES',
+      author: { '@type': 'Person', name: site.name },
+      creator: { '@type': 'Person', name: site.name },
+    }
+  : null;
+
+const schemas = [
+  personSchema,
+  ...(isHome ? [websiteSchema] : []),
+  ...(caseStudySchema ? [caseStudySchema] : []),
+];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />

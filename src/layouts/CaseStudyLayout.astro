@@ -1,126 +1,142 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/case-study.css';
 
 interface Props {
   title: string;
-  tagline: string;
-  description: string;
-  accentColor: string;
-  heroImage: string;
-  stack: string[];
-  metrics: Record<string, string>;
-  github?: string;
-  liveUrl?: string;
-  year: string;
+  discipline: string;
+  context: string;
+  platform: string;
+  brandColor: string;
+  role?: string;
+  subtitle?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, tagline, description, accentColor, heroImage, stack, metrics, github, liveUrl, year } = Astro.props;
+const {
+  title,
+  discipline,
+  context,
+  platform,
+  brandColor,
+  role,
+  subtitle,
+  description,
+  ogImage,
+  noindex,
+} = Astro.props;
+
+const pageDescription =
+  description ?? subtitle ?? `Caso de estudio de ${title}: ${discipline}. Proyecto de Rodrigo Fernández.`;
 ---
 
-<BaseLayout title={`${title} - Case Study | Rodrigo Fernández`}>
-  <main class="min-h-screen bg-background">
-    
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4">
-        
-        <!-- Breadcrumb -->
-        <nav class="flex items-center gap-2 text-sm text-text-muted mb-8">
-          <a href="/#projects" class="hover:text-white transition-colors">Proyectos</a>
-          <span>/</span>
-          <span class="text-white">{title}</span>
-        </nav>
+<BaseLayout
+  title={`${title} — Caso de estudio | Rodrigo Fernández`}
+  description={pageDescription}
+  ogImage={ogImage}
+  ogType="article"
+  caseStudyTitle={title}
+  {noindex}
+>
+  <Navbar />
 
-        <!-- Header -->
-        <div class="max-w-3xl mb-16">
-          <div class="space-y-6">
-            <div class="flex items-center gap-3">
-              <div class="h-1 w-12 rounded-full" style={`background: ${accentColor};`}></div>
-              <span class="text-sm font-mono font-bold uppercase tracking-wider" style={`color: ${accentColor};`}>{tagline}</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight">
-              {title}
-            </h1>
-            
-            <p class="text-xl text-text-secondary leading-relaxed">
-              {description}
-            </p>
+  <main id="main-content" class="cs" style={`--cs-brand: ${brandColor};`}>
+    <section class="cs-hero section-container !pb-8">
+      <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+        <a href="/#projects">Proyectos</a>
+        <span class="opacity-40" aria-hidden="true">/</span>
+        <span class="text-text-secondary">{title}</span>
+      </nav>
 
-            <!-- CTA Buttons -->
-            {github && (
-              <div class="pt-4">
-                <a 
-                  href={github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl"
-                  style={`background: ${accentColor}; box-shadow: 0 10px 30px ${accentColor}40;`}
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  Ver en GitHub
-                </a>
-              </div>
-            )}
-          </div>
-        </div>
+      <h1 class="cs-hero__title" data-cs-reveal>{title}</h1>
 
-        <!-- Hero Image -->
-        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-          <div class="absolute -inset-4 rounded-3xl blur-3xl opacity-20" style={`background: ${accentColor};`}></div>
-          <img 
-            src={heroImage} 
-            alt={`${title} hero`}
-            class="relative w-full h-auto object-cover"
-          />
-        </div>
-
+      <div class="cs-meta" data-cs-reveal>
+        {role && (
+          <>
+            <span class="cs-brand-dot">{role}</span>
+            <span class="dot" aria-hidden="true"></span>
+          </>
+        )}
+        <span class="cs-brand-dot">{discipline}</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>{context}</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>{platform}</span>
       </div>
+
+      {subtitle && (
+        <p class="cs-lead cs-hero__lead" data-cs-reveal>
+          {subtitle}
+        </p>
+      )}
     </section>
 
-    <!-- Tech Stack -->
-    <section class="py-12 border-y border-white/10 bg-white/5">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex flex-wrap justify-center gap-3">
-          {stack.map((tech) => (
-            <span 
-              class="px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-lg border backdrop-blur-sm"
-              style={`color: ${accentColor}; background: ${accentColor}15; border-color: ${accentColor}30;`}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Content Slot -->
-    <div class="max-w-5xl mx-auto px-4 py-20">
+    <div class="section-container !pt-0 !pb-16">
       <slot />
     </div>
 
-    <!-- Back to Projects -->
-    <section class="py-16 border-t border-white/10">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <a 
-          href="/#projects" 
-          class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all hover:-translate-y-1"
-        >
-          ← Volver a proyectos
-        </a>
-      </div>
-    </section>
-
+    <div class="section-container !py-8">
+      <a href="/#projects" class="cs-back-link">
+        <span aria-hidden="true">←</span> Volver a proyectos
+      </a>
+    </div>
   </main>
+
+  <Footer />
 </BaseLayout>
 
 <style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
+  .cs-hero {
+    padding-top: calc(var(--header-height) + 2rem);
+  }
+
+  .cs-hero__title {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-hero__lead {
+    margin-top: 1.5rem;
+    max-width: 48rem;
+  }
+
+  .cs-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .cs-breadcrumb a:hover {
+    color: var(--color-text-primary);
+    transition: color 0.2s ease;
+  }
+
+  .cs-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .cs-back-link:hover {
+    color: var(--color-text-primary);
   }
 </style>
+
+<script>
+  import { scrollReveal } from '../scripts/motion';
+
+  scrollReveal('[data-cs-reveal]', { start: 'top 90%', y: 20, duration: 0.75 });
+</script>

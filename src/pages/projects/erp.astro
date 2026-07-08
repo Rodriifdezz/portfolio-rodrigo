@@ -1,0 +1,137 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import CaseStudySection from '../../components/case-study/CaseStudySection.astro';
+---
+
+<CaseStudyLayout
+  title="ERP"
+  role="Desarrollo full-stack · Backend · TFC de DAM"
+  discipline="Software empresarial"
+  context="TFC de DAM · En producción"
+  platform="Spring Boot · React · Electron"
+  brandColor="#4F8CFF"
+  subtitle="Trabajo Fin de Ciclo: ERP a medida para digitalizar la operativa diaria de un taller de tapicería artesanal."
+  description="Caso de estudio del TFC (ERP): Spring Boot, React, Electron, PostgreSQL y uso real en un negocio de tapicería."
+>
+
+  <CaseStudySection
+    eyebrow="01 — Contexto"
+    title="Un negocio real gestionado a mano"
+    lead="El taller gestionaba presupuestos, pedidos y materiales con Excel, papel y memoria. Cada encargo cambia según mueble, tela, relleno y horas de mano de obra."
+  >
+    <p class="cs-prose">
+      Eso generaba <strong>errores en cotizaciones</strong>, poca trazabilidad y mucho tiempo
+      en tareas administrativas repetitivas. El problema no era falta de software genérico, sino
+      la lógica específica del negocio.
+    </p>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="02 — Problema" title="Qué necesitaba el negocio">
+    <div class="cs-deflist" style="max-width: 46rem;">
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Cotizar bien</span>
+        <span class="cs-deflist__desc">Presupuestos con reglas variables según tipo de trabajo, materiales y tiempos.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Seguir pedidos</span>
+        <span class="cs-deflist__desc">Estados visibles para todo el taller y menos dependencia de la memoria del equipo.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Centralizar datos</span>
+        <span class="cs-deflist__desc">Clientes, telas y consumos asociados a cada proyecto en un solo sitio.</span>
+      </div>
+    </div>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="03 — Solución" title="Qué resuelve el ERP">
+    <div class="cs-deflist" style="max-width: 46rem;">
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Presupuestos</span>
+        <span class="cs-deflist__desc">Reglas según tipo de trabajo, materiales y tiempos. Menos cálculo manual y menos errores.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Producción</span>
+        <span class="cs-deflist__desc">Estados del encargo visibles para todo el taller. Saber en qué fase está cada trabajo.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Clientes</span>
+        <span class="cs-deflist__desc">Histórico de clientes, telas y consumos asociados a cada proyecto.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Uso diario</span>
+        <span class="cs-deflist__desc">No es un mockup: lo usa el negocio en su operativa real.</span>
+      </div>
+    </div>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="04 — Arquitectura" title="Cómo está montado">
+    <div class="cs-cols">
+      <div>
+        <h4 class="cs-deflist__term mb-3">Backend</h4>
+        <div class="cs-status-list">
+          <span class="cs-status">API REST con Spring Boot</span>
+          <span class="cs-status">Entidades JPA: clientes, pedidos, materiales</span>
+          <span class="cs-status">Lógica de negocio en capa de servicios</span>
+          <span class="cs-status">PostgreSQL como persistencia</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="cs-deflist__term mb-3">Frontend</h4>
+        <div class="cs-status-list">
+          <span class="cs-status">React con vistas por área operativa</span>
+          <span class="cs-status">Electron como app de escritorio</span>
+          <span class="cs-status">Formularios para presupuestos y pedidos</span>
+          <span class="cs-status">Consumo de API REST tipado</span>
+        </div>
+      </div>
+    </div>
+    <p class="cs-prose mt-10" style="color: var(--color-text-muted);">
+      No muestro capturas inventadas del ERP. Las ilustraciones genéricas de arquitectura no representan
+      la interfaz real, así que preferí no usarlas como si fueran pantallas del producto.
+    </p>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="05 — Resultado" title="Impacto en el negocio">
+    <p class="cs-prose">
+      El ERP reduce errores en presupuestos, da trazabilidad a los pedidos y centraliza la información
+      que antes estaba repartida entre Excel y papel. El criterio fue priorizar lo que el taller usa
+      cada día frente a funcionalidades que solo lucen bien en un diagrama.
+    </p>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="06 — Aprendizajes" title="Qué me llevé del proyecto">
+    <div class="cs-lessons">
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">01</span>
+        <div>
+          <h3 class="cs-lesson__title">Pensar en dominio, no en CRUD</h3>
+          <p class="cs-lesson__text">
+            Modelar las reglas de un negocio real obliga a entender el dominio. Cada excepción del
+            taller se convierte en una regla de software.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">02</span>
+        <div>
+          <h3 class="cs-lesson__title">Priorizar lo que se usa cada día</h3>
+          <p class="cs-lesson__text">
+            Aprendí a dar prioridad a lo que el usuario usa a diario frente a funcionalidades que
+            solo existen bien en un diagrama.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">03</span>
+        <div>
+          <h3 class="cs-lesson__title">Backend con consecuencias reales</h3>
+          <p class="cs-lesson__text">
+            Un error en un presupuesto no es un bug de clase: afecta a un cliente y a la operativa
+            del negocio. Eso cambia cómo diseño validaciones, modelos y flujos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </CaseStudySection>
+
+</CaseStudyLayout>
