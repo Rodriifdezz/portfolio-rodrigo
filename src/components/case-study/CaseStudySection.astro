@@ -4,12 +4,13 @@ interface Props {
   title: string;
   lead?: string;
   id?: string;
+  class?: string;
 }
 
-const { eyebrow, title, lead, id } = Astro.props;
+const { eyebrow, title, lead, id, class: className } = Astro.props;
 ---
 
-<section class="cs-section" id={id} data-cs-reveal>
+<section class:list={['cs-section', className]} id={id} data-cs-reveal>
   <header class="mb-10">
     <p class="cs-eyebrow">{eyebrow}</p>
     <h2 class="cs-title">{title}</h2>
