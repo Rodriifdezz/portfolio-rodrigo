@@ -85,8 +85,8 @@ export const projects = [
     metrics: { uso: 'Diario', enfoque: 'Backend', contexto: 'TFC' },
     caseStudy: '/projects/erp',
     accentColor: '#4F8CFF',
-    image: null,
-    imageAspect: '16 / 10',
+    image: '/erp/dashboard.png',
+    imageAspect: '16 / 9',
     imagePosition: 'center center',
     emphasis: 'backend' as ProjectEmphasis,
   },
@@ -108,9 +108,9 @@ export const projects = [
 ] as const;
 
 export const techSection = {
-  title: 'Tecnologías',
-  titleAccent: 'que uso',
-  subtitle: 'Tecnologías que uso en proyectos reales, no solo en ejemplos aislados.',
+  title: 'Mi stack',
+  titleAccent: 'tecnológico',
+  subtitle: '',
 } as const;
 
 export const techStack = [

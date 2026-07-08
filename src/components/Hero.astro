@@ -168,12 +168,16 @@ const heroImage = await getImage({
 
     .hero__layout {
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      gap: clamp(1rem, 2vw, 2rem);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(0.75rem, 1.5vw, 1.5rem);
       align-items: center;
       min-height: 100svh;
       min-height: 100dvh;
       padding-bottom: clamp(1.5rem, 4vh, 3rem);
+    }
+
+    .hero__copy {
+      padding-right: clamp(0.5rem, 1vw, 1rem);
     }
 
     .hero__panel {
@@ -193,10 +197,11 @@ const heroImage = await getImage({
     .hero__visual {
       display: flex;
       position: absolute;
+      left: clamp(30rem, 46%, 50%);
       right: clamp(0.5rem, 1.5vw, 1.25rem);
-      bottom: clamp(-2rem, -5vh, -3rem);
-      width: min(46vw, 720px);
-      height: calc(100dvh - var(--header-height) + clamp(2rem, 5vh, 3.5rem));
+      width: auto;
+      bottom: clamp(-1rem, -2.5vh, -1.5rem);
+      height: calc((100dvh - var(--header-height)) * 0.88 + clamp(0.5rem, 1.5vh, 1rem));
       justify-content: flex-end;
       align-items: flex-end;
       z-index: 1;
@@ -261,7 +266,11 @@ const heroImage = await getImage({
 
   @media (min-width: 1280px) {
     .hero__layout {
-      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: clamp(1rem, 2vw, 2rem);
+    }
+
+    .hero__copy {
+      padding-right: clamp(0.75rem, 1.5vw, 1.25rem);
     }
 
     .hero__panel {
@@ -273,38 +282,47 @@ const heroImage = await getImage({
     }
 
     .hero__visual {
-      width: min(50vw, 860px);
-      height: calc(100dvh - var(--header-height) + clamp(2.5rem, 6vh, 4rem));
+      left: clamp(34rem, 48%, 52%);
+      height: calc((100dvh - var(--header-height)) * 0.9 + clamp(0.75rem, 2vh, 1.25rem));
       right: clamp(1rem, 2.5vw, 2rem);
-      bottom: clamp(-2.5rem, -6vh, -3.5rem);
+      bottom: clamp(-1.25rem, -3vh, -2rem);
     }
 
     .hero__photo {
-      height: 102%;
+      height: 100%;
     }
   }
 
   @media (min-width: 1536px) {
+    .hero__layout {
+      gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    }
+
+    .hero__copy {
+      padding-right: clamp(1rem, 2vw, 1.5rem);
+    }
+
     .hero__visual {
-      width: min(52vw, 980px);
+      left: clamp(36rem, 50%, 54%);
+      height: calc((100dvh - var(--header-height)) * 0.92 + clamp(1rem, 2.5vh, 1.5rem));
       right: max(1.5rem, calc((100vw - var(--section-max)) / -2 + 2.5rem));
     }
 
     .hero__photo {
-      height: 108%;
+      height: 100%;
     }
   }
 
   @media (min-width: 1920px) {
     .hero__visual {
-      width: min(54vw, 1100px);
-      height: calc(100dvh - var(--header-height) + clamp(3rem, 7vh, 4.5rem));
+      left: clamp(38rem, 52%, 56%);
+      height: calc((100dvh - var(--header-height)) * 0.94 + clamp(1rem, 3vh, 1.75rem));
       right: max(2rem, calc((100vw - var(--section-max)) / -2 + 3rem));
-      bottom: clamp(-3rem, -7vh, -4rem);
+      bottom: clamp(-1.5rem, -3.5vh, -2.5rem);
     }
 
     .hero__photo {
-      height: 112%;
+      height: 100%;
     }
   }
 </style>

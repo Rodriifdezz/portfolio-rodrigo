@@ -26,11 +26,17 @@ import { projects, projectsSection } from '../data/site';
                   <img
                     src={project.image}
                     alt={project.title}
-                    class={`project-card__img ${project.id === 'inno' ? 'project-card__img--banner' : ''}`}
+                    class={`project-card__img ${
+                      project.id === 'inno'
+                        ? 'project-card__img--banner'
+                        : project.id === 'erp'
+                          ? 'project-card__img--erp'
+                          : ''
+                    }`}
                     style={`object-position: ${project.imagePosition};`}
                     loading="lazy"
                     width={project.id === 'inno' ? 1672 : 1024}
-                    height={project.id === 'inno' ? 941 : 500}
+                    height={project.id === 'inno' || project.id === 'erp' ? 576 : 500}
                   />
                 ) : (
                   <div class="project-card__placeholder" aria-hidden="true">
@@ -204,6 +210,11 @@ import { projects, projectsSection } from '../data/site';
   }
 
   .project-card__img--banner {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .project-card__img--erp {
     object-fit: cover;
     object-position: center center;
   }

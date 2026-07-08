@@ -41,7 +41,7 @@ function getTechColor(tech: StackItem) {
       {techSection.title}
       <span class="text-gradient text-gradient-animate">{techSection.titleAccent}</span>
     </h2>
-    <p class="tech__subtitle">{techSection.subtitle}</p>
+    {techSection.subtitle && <p class="tech__subtitle">{techSection.subtitle}</p>}
   </header>
 
   <div class="tech__grid">
