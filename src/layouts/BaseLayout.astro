@@ -147,7 +147,7 @@ const caseStudySchema = caseStudyTitle
         gsap.ticker.lagSmoothing(0);
       }
 
-      bindAnchorScroll('a[data-nav-link], .site-header a[href*="#"], .site-footer a[href*="#"]');
+      bindAnchorScroll('a[href*="#"]:not([download])');
     </script>
   </body>
 </html>

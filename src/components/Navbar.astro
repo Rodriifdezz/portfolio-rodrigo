@@ -10,40 +10,26 @@ const navItems = [
 ];
 ---
 
-<header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div
-    class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg-primary via-bg-primary/90 to-transparent backdrop-blur-[12px] [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] -z-10"
-  >
-  </div>
+<header class="site-header">
+  <div class="site-header__backdrop" aria-hidden="true"></div>
 
-  <div class="site-header__bar section-container !py-0 !px-[var(--section-px)] h-[var(--header-height)] flex items-center justify-between pointer-events-auto">
-    <a
-      href="/#hero"
-      class="text-xl font-bold font-display tracking-tight text-white hover:text-accent-primary transition-colors"
-    >
-      RF.
-    </a>
+  <div class="site-header__bar section-container">
+    <a href="/#hero" class="site-header__logo">RF.</a>
 
-    <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Navegación principal">
+    <nav class="site-header__nav" aria-label="Navegación principal">
       {
         navItems.map((item) => (
-          <a
-            href={item.href}
-            class="nav-link text-sm font-medium text-text-secondary hover:text-white transition-colors"
-            data-nav-hash={item.hash}
-          >
+          <a href={item.href} class="nav-link" data-nav-hash={item.hash}>
             {item.label}
           </a>
         ))
       }
-      <a href={site.cvPath} class="text-sm font-semibold text-accent-primary hover:text-white transition-colors" download>
-        CV
-      </a>
+      <a href={site.cvPath} class="site-header__cv" download>CV</a>
     </nav>
 
     <button
       type="button"
-      class="md:hidden relative z-[70] text-text-secondary hover:text-white transition-colors p-1 -mr-1"
+      class="site-header__toggle"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-nav"
@@ -54,50 +40,127 @@ const navItems = [
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-      <svg class="nav-icon-close hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="nav-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   </div>
-
-  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] pointer-events-none opacity-0 invisible md:hidden" aria-hidden="true">
-    <div class="mobile-nav__backdrop absolute inset-0 z-0 bg-bg-primary/85 backdrop-blur-md" data-nav-close></div>
-    <nav
-      class="mobile-nav__panel absolute top-0 right-0 z-10 h-full w-[min(100%,320px)] bg-bg-secondary border-l border-white/10 px-6 pt-[calc(var(--header-height)+1rem)] pb-10 flex flex-col gap-1 shadow-2xl translate-x-full transition-transform duration-300 pointer-events-auto"
-      aria-label="Menú móvil"
-    >
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="mobile-nav__link py-3.5 text-lg font-medium text-white/85 hover:text-white border-b border-white/8 transition-colors"
-            data-nav-link
-            data-nav-hash={item.hash}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-      <a
-        href={site.cvPath}
-        class="mt-4 inline-flex items-center justify-center px-5 py-3 rounded-full bg-accent-primary/15 border border-accent-primary/40 text-accent-primary font-semibold"
-        download
-        data-nav-link
-      >
-        Descargar CV
-      </a>
-    </nav>
-  </div>
 </header>
 
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <button type="button" class="mobile-nav__backdrop" aria-label="Cerrar menú" data-nav-close></button>
+  <nav class="mobile-nav__panel" aria-label="Menú móvil">
+    {
+      navItems.map((item) => (
+        <a href={item.href} class="mobile-nav__link" data-nav-link data-nav-hash={item.hash}>
+          {item.label}
+        </a>
+      ))
+    }
+    <a href={site.cvPath} class="mobile-nav__cta" download data-nav-link>
+      Descargar CV
+    </a>
+  </nav>
+</div>
+
 <style>
-  .site-header__bar {
-    max-width: var(--section-max);
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
   }
 
-  .site-header[data-nav-open='true'] {
-    pointer-events: auto;
+  .site-header__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8rem;
+    background: linear-gradient(to bottom, var(--color-bg-primary), color-mix(in srgb, var(--color-bg-primary) 90%, transparent), transparent);
+    backdrop-filter: blur(12px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .site-header__bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--section-max);
+    margin-inline: auto;
+    height: var(--header-height);
+    padding-inline: var(--section-px);
+  }
+
+  .site-header__logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-header__logo:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .site-header__nav {
+    display: none;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .site-header__cv {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-header__cv:hover {
+    color: var(--color-text-primary);
+  }
+
+  .site-header__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    margin-right: -0.25rem;
+    color: var(--color-text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .site-header__toggle:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-icon-close {
+    display: none;
   }
 
   .site-header[data-nav-open='true'] .nav-icon-open {
@@ -108,24 +171,105 @@ const navItems = [
     display: block;
   }
 
-  .mobile-nav[data-open='true'] {
-    pointer-events: auto;
-    opacity: 1;
-    visibility: visible;
+  .mobile-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  .mobile-nav[data-open='true'] .mobile-nav__panel {
-    transform: translate3d(0, 0, 0);
+  .mobile-nav__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border: none;
+    background: color-mix(in srgb, var(--color-bg-primary) 86%, transparent);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    cursor: pointer;
+  }
+
+  .mobile-nav__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: min(100%, 20rem);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: calc(var(--header-height) + 1rem) 1.5rem 2.5rem;
+    background: var(--color-bg-secondary);
+    border-left: 1px solid var(--color-border-subtle);
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-nav__link {
     display: block;
     width: 100%;
+    padding: 0.9rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-subtle);
+    transition: color 0.2s ease;
+  }
+
+  .mobile-nav__link:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .mobile-nav__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    background: rgba(79, 140, 255, 0.12);
+    border: 1px solid rgba(79, 140, 255, 0.35);
+  }
+
+  .mobile-nav[data-open='true'] {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-nav[data-open='true'] .mobile-nav__backdrop {
+    opacity: 1;
+  }
+
+  .mobile-nav[data-open='true'] .mobile-nav__panel {
+    transform: translateX(0);
   }
 
   :global(.nav-link[aria-current='page']),
   :global(.mobile-nav__link[aria-current='page']) {
-    color: var(--color-text-primary);
+    color: var(--color-accent-primary);
+  }
+
+  @media (min-width: 768px) {
+    .site-header__nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .site-header__toggle,
+    .mobile-nav {
+      display: none;
+    }
   }
 </style>
 
@@ -133,7 +277,6 @@ const navItems = [
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
   const mobileNav = document.getElementById('mobile-nav');
-  const panel = mobileNav?.querySelector('.mobile-nav__panel');
   const closeTargets = mobileNav?.querySelectorAll('[data-nav-close], [data-nav-link]');
 
   let lastFocus: HTMLElement | null = null;
@@ -153,7 +296,7 @@ const navItems = [
     document.body.style.overflow = open ? 'hidden' : '';
 
     if (open) {
-      const firstLink = panel?.querySelector<HTMLElement>('a, button');
+      const firstLink = mobileNav.querySelector<HTMLElement>('.mobile-nav__link, .mobile-nav__cta');
       firstLink?.focus();
     } else if (lastFocus) {
       lastFocus.focus();
@@ -171,25 +314,11 @@ const navItems = [
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setOpen(false);
-
-    if (e.key === 'Tab' && header?.getAttribute('data-nav-open') === 'true' && panel) {
-      const focusable = panel.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      );
-      if (!focusable.length) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
   });
 
-  panel?.addEventListener('click', (e) => e.stopPropagation());
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      setOpen(false);
+    }
+  });
 </script>
