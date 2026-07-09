@@ -13,7 +13,7 @@ const navItems = [
 <header class="site-header">
   <div class="site-header__backdrop" aria-hidden="true"></div>
 
-  <div class="site-header__bar section-container">
+  <div class="site-header__bar">
     <a href="/#hero" class="site-header__logo">RF.</a>
 
     <nav class="site-header__nav" aria-label="Navegación principal">
@@ -92,10 +92,17 @@ const navItems = [
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     max-width: var(--section-max);
     margin-inline: auto;
     height: var(--header-height);
     padding-inline: var(--section-px);
+  }
+
+  @media (min-width: 768px) {
+    .site-header__bar {
+      --section-px: 3rem;
+    }
   }
 
   .site-header__logo {

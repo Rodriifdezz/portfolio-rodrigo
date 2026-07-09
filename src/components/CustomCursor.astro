@@ -10,6 +10,11 @@
 
   :global(html.custom-cursor-active) .custom-cursor {
     display: block;
+    opacity: 0;
+  }
+
+  :global(html.custom-cursor-active.custom-cursor-ready) .custom-cursor {
+    opacity: 1;
   }
 
   @media (hover: none), (pointer: coarse), (max-width: 1023px) {
@@ -125,6 +130,7 @@
     };
 
     document.addEventListener('mousemove', (e) => {
+      document.documentElement.classList.add('custom-cursor-ready');
       mouseX = e.clientX;
       mouseY = e.clientY;
       if (!rafId) rafId = requestAnimationFrame(tick);
