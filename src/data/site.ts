@@ -17,6 +17,9 @@ export const site = {
   linkedin: 'https://linkedin.com/in/rodrigofernandezdev',
   cvPath: '/cv/Rodrigo-Fernandez-CV.pdf',
   ogImage: '/og.png',
+  ogImageWidth: 2400,
+  ogImageHeight: 1260,
+  profileImage: '/profile-share.png',
 } as const;
 
 export const about = {

@@ -14,7 +14,7 @@ interface Props {
 const { caseStudy } = Astro.props;
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
-const profileImage = new URL(site.ogImage, site.siteUrl).href;
+const profileImage = new URL(site.profileImage, site.siteUrl).href;
 
 const personSchema = {
   '@context': 'https://schema.org',

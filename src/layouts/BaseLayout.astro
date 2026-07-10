@@ -19,8 +19,8 @@ const {
   title = site.homeTitle,
   description = site.description,
   ogImage = site.ogImage,
-  ogImageWidth = 1792,
-  ogImageHeight = 2390,
+  ogImageWidth = site.ogImageWidth,
+  ogImageHeight = site.ogImageHeight,
   ogType = 'website',
   noindex = false,
   caseStudyTitle,
@@ -46,7 +46,7 @@ const caseStudySchema = caseStudyTitle
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#060816" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/og.png" />
+    <link rel="apple-touch-icon" href={site.profileImage} />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 

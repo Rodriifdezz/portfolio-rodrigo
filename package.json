@@ -14,7 +14,8 @@
     "cv:preview": "tsx cv-ats/generate-pdf.ts --html-only",
     "cv:generate:backend": "tsx cv-ats/generate-pdf.ts backend",
     "cv:generate:mobile": "tsx cv-ats/generate-pdf.ts mobile",
-    "cv:generate:ia": "tsx cv-ats/generate-pdf.ts ia"
+    "cv:generate:ia": "tsx cv-ats/generate-pdf.ts ia",
+    "og:generate": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
