@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 const PREVIEW_URL = process.env.OG_PREVIEW_URL ?? 'http://localhost:4321/';
-const OUTPUT_PATH = 'public/og.png';
+const OUTPUT_PATH = 'public/og-hero.png';
 const WIDTH = 1200;
 const HEIGHT = 630;
 const SCALE = 2;
