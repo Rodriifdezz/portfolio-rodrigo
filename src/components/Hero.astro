@@ -20,8 +20,11 @@ const heroImage = await getImage({
         <p class="hero__greeting">{site.heroGreeting}</p>
 
         <h1 class="hero__name">
-          Rodrigo<br />
-          <span class="hero__surname">Fernández</span>
+          <span class="sr-only">{site.name}</span>
+          <span aria-hidden="true">
+            Rodrigo<br />
+            <span class="hero__surname">Fernández</span>
+          </span>
         </h1>
 
         <p class="hero__role">{site.heroRole}</p>

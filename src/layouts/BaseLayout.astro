@@ -16,9 +16,9 @@ interface Props {
 }
 
 const {
-  title = `${site.name} | Desarrollador Backend y Mobile`,
+  title = site.homeTitle,
   description = site.description,
-  ogImage = '/og.png',
+  ogImage = site.ogImage,
   ogImageWidth = 1792,
   ogImageHeight = 2390,
   ogType = 'website',
@@ -58,6 +58,14 @@ const caseStudySchema = caseStudyTitle
       content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
     />
     {showCanonical && <link rel="canonical" href={canonicalURL} />}
+    <link rel="me" href={site.linkedin} />
+
+    {import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION && (
+      <meta
+        name="google-site-verification"
+        content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION}
+      />
+    )}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />

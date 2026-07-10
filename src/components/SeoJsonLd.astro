@@ -14,13 +14,24 @@ interface Props {
 const { caseStudy } = Astro.props;
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
+const profileImage = new URL(site.ogImage, site.siteUrl).href;
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site.siteUrl}/#person`,
   name: site.name,
+  alternateName: site.nameAscii,
+  givenName: site.givenName,
+  familyName: site.familyName,
   url: site.siteUrl,
-  jobTitle: 'Desarrollador de Software',
+  image: profileImage,
+  description: site.homeDescription,
+  jobTitle: 'Desarrollador Backend',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Viewnext',
+  },
   sameAs: [site.linkedin],
   knowsAbout: [
     'Java',
@@ -28,19 +39,37 @@ const personSchema = {
     'React Native',
     'Backend development',
     'Mobile applications',
-    'Product design',
+    'PostgreSQL',
+    'Software architecture',
   ],
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: `${site.name} — Portfolio`,
+  '@id': `${site.siteUrl}/#website`,
+  name: site.name,
+  alternateName: site.nameAscii,
   url: site.siteUrl,
-  description: site.description,
+  description: site.homeDescription,
   inLanguage: 'es-ES',
-  author: { '@type': 'Person', name: site.name },
+  publisher: { '@id': `${site.siteUrl}/#person` },
+  author: { '@id': `${site.siteUrl}/#person` },
 };
+
+const profilePageSchema = isHome
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      '@id': `${site.siteUrl}/#profile`,
+      url: site.siteUrl,
+      name: `${site.name} — Portfolio`,
+      description: site.homeDescription,
+      inLanguage: 'es-ES',
+      isPartOf: { '@id': `${site.siteUrl}/#website` },
+      mainEntity: { '@id': `${site.siteUrl}/#person` },
+    }
+  : null;
 
 const caseStudySchema = caseStudy
   ? {
@@ -50,16 +79,16 @@ const caseStudySchema = caseStudy
       description: caseStudy.description,
       url: caseStudy.url,
       inLanguage: 'es-ES',
-      author: { '@type': 'Person', name: site.name },
-      creator: { '@type': 'Person', name: site.name },
+      author: { '@id': `${site.siteUrl}/#person` },
+      creator: { '@id': `${site.siteUrl}/#person` },
     }
   : null;
 
 const schemas = [
   personSchema,
-  ...(isHome ? [websiteSchema] : []),
+  ...(isHome ? [websiteSchema, profilePageSchema] : []),
   ...(caseStudySchema ? [caseStudySchema] : []),
-];
+].filter(Boolean);
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schemas)} />

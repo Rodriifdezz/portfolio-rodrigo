@@ -1,22 +1,29 @@
 export const site = {
   name: 'Rodrigo Fernández',
+  nameAscii: 'Rodrigo Fernandez',
+  givenName: 'Rodrigo',
+  familyName: 'Fernández',
   role: 'Desarrollador de Software · Backend y mobile',
   heroGreeting: 'Hola, soy',
   heroRole: 'Desarrollador Backend',
   heroBody:
     'Cursando DAM Dual con prácticas en Viewnext, a la vez que curso Ingeniería Informática. Me gusta aprender construyendo proyectos reales y seguir mejorando con cada uno de ellos.',
   description:
-    'Portfolio de Rodrigo Fernández. Desarrollador junior con experiencia real: backend con Java y Spring, apps móviles con React Native, ERP en producción y prácticas en Viewnext (CaixaBank).',
+    'Rodrigo Fernández — desarrollador backend y mobile. Portfolio con proyectos reales en Java, Spring Boot, React Native y ERP en producción. Prácticas en Viewnext (CaixaBank).',
+  homeTitle: 'Rodrigo Fernández | Desarrollador Backend y Mobile',
+  homeDescription:
+    'Rodrigo Fernández — portfolio oficial. Desarrollador backend y mobile con proyectos reales: Java, Spring Boot, React Native, ERP en producción y prácticas en Viewnext.',
   siteUrl: import.meta.env.SITE,
   linkedin: 'https://linkedin.com/in/rodrigofernandezdev',
   cvPath: '/cv/Rodrigo-Fernandez-CV.pdf',
+  ogImage: '/og.png',
 } as const;
 
 export const about = {
   intro: {
     title: 'Sobre mí',
     paragraphs: [
-      'Tengo 20 años y actualmente compagino DAM Dual con Ingeniería Informática mientras realizo mis prácticas en Viewnext, participando en un proyecto para CaixaBank.',
+      'Actualmente compagino DAM Dual con Ingeniería Informática mientras realizo mis prácticas en Viewnext, participando en un proyecto para CaixaBank.',
       'Lo que más me atrae del desarrollo de software es entender cómo se construyen buenos productos. No suelo conformarme con que una solución funcione; me gusta comprender por qué una decisión técnica es mejor que otra, qué implicaciones tiene y cómo influye en la calidad, el mantenimiento y la evolución de una aplicación.',
       'Fuera del trabajo y de la universidad sigo programando por iniciativa propia. Desarrollo proyectos completos, desde la idea hasta la implementación, con especial interés por el desarrollo backend, la arquitectura de software y la creación de aplicaciones útiles y mantenibles. Disfruto aprendiendo nuevas tecnologías cuando el problema lo requiere y mejorando continuamente mi forma de diseñar y desarrollar software.',
       'Busco incorporarme a un equipo donde pueda seguir creciendo como desarrollador, aprender de profesionales con experiencia y aportar compromiso, curiosidad y una forma de trabajar orientada a construir software de calidad.',
