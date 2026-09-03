@@ -4,102 +4,184 @@ import CaseStudySection from '../../components/case-study/CaseStudySection.astro
 ---
 
 <CaseStudyLayout
-  title="ERP"
-  role="Desarrollo full-stack · Backend · TFC de DAM"
+  title="ERP de Gestión para Tapicería"
+  role="Desarrollo full-stack · Backend · TFC de DAM Dual"
   discipline="Software empresarial"
-  context="TFC de DAM · En producción"
-  platform="Spring Boot · React · Electron"
+  context="TFC de DAM Dual · Finalizado"
+  platform="Java · Spring Boot · React · Electron · PostgreSQL"
   brandColor="#4F8CFF"
-  subtitle="Trabajo Fin de Ciclo: ERP a medida para digitalizar la operativa diaria de un taller de tapicería artesanal."
-  description="Caso de estudio del TFC (ERP): Spring Boot, React, Electron, PostgreSQL y uso real en un negocio de tapicería."
+  subtitle="Trabajo de Fin de Ciclo: aplicación de escritorio para digitalizar y centralizar la gestión integral de un negocio de tapicería."
+  description="Caso de estudio del TFC de DAM Dual: ERP de escritorio con Java, Spring Boot, React, Electron, PostgreSQL, facturación electrónica y aplicación instalable para Windows."
+  ogImage="/erp/erp-tapiceria-hero.webp"
 >
 
   <CaseStudySection
     eyebrow="01 — Contexto"
     title="Un negocio real gestionado a mano"
-    lead="El taller gestionaba presupuestos, pedidos y materiales con Excel, papel y memoria. Cada encargo cambia según mueble, tela, relleno y horas de mano de obra."
+    lead="El taller de tapicería gestionaba su operativa diaria con Excel, papel y memoria. Presupuestos, pedidos, materiales y clientes vivían en sitios separados y sin conexión entre ellos."
   >
     <p class="cs-prose">
-      Eso generaba <strong>errores en cotizaciones</strong>, poca trazabilidad y mucho tiempo
-      en tareas administrativas repetitivas. El problema no era falta de software genérico, sino
-      la lógica específica del negocio.
+      Cada encargo es diferente: cambia el mueble, la tela, el relleno y las horas de mano de obra.
+      Eso generaba <strong>errores en cotizaciones</strong>, poca trazabilidad y mucho tiempo invertido
+      en tareas administrativas que se repetían a diario.
     </p>
   </CaseStudySection>
 
-  <CaseStudySection eyebrow="02 — Problema" title="Qué necesitaba el negocio">
+  <CaseStudySection eyebrow="02 — Necesidades" title="Qué necesitaba el negocio">
     <div class="cs-deflist" style="max-width: 46rem;">
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Cotizar bien</span>
-        <span class="cs-deflist__desc">Presupuestos con reglas variables según tipo de trabajo, materiales y tiempos.</span>
+        <span class="cs-deflist__term">Presupuestos fiables</span>
+        <span class="cs-deflist__desc">Cotizaciones precisas que tengan en cuenta las variables del encargo: tipo de trabajo, materiales y tiempos.</span>
       </div>
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Seguir pedidos</span>
-        <span class="cs-deflist__desc">Estados visibles para todo el taller y menos dependencia de la memoria del equipo.</span>
+        <span class="cs-deflist__term">Control de trabajos</span>
+        <span class="cs-deflist__desc">Estados visibles para todo el taller y seguimiento de cada encargo sin depender de la memoria del equipo.</span>
       </div>
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Centralizar datos</span>
-        <span class="cs-deflist__desc">Clientes, telas y consumos asociados a cada proyecto en un solo sitio.</span>
+        <span class="cs-deflist__term">Información centralizada</span>
+        <span class="cs-deflist__desc">Clientes, telas, tarifas y el histórico de cada proyecto accesible desde un solo sitio.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Facturación y documentación</span>
+        <span class="cs-deflist__desc">Generación de documentos PDF y facturación electrónica integrada, sin recurrir a herramientas externas.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Sin configuración técnica</span>
+        <span class="cs-deflist__desc">Una aplicación que funcione en Windows sin que el usuario tenga que instalar o configurar Java, PostgreSQL ni ningún entorno de desarrollo.</span>
       </div>
     </div>
   </CaseStudySection>
 
-  <CaseStudySection eyebrow="03 — Solución" title="Qué resuelve el ERP">
+  <CaseStudySection eyebrow="03 — Solución" title="Funcionalidades del ERP">
     <div class="cs-deflist" style="max-width: 46rem;">
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Presupuestos</span>
-        <span class="cs-deflist__desc">Reglas según tipo de trabajo, materiales y tiempos. Menos cálculo manual y menos errores.</span>
+        <span class="cs-deflist__term">Clientes y trabajos</span>
+        <span class="cs-deflist__desc">Gestión centralizada de clientes, trabajos de tapicería y su histórico completo. Estados y seguimiento de cada encargo.</span>
       </div>
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Producción</span>
-        <span class="cs-deflist__desc">Estados del encargo visibles para todo el taller. Saber en qué fase está cada trabajo.</span>
+        <span class="cs-deflist__term">Presupuestos y documentos PDF</span>
+        <span class="cs-deflist__desc">Creación de presupuestos con reglas de cálculo según materiales y tiempos. Generación de documentos PDF listos para entregar al cliente.</span>
       </div>
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Clientes</span>
-        <span class="cs-deflist__desc">Histórico de clientes, telas y consumos asociados a cada proyecto.</span>
+        <span class="cs-deflist__term">Facturación electrónica</span>
+        <span class="cs-deflist__desc">Facturación electrónica integrada en la aplicación.</span>
       </div>
       <div class="cs-deflist__item">
-        <span class="cs-deflist__term">Uso diario</span>
-        <span class="cs-deflist__desc">No es un mockup: lo usa el negocio en su operativa real.</span>
+        <span class="cs-deflist__term">Catálogo textil y tarifas</span>
+        <span class="cs-deflist__desc">Gestión de artículos, productos y precios. Catálogos textiles con importación de tarifas desde Excel.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Autenticación y seguridad</span>
+        <span class="cs-deflist__desc">Sistema de autenticación con JWT y cifrado de contraseñas con BCrypt.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Castellano y gallego</span>
+        <span class="cs-deflist__desc">Internacionalización completa en los dos idiomas del negocio.</span>
+      </div>
+      <div class="cs-deflist__item">
+        <span class="cs-deflist__term">Aplicación instalable</span>
+        <span class="cs-deflist__desc">Producto de escritorio para Windows con persistencia local. El usuario instala y utiliza sin configurar nada.</span>
       </div>
     </div>
   </CaseStudySection>
 
-  <CaseStudySection eyebrow="04 — Arquitectura" title="Cómo está montado">
+  <CaseStudySection eyebrow="04 — Arquitectura" title="Cómo está construido">
     <div class="cs-cols">
       <div>
         <h4 class="cs-deflist__term mb-3">Backend</h4>
         <div class="cs-status-list">
-          <span class="cs-status">API REST con Spring Boot</span>
-          <span class="cs-status">Entidades JPA: clientes, pedidos, materiales</span>
-          <span class="cs-status">Lógica de negocio en capa de servicios</span>
-          <span class="cs-status">PostgreSQL como persistencia</span>
+          <span class="cs-status">Java + Spring Boot</span>
+          <span class="cs-status">API REST</span>
+          <span class="cs-status">JPA / Hibernate</span>
+          <span class="cs-status">PostgreSQL local</span>
+          <span class="cs-status">Flyway para migraciones</span>
+          <span class="cs-status">JWT + BCrypt</span>
         </div>
       </div>
       <div>
-        <h4 class="cs-deflist__term mb-3">Frontend</h4>
+        <h4 class="cs-deflist__term mb-3">Frontend / Desktop</h4>
         <div class="cs-status-list">
-          <span class="cs-status">React con vistas por área operativa</span>
-          <span class="cs-status">Electron como app de escritorio</span>
-          <span class="cs-status">Formularios para presupuestos y pedidos</span>
-          <span class="cs-status">Consumo de API REST tipado</span>
+          <span class="cs-status">React + TypeScript</span>
+          <span class="cs-status">Electron</span>
+          <span class="cs-status">Generación de PDF</span>
+          <span class="cs-status">Importación de Excel</span>
+          <span class="cs-status">App empaquetada para Windows</span>
         </div>
       </div>
     </div>
-    <p class="cs-prose mt-10" style="color: var(--color-text-muted);">
-      No muestro capturas inventadas del ERP. Las ilustraciones genéricas de arquitectura no representan
-      la interfaz real, así que preferí no usarlas como si fueran pantallas del producto.
+    <p class="cs-prose mt-10">
+      La aplicación integra frontend, backend, base de datos y runtime en un mismo instalador de escritorio.
+      El usuario ejecuta la aplicación directamente, sin instalar Java, PostgreSQL, Node ni ningún entorno de desarrollo.
     </p>
   </CaseStudySection>
 
-  <CaseStudySection eyebrow="05 — Resultado" title="Impacto en el negocio">
+  <CaseStudySection eyebrow="05 — Retos técnicos" title="Complejidad del proyecto">
+    <div class="cs-lessons">
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">01</span>
+        <div>
+          <h3 class="cs-lesson__title">Integración React + Electron + Spring Boot</h3>
+          <p class="cs-lesson__text">
+            Coordinar el frontend React dentro de Electron con un backend Spring Boot que arranca y se detiene
+            junto con la aplicación de escritorio. Gestionar el ciclo de vida del backend desde el proceso principal de Electron.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">02</span>
+        <div>
+          <h3 class="cs-lesson__title">PostgreSQL local y persistencia</h3>
+          <p class="cs-lesson__text">
+            Incluir PostgreSQL como base de datos local dentro de la aplicación empaquetada. Flyway se encarga
+            de las migraciones para que la estructura evolucione junto con las actualizaciones del software.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">03</span>
+        <div>
+          <h3 class="cs-lesson__title">Empaquetado y distribución</h3>
+          <p class="cs-lesson__text">
+            Empaquetar todas las dependencias necesarias (Java runtime, PostgreSQL, frontend y backend) en un instalador
+            de Windows que funcione en equipos sin entorno de desarrollo preparado.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">04</span>
+        <div>
+          <h3 class="cs-lesson__title">Importación y procesamiento de datos</h3>
+          <p class="cs-lesson__text">
+            Procesamiento de tarifas textiles desde archivos Excel y generación de documentos PDF
+            desde la lógica de negocio del backend.
+          </p>
+        </div>
+      </div>
+      <div class="cs-lesson">
+        <span class="cs-lesson__num">05</span>
+        <div>
+          <h3 class="cs-lesson__title">Seguridad y facturación</h3>
+          <p class="cs-lesson__text">
+            Autenticación con JWT y cifrado BCrypt. Integración de facturación electrónica dentro del flujo de gestión de la aplicación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </CaseStudySection>
+
+  <CaseStudySection eyebrow="06 — Resultado" title="Un sistema empresarial completo">
     <p class="cs-prose">
-      El ERP reduce errores en presupuestos, da trazabilidad a los pedidos y centraliza la información
-      que antes estaba repartida entre Excel y papel. El criterio fue priorizar lo que el taller usa
-      cada día frente a funcionalidades que solo lucen bien en un diagrama.
+      El resultado es una aplicación de escritorio que centraliza la operativa del taller —presupuestos, trabajos,
+      clientes, catálogo y facturación— en una única herramienta instalable.
+    </p>
+    <p class="cs-prose">
+      El proyecto me obligó a trabajar en <strong>arquitectura</strong>, <strong>modelado de datos</strong>,
+      <strong>seguridad</strong>, <strong>integración entre procesos</strong>, <strong>persistencia local</strong>,
+      <strong>empaquetado</strong> y <strong>distribución</strong>, además del desarrollo backend y frontend.
     </p>
   </CaseStudySection>
 
-  <CaseStudySection eyebrow="06 — Aprendizajes" title="Qué me llevé del proyecto">
+  <CaseStudySection eyebrow="07 — Aprendizajes" title="Qué me llevé del proyecto">
     <div class="cs-lessons">
       <div class="cs-lesson">
         <span class="cs-lesson__num">01</span>
@@ -107,17 +189,17 @@ import CaseStudySection from '../../components/case-study/CaseStudySection.astro
           <h3 class="cs-lesson__title">Pensar en dominio, no en CRUD</h3>
           <p class="cs-lesson__text">
             Modelar las reglas de un negocio real obliga a entender el dominio. Cada excepción del
-            taller se convierte en una regla de software.
+            taller se convierte en una regla de software que hay que resolver limpiamente.
           </p>
         </div>
       </div>
       <div class="cs-lesson">
         <span class="cs-lesson__num">02</span>
         <div>
-          <h3 class="cs-lesson__title">Priorizar lo que se usa cada día</h3>
+          <h3 class="cs-lesson__title">Construir un producto, no solo código</h3>
           <p class="cs-lesson__text">
-            Aprendí a dar prioridad a lo que el usuario usa a diario frente a funcionalidades que
-            solo existen bien en un diagrama.
+            Empaquetar, distribuir e instalar una aplicación para un usuario final cambia por completo
+            cómo piensas en la arquitectura y en las dependencias del proyecto.
           </p>
         </div>
       </div>
@@ -126,7 +208,7 @@ import CaseStudySection from '../../components/case-study/CaseStudySection.astro
         <div>
           <h3 class="cs-lesson__title">Backend con consecuencias reales</h3>
           <p class="cs-lesson__text">
-            Un error en un presupuesto no es un bug de clase: afecta a un cliente y a la operativa
+            Un error en un presupuesto o en una factura no es un bug de clase: afecta a un cliente y a la operativa
             del negocio. Eso cambia cómo diseño validaciones, modelos y flujos.
           </p>
         </div>

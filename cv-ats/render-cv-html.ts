@@ -9,8 +9,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const HIGHLIGHT_TERMS = [
   'Microsoft Azure Fundamentals (AZ-900)',
   'Plataforma de investigación cuantitativa',
+  'ERP de Gestión para Tapicería — TFC de DAM Dual',
   'Porto-Muiños · InnovatechFP',
-  'ERP — TFC de DAM',
   'CaixaBank',
   'Spring Boot',
   'PostgreSQL',
@@ -34,7 +34,7 @@ function escapeRegExp(value: string): string {
 
 function protectPhrases(text: string): string {
   return text
-    .replace(/\(DAM Dual\)/g, '(<span class="cv-nowrap">DAM Dual</span>)')
+    .replace(/DAM Dual/g, '<span class="cv-nowrap">DAM Dual</span>')
     .replace(/FP Dual/g, '<span class="cv-nowrap">FP Dual</span>');
 }
 

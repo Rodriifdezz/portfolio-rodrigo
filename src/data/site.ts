@@ -3,16 +3,16 @@ export const site = {
   nameAscii: 'Rodrigo Fernandez',
   givenName: 'Rodrigo',
   familyName: 'Fernández',
-  role: 'Desarrollador de Software · Backend y mobile',
+  role: 'Desarrollador Backend Junior · Java · Spring Boot',
   heroGreeting: 'Hola, soy',
-  heroRole: 'Desarrollador Backend',
+  heroRole: 'Desarrollador Backend Junior',
   heroBody:
-    'Cursando DAM Dual con prácticas en Viewnext, a la vez que curso Ingeniería Informática. Me gusta aprender construyendo proyectos reales y seguir mejorando con cada uno de ellos.',
+    'Construyo software empresarial con Java y Spring Boot, combinando experiencia en entorno enterprise con proyectos propios completos. Técnico Superior en DAM Dual · Ingeniería Informática en curso.',
   description:
-    'Rodrigo Fernández — desarrollador backend y mobile. Portfolio con proyectos reales en Java, Spring Boot, React Native y ERP en producción. Prácticas en Viewnext (CaixaBank).',
-  homeTitle: 'Rodrigo Fernández | Desarrollador Backend y Mobile',
+    'Rodrigo Fernández — desarrollador backend junior. Portfolio con proyectos reales en Java, Spring Boot, React Native y software empresarial. Experiencia en Viewnext (CaixaBank).',
+  homeTitle: 'Rodrigo Fernández | Desarrollador Backend Junior — Java · Spring Boot',
   homeDescription:
-    'Rodrigo Fernández — portfolio oficial. Desarrollador backend y mobile con proyectos reales: Java, Spring Boot, React Native, ERP en producción y prácticas en Viewnext.',
+    'Rodrigo Fernández — desarrollador backend junior con experiencia en Java, Spring Boot y software empresarial. Portfolio con proyectos reales y experiencia en Viewnext (CaixaBank).',
   siteUrl: import.meta.env.SITE,
   linkedin: 'https://linkedin.com/in/rodrigofernandezdev',
   cvPath: '/cv/Rodrigo-Fernandez-CV.pdf',
@@ -27,10 +27,9 @@ export const about = {
   intro: {
     title: 'Sobre mí',
     paragraphs: [
-      'Actualmente compagino DAM Dual con Ingeniería Informática mientras realizo mis prácticas en Viewnext, participando en un proyecto para CaixaBank.',
-      'Lo que más me atrae del desarrollo de software es entender cómo se construyen buenos productos. No suelo conformarme con que una solución funcione; me gusta comprender por qué una decisión técnica es mejor que otra, qué implicaciones tiene y cómo influye en la calidad, el mantenimiento y la evolución de una aplicación.',
-      'Fuera del trabajo y de la universidad sigo programando por iniciativa propia. Desarrollo proyectos completos, desde la idea hasta la implementación, con especial interés por el desarrollo backend, la arquitectura de software y la creación de aplicaciones útiles y mantenibles. Disfruto aprendiendo nuevas tecnologías cuando el problema lo requiere y mejorando continuamente mi forma de diseñar y desarrollar software.',
-      'Busco incorporarme a un equipo donde pueda seguir creciendo como desarrollador, aprender de profesionales con experiencia y aportar compromiso, curiosidad y una forma de trabajar orientada a construir software de calidad.',
+      'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM Dual) y actualmente estudiante de Ingeniería Informática. Cuento con experiencia profesional en desarrollo backend dentro de un entorno enterprise, participando en un proyecto del sector bancario con Java y Spring.',
+      'Además, desarrollo proyectos propios completos con especial interés por backend, arquitectura de aplicaciones y software empresarial. Me gusta comprender por qué una decisión técnica es mejor que otra y cómo influye en la calidad, el mantenimiento y la evolución de una aplicación.',
+      'Busco seguir creciendo como desarrollador, trabajando sobre problemas reales y construyendo software mantenible y preparado para evolucionar.',
     ],
   },
   work: {
@@ -54,10 +53,10 @@ export const about = {
   now: {
     title: 'En este momento',
     items: [
-      { label: 'Prácticas', value: 'Viewnext · DAM Dual' },
-      { label: 'Proyecto', value: 'CaixaBank' },
-      { label: 'Estudios', value: 'Ing. Informática' },
-      { label: 'TFC', value: 'ERP para tapicería' },
+      { label: 'Titulación', value: 'Técnico Superior DAM' },
+      { label: 'Estudios', value: 'Ing. Informática (UNIR)' },
+      { label: 'Experiencia', value: 'Viewnext · CaixaBank' },
+      { label: 'TFC', value: 'ERP — Finalizado' },
     ],
   },
 } as const;
@@ -88,17 +87,17 @@ export const projects = [
   },
   {
     id: 'erp',
-    title: 'ERP',
-    tagline: 'TFC · DAM · Negocio real',
+    title: 'ERP de Gestión para Tapicería',
+    tagline: 'Trabajo de Fin de Ciclo · DAM Dual · Finalizado',
     description:
-      'Mi TFC de DAM: ERP a medida para un taller de tapicería con presupuestos, pedidos y operativa diaria. Spring Boot en backend, React y Electron en escritorio, con uso real en el negocio.',
-    stack: ['Spring Boot', 'React', 'Electron', 'PostgreSQL'],
-    metrics: { uso: 'Diario', enfoque: 'Backend', contexto: 'TFC' },
+      'Aplicación de escritorio para digitalizar y centralizar la gestión completa de un negocio de tapicería: clientes, trabajos, presupuestos, catálogo textil y facturación electrónica.',
+    stack: ['Java', 'Spring Boot', 'React', 'TypeScript', 'Electron', 'PostgreSQL'],
+    metrics: { estado: 'Finalizado', tipo: 'Desktop', backend: 'Java · Spring Boot' },
     caseStudy: '/projects/erp',
     accentColor: '#4F8CFF',
-    image: '/erp/dashboard.png',
-    imageAspect: '16 / 9',
-    imagePosition: 'center center',
+    image: '/erp/erp-tapiceria-hero.webp',
+    imageAspect: '3 / 2',
+    imagePosition: 'center top',
     emphasis: 'backend' as ProjectEmphasis,
   },
   {
@@ -230,7 +229,7 @@ export const designStack = [
 ] as const;
 
 export const contact = {
-  badge: 'Disponible para oportunidades junior backend, mobile o full-stack',
+  badge: 'Disponibilidad inmediata · Backend Junior · Java · Spring Boot',
   title: '¿Hablamos?',
-  text: 'Si buscas un desarrollador junior con experiencia construyendo proyectos reales, base backend sólida y muchas ganas de crecer en equipo, estaré encantado de hablar contigo por LinkedIn.',
+  text: 'Si buscas un desarrollador backend junior con experiencia en Java, Spring Boot y software empresarial, y ganas de seguir creciendo en un equipo profesional, estaré encantado de hablar contigo.',
 } as const;

@@ -75,7 +75,7 @@ const cvDataBase: Omit<CvData, 'variant'> = {
   contact: {
     name: 'Rodrigo Fernández',
     headline: 'Desarrollador Backend Junior',
-    tagline: 'Java · Spring Boot · APIs · Software empresarial',
+    tagline: 'Java · Spring Boot · APIs REST · Software empresarial',
     location: 'Ourense, Galicia',
     email: 'rodrigofernandez.dev@gmail.com',
     linkedinUrl: 'https://linkedin.com/in/rodrigofernandezdev',
@@ -83,49 +83,49 @@ const cvDataBase: Omit<CvData, 'variant'> = {
     portfolioUrl: 'https://rodrigofernandez.dev',
     portfolioLabel: 'rodrigofernandez.dev',
   },
-  availability: 'Disponible para incorporación a partir de septiembre de 2026',
+  availability: 'Disponibilidad inmediata',
   about: [
-    'Actualmente curso DAM Dual mientras realizo mis prácticas en Viewnext, participando en un proyecto para CaixaBank. Al mismo tiempo estudio Ingeniería Informática porque disfruto entendiendo cómo construir software sólido más allá del desarrollo diario.',
-    'Fuera del trabajo sigo programando por iniciativa propia. Desarrollo proyectos completos, desde el diseño hasta la implementación, con especial interés por el backend, la arquitectura de aplicaciones y la creación de productos útiles. Me motiva aprender, asumir nuevos retos y mejorar continuamente la calidad del software que desarrollo.',
-    'Busco incorporarme a un equipo donde pueda seguir creciendo como desarrollador, aportar una actitud proactiva y convertir esa curiosidad por aprender en soluciones que generen valor desde el primer día.',
+    'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM Dual) y actualmente estudiante de Ingeniería Informática. Experiencia profesional en desarrollo backend dentro de un entorno enterprise, participando en un proyecto del sector bancario con Java y Spring.',
+    'Desarrollo proyectos propios completos con especial interés por backend, arquitectura de aplicaciones y software empresarial. Busco seguir creciendo como desarrollador, trabajando sobre problemas reales y construyendo software mantenible.',
   ],
   experience: [
     {
-      role: 'Desarrollador Backend (FP Dual)',
+      role: 'Desarrollador Backend — FP Dual',
       company: 'Viewnext',
-      period: '2025 — Septiembre 2026',
+      period: 'Abril 2025 – Julio 2026',
       highlights: [
-        'Desarrollo y mantenimiento evolutivo de aplicaciones empresariales en equipo, en entorno bancario para CaixaBank.',
-        'Implementación de lógica de negocio, APIs y consultas SQL/Oracle con Java y Spring MVC/Spring Boot.',
-        'Resolución de incidencias y evolutivos con Git, revisión de código y estándares de calidad corporativos.',
-        'Colaboración diaria con el equipo técnico: legibilidad, pruebas y coordinación en flujo de desarrollo profesional.',
+        'Desarrollo y mantenimiento evolutivo de aplicaciones empresariales para CaixaBank.',
+        'Implementación de lógica de negocio con Java y tecnologías del ecosistema Spring.',
+        'Trabajo con bases de datos relacionales y SQL en aplicaciones internas de gestión empresarial.',
+        'Resolución de incidencias y desarrollo de evolutivos sobre aplicaciones corporativas.',
+        'Uso de Git y colaboración dentro de un equipo de desarrollo enterprise siguiendo estándares corporativos.',
       ],
     },
   ],
   projects: [
     {
-      name: 'ERP — TFC de DAM',
+      name: 'ERP de Gestión para Tapicería — TFC de DAM Dual',
       emphasize: true,
       description:
-        'TFC de DAM. Software en uso real que centraliza clientes, presupuestos, pedidos y facturación en un taller de tapicería. Spring Boot y PostgreSQL en backend; React y Electron en escritorio. Sustituye Excel y procesos manuales por trazabilidad en la operativa diaria.',
-    },
-    {
-      name: 'FOMO',
-      emphasize: true,
-      description:
-        'App móvil social desarrollada de forma autónoma con React Native. Definición de flujos, arquitectura móvil, gestión de estado y UX pensada para uso en grupo — producto completo, no solo funcionalidad aislada.',
+        'Aplicación de escritorio para digitalizar la gestión integral de un negocio de tapicería: clientes, trabajos, presupuestos, facturación electrónica, catálogos textiles e importación de tarifas. Spring Boot, JPA/Hibernate, PostgreSQL, Flyway, React, TypeScript y Electron. Aplicación instalable para Windows con backend, base de datos y runtime integrados.',
     },
     {
       name: 'Plataforma de investigación cuantitativa',
       emphasize: true,
       description:
-        'Plataforma propia para backtesting, procesamiento de datos, métricas de rendimiento y comparación de estrategias. Arquitectura orientada a evidencia y análisis estadístico para decisiones basadas en datos.',
+        'Plataforma propia para backtesting, procesamiento de datos, métricas de rendimiento y comparación de estrategias con enfoque analítico.',
+    },
+    {
+      name: 'FOMO',
+      emphasize: true,
+      description:
+        'App móvil social desarrollada de forma autónoma con React Native, con foco en flujos, arquitectura y experiencia de uso en grupo.',
     },
     {
       name: 'Porto-Muiños · InnovatechFP',
       emphasize: true,
       description:
-        'Proyecto en equipo para cliente real (Porto-Muiños) en InnovatechFP: análisis del problema, definición de producto, prototipado y presentación ante jurado profesional.',
+        'Proyecto en equipo para cliente real en InnovatechFP: definición de producto, prototipado y presentación ante jurado profesional.',
     },
   ],
   education: [
@@ -137,30 +137,22 @@ const cvDataBase: Omit<CvData, 'variant'> = {
     {
       degree: 'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM Dual)',
       institution: 'CIFP A Carballeira',
-      period: 'Septiembre de 2026',
-      periodLabel: 'Finalización prevista:',
+      period: '2024 – 2026 · Finalizado',
     },
   ],
   technologies: [
-    { category: 'Lenguajes', items: ['Java', 'TypeScript', 'SQL'] },
     {
-      category: 'Frameworks / Librerías',
-      items: [
-        'Spring Boot',
-        'Spring MVC',
-        'REST',
-        'JPA/Hibernate',
-        'React',
-        'React Native',
-        'Electron',
-      ],
+      category: 'Backend',
+      items: ['Java', 'Spring Boot', 'Spring MVC', 'Spring Batch', 'REST', 'JPA/Hibernate'],
     },
-    { category: 'Bases de datos', items: ['PostgreSQL', 'MySQL', 'Oracle', 'Firebase'] },
-    { category: 'Herramientas de desarrollo', items: ['Azure', 'Docker', 'Git'] },
     {
-      category: 'Diseño y producto',
-      items: ['Figma', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe After Effects'],
+      category: 'Bases de datos',
+      items: ['PostgreSQL', 'MySQL', 'Oracle', 'SQL'],
     },
+    { category: 'Tools', items: ['Git', 'Docker', 'JUnit', 'Postman'] },
+    { category: 'Frontend / Desktop', items: ['React', 'TypeScript', 'Electron'] },
+    { category: 'Mobile', items: ['React Native'] },
+    { category: 'Cloud', items: ['Azure'] },
   ],
   certifications: [
     { name: 'Microsoft Azure Fundamentals (AZ-900)', emphasize: true },
